@@ -15,6 +15,8 @@ import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.stream.IntStream;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
@@ -34,7 +36,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
   private JLabel typingTutorTitle;
 
-  private JLabel averageWPMLabel;
+  private static JLabel averageWPMLabel;
 
   private JLabel practiceChoiceLabel;
 
@@ -48,13 +50,15 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
   private Border border;
   public static String assignedText, line, data, name;
   private static File textNamesFile, textTextFile;
-  private static String textNamesFilePath, textTextFilePath;
+  private static String textNamesFilePath, textTextFilePath, wpmFilePath;
   public static int totalTrials;
   public static Boolean wpmBoolean;
 
+  private static Scanner scan;
+  
   private static List<String> textNames;
-
   private static List<String> textTexts;
+  private static List<Double> averageWPMs;
   
 
   public void menu() {
@@ -85,9 +89,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     lessonFour = new JButton();
     lessonFive = new JButton();
     lessonSix = new JButton();
-
-    averageWPM = totalWPM / totalTrials;
-
+    
     addButton = new JButton("+");
     continueButton = new JButton("Continue");
     backButtonSolo = new JButton("Back");
@@ -102,6 +104,8 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     textNameArea = new JTextArea();
     textTextArea = new JTextArea();
 
+
+    
     username = new JLabel();
     typingTutorTitle = new JLabel("<html>Typing <br> \u0000 \u0000 Tutor</html>");
     averageWPMLabel = new JLabel("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
@@ -121,12 +125,15 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
     textNames = new ArrayList<String>();
     textTexts = new ArrayList<String>();
+    averageWPMs = new ArrayList<Double>();
     
     textNamesFilePath = "data/textNames.txt";
     textTextFilePath = "data/textText.txt";
-
+    wpmFilePath = "data/wpm.txt";
+    
     File textNamesFile = new File(textNamesFilePath);
     File textTextFile = new File(textTextFilePath);
+    File wpmFile = new File(wpmFilePath);
     
     getUsername();
     recommendFrame.setVisible(false);
@@ -155,10 +162,14 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     	recommendFrame.setVisible(true);
     } */
     
-    
+
+    // Handles the files. If the contents of the data folder that are expected
+    // to be there aren't, then the program checks each of them and creates
+    // said file. Ensures consistency when dealing with files.
     if (!textNamesFile.exists()) {
       System.out.println(textNamesFilePath + " does not exist. Creating file...");
       createTextNamesFile();
+
       addTextName("A Confederacy Of Dunces");
       addTextName("The Stranger");
       addTextName("American Tabloid");
@@ -167,7 +178,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
       System.out.println(textNamesFilePath + " already exists. Not creating.");
     }
 
-
+    
     if (!textTextFile.exists()) {
       System.out.println(textTextFilePath + " does not exist. Creating file...");
       createTextTextFile();
@@ -179,6 +190,21 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
       System.out.println(textTextFilePath + " already exists. Not creating.");
     }
 
+    if (!wpmFile.exists()) {
+    	System.out.println(wpmFilePath + " does not exist. Creating file...");
+    	try {
+    		createWPMFile();
+    	} catch (IOException e1) {
+    		e1.printStackTrace();
+    	}
+    }
+    else {
+    	System.out.println(wpmFilePath + " already exists. Not creating.");
+    }
+
+    getAverageWPM();
+    
+    ////////////////////////////////////////////////////////////////////////////
     try {
 		fileToArrays();
 	} catch (IOException e1) {
@@ -537,7 +563,6 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
     averageWPMLabel.setBounds(30,100,250,20);
 
-
     menuFrame.setLayout(null);
 
     menuFrame.add(introDifficulty);
@@ -623,7 +648,36 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     }
   }
 
+	public void createWPMFile() throws IOException {
+		File wpmFile = new File("data/wpm.txt");
+
+		
+		try {
+			wpmFile.getParentFile().mkdirs();
+			try {
+				wpmFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		catch(SecurityException se) {
+			
+		}
+		
+
+	}
   
+	public static void writeWPMtoFile(double wpm) throws IOException {
+		FileWriter wpmFileWriter = new FileWriter("data/wpm.txt", true);
+		BufferedWriter wpmFileBufferedWriter = new BufferedWriter(wpmFileWriter);
+		PrintWriter wpmFilePrintWriter = new PrintWriter(wpmFileBufferedWriter);
+		
+		wpmFilePrintWriter.println(wpm);
+		wpmFilePrintWriter.flush();
+		wpmFilePrintWriter.close();
+		
+	}
+	
   public static void fileToArrays() throws IOException {
       
 	  BufferedReader nameReader = new BufferedReader(new FileReader("data/textNames.txt"));
@@ -642,6 +696,38 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	  }
   }
 
+  public static void getAverageWPM() {
+	  try {
+		scan = new Scanner(new File("data/wpm.txt"));
+	} catch (FileNotFoundException e) {
+		e.printStackTrace();
+	}
+	  
+	  int sum = 0;
+	  
+	  averageWPMs.clear();
+	  
+	  while (scan.hasNextDouble()) {
+		  averageWPMs.add(scan.nextDouble());
+		  
+	  }
+	  
+	  
+	  double[] wpmList = averageWPMs.stream().mapToDouble(d -> d).toArray();
+	  
+	  for (int i = 0; i < wpmList.length; i++) {
+		 sum += wpmList[i];
+
+		 
+	  }
+	  
+	  if (wpmList.length == 0) {
+		  averageWPM = 0;
+	  } else {
+	  averageWPM = (sum / wpmList.length);
+	  }
+	  averageWPMLabel.setText("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
+  }
 
   // Functions that are used to create the files that are used
   // with Typing Tutor if they don't exist. Creates a .txt file for both
