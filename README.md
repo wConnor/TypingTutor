@@ -13,4 +13,12 @@ Typing Tutor currently has the following features:
 
 <b>TypingTutor.java contains the main method.</b>
 
-Typing Tutor began development in 2018 for the OCR A Level Computer Science programming project as a part of year 2.
+To compile and run the program, do as follows: 
+```
+$ git clone https://github.com/wConnor/TypingTutor.git
+$ cd TypingTutor
+$ javac TypingTutor.java
+$ java TypingTutor
+```
+
+Typing Tutor began development in November 2018 for the OCR A Level Computer Science programming project as a part of year 2.
