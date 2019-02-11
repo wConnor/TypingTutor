@@ -11,4 +11,6 @@ Typing Tutor currently has the following features:
 * The ability for one to practice their typing skills in the Solo Practice mode (users may also create their own texts here);
 * Statistics on a user's global performance, including their average WPM (words per minute).
 
+<b>TypingTutor.java contains the main method.</b>
+
 Typing Tutor began development in 2018 for the OCR A Level Computer Science programming project as a part of year 2.
