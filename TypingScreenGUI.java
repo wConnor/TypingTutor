@@ -49,7 +49,9 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	public double timeElapsed;
 
 	public static double score;
-	public String inputText, localTime, textToType;
+	public String inputText, localTime;
+
+	public static String textToType;
 	private Border border;
 	public Font promptFont, typingFont, completeFont, summaryFont;
 	private DateTimeFormatter dtf;
@@ -224,7 +226,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		finishButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				endScene.setVisible(false);
-				System.out.println(TypingTest.completeFlag);
+				
 				if (TypingTest.completeFlag != true) {
 					TypingTest.completeFlag = true;
 					mainMenu.menu();
@@ -243,7 +245,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 		summaryLabel.setBounds(40, 15, 500, 200);
 		summaryLabel.setFont(summaryFont);
-
 
 		endScene.setLayout(null);
 

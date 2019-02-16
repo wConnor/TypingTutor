@@ -1,8 +1,9 @@
 import java.io.File;
-import javax.swing.*;
 
 public class TypingTutor {
 	public static void main(String args[]) {
+		
+		System.out.println("*--* Typing Tutor started *--*");
 		
 		File fileCheck = new File("data/user.txt");
 		TypingTutorMenu mainMenu = new TypingTutorMenu();
@@ -17,10 +18,11 @@ public class TypingTutor {
 
 		}
 		else {
+			TypingTest.completeFlag = true;
 			mainMenu.menu();
 		}
 		
-		System.out.println("*--* Typing Tutor started *--*");
+
 
 	}
 }

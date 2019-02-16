@@ -62,7 +62,7 @@ public class TypingTest extends JFrame implements ActionListener {
 				}
 				
 				initialStart.setVisible(false);
-				typingScreen.textToType = "A good thesis is a statement of roughly one to three sentences that says something intelligent about a literary work. It is not sufficient simply to identify a theme in your thesis.";
+				TypingScreenGUI.textToType = "A good thesis is a statement of roughly one to three sentences that says something intelligent about a literary work. It is not sufficient simply to identify a theme in your thesis.";
 				typingScreen.startGUI();
 				
 			}
