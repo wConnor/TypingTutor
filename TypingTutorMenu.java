@@ -43,8 +43,9 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 			introLessonSeven;
 	private JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive,
 			beginnerLessonSix;
-	private JButton intermLessonOne, intermLessonTwo, intermLessonThree, intermLessonFour, intermLessonFive,
-	intermLessonSix;
+	private JButton intermLessonOne, intermLessonTwo, intermLessonThree, intermLessonFour;
+	private JButton advancedLessonOne, advancedLessonTwo, advancedLessonThree, advancedLessonFour, advancedLessonFive,
+	advancedLessonSix;
 
 	private JButton addButton, continueButton, backButtonSolo, backButtonAdd, addButtonAdd;
 	private JButton yesButton, noButton;
@@ -120,9 +121,13 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     intermLessonTwo = new JButton();
     intermLessonThree = new JButton();
     intermLessonFour = new JButton();
-    intermLessonFive = new JButton();
-    intermLessonSix = new JButton();
-
+    
+    advancedLessonOne = new JButton();
+    advancedLessonTwo = new JButton();
+    advancedLessonThree = new JButton();
+    advancedLessonFour = new JButton();
+    advancedLessonFive = new JButton();
+    advancedLessonSix = new JButton();
     
     addButton = new JButton("+");
     continueButton = new JButton("Continue");
@@ -263,12 +268,21 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     intermLessonThree.setVisible(false);
     intermLessonFour.setBounds(175,330,175,60);
     intermLessonFour.setVisible(false);
-    intermLessonFive.setBounds(175,390,175,60);
-    intermLessonFive.setVisible(false);
-    intermLessonSix.setBounds(175,450,175,60);
-    intermLessonSix.setVisible(false);    
     
-    // !-- INTRODUCTION DIFFICULTY --!
+    advancedLessonOne.setBounds(175,150,175,60);
+    advancedLessonOne.setVisible(false);
+    advancedLessonTwo.setBounds(175,210,175,60);
+    advancedLessonTwo.setVisible(false);
+    advancedLessonThree.setBounds(175,270,175,60);
+    advancedLessonThree.setVisible(false);
+    advancedLessonFour.setBounds(175,330,175,60);
+    advancedLessonFour.setVisible(false);
+    advancedLessonFive.setBounds(175,390,175,60);
+    advancedLessonFive.setVisible(false);
+    advancedLessonSix.setBounds(175,450,175,60);
+    advancedLessonSix.setVisible(false);    
+    
+    // !-- INTRODUCTION DIFFICULTY --!x
     introDifficulty.setBounds(0, 150, 175, 60);
     introDifficulty.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
@@ -434,34 +448,62 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
             
     		}
     	});
-    	
-      	intermLessonFive.setText("<html><center>Lesson 5 - Putting New Punctuation into Play</html></center>");
-    	intermLessonFive.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent ev) {
-    			lessonSelected("Putting New Punctuation into Play", "After the previous lesson which was completely random words with the new punctuation in random places, we'll now be practicing the use of the punctuation into more real scenarios that actually make sense!\n\nHere, your WPM may pick up speed compared to the previous lessons, but if you see a decrease, don't be put off! It simply takes practice to become an expert with a newly learnt skill.", "The right method of philosophy would be this. To say nothing except what can be said, i.e. the propositions of natural science, i.e. something that has nothing to do with philosophy: and then always, when someone else wished to say something metaphys-ical, to demonstrate to him that he had given no meaning to certain signs in his propositions.");
-            
-    		}
-    	});
-    	
-      	intermLessonSix.setText("<html><center>Lesson 6 - More Complex Practice</html></center>");
-    	intermLessonSix.addActionListener(new ActionListener() {
-    		public void actionPerformed(ActionEvent ev) {
-    			lessonSelected("More Complex Practice", "This lesson will be similar to the previous one, where all punctuation that has previously been learnt throughout Typing Tutor will be practiced, including the basics from full-stops, to the more complex of hyphens.\n\nThe extract that'll be used will come from a complex piece of literature.", "My propositions are elucidatory in this way: he who understands me finally recognizes them as senseless, when he has climbed out through them, on them, over them. (He must so to speak throwaway the ladder, after he has climbed up on it). He must surmount these propositions; then he sees the world rightly. Whereof one cannot speak, thereof one must be silent.");
-            
-    		}
-    	});
     
         intermLessonOne.setVisible(true);
         intermLessonTwo.setVisible(true);
         intermLessonThree.setVisible(true);
         intermLessonFour.setVisible(true);
-        intermLessonFive.setVisible(true);
-        intermLessonSix.setVisible(true);
-         
         
         }
     });
+    
+    // !-- ADVANCED DIFFICULTY --!
     advancedDifficulty.setBounds(0,330,175,60);
+    advancedDifficulty.addActionListener(new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+      	difficultySelected();
+        
+        advancedLessonOne.setText("<html><center>Lesson 1 - Introducing Difficult Sentences</html></center>");
+        advancedLessonOne.addActionListener(new ActionListener() {
+    		public void actionPerformed(ActionEvent ev) {
+    			lessonSelected("Introducing Difficult Sentecnes", "This lesson will be similar to the previous one, where all punctuation that has previously been learnt throughout Typing Tutor will be practiced, including the basics from full-stops, to the more complex of hyphens.\n\nThe extract that'll be used will come from a complex piece of literature.", "My propositions are elucidatory in this way: he who understands me finally recognizes them as senseless, when he has climbed out through them, on them, over them. (He must so to speak throwaway the ladder, after he has climbed up on it). He must surmount these propositions; then he sees the world rightly. Whereof one cannot speak, thereof one must be silent.");
+            
+    		}
+        });
+        
+        advancedLessonTwo.setText("<html><center>Lesson 2 - More Complex Practice</html></center>");
+        advancedLessonTwo.addActionListener(new ActionListener() {
+        		public void actionPerformed(ActionEvent ev) {
+        			lessonSelected("More Complex Practice", "After the previous stage which was completely random words with the new punctuation in random places, we'll now be practicing the use of the punctuation into more real scenarios that actually make sense!\n\nHere, your WPM may pick up speed compared to the previous lessons, but if you see a decrease, don't be put off! It simply takes practice to become an expert with a newly learnt skill.", "The right method of philosophy would be this. To say nothing except what can be said, i.e. the propositions of natural science, i.e. something that has nothing to do with philosophy: and then always, when someone else wished to say something metaphys-ical, to demonstrate to him that he had given no meaning to certain signs in his propositions.");
+                
+        	}
+    	});
+        
+        advancedLessonThree.setText("<html><center>Lesson 3 - Difficult Words</html></center>");
+        advancedLessonThree.addActionListener(new ActionListener() {
+        		public void actionPerformed(ActionEvent ev) {
+        			lessonSelected("Difficult Words", "Words that aren't used very often in writing will be practiced here. Similar to English, these words will obviously be the ones that contain letters such as Z and Q.\n\nHitting these keys on the keyboard is quite difficult, even for an experienced typist. These keys are placed in their positions the way they are because they're not used very often in the English language - that's how the QWERTY keyboard works.", "zaps quiet xenial zebra xanthic quiz zap zipping xyst zorillas zoophile zip zag xeroxing xylol xi zarzuela zanders");
+                
+        	}
+    	});
+        
+        advancedLessonFour.setText("<html><center>Lesson 4 - Practicing the Use of Those Keys</html></center>");
+        advancedLessonFour.addActionListener(new ActionListener() {
+        		public void actionPerformed(ActionEvent ev) {
+        			lessonSelected("Practicing the Use of Those Keys", "Previously, we introduced some words that started with Z and Q, both of which are rather uncommon letters that one types when they're using the keyboard, however it's very possible that you'll eventually need to write a word that contains either one of your keys, so being prepared for it is the key. Always expect the unexpected.", "You will zap yourself if you touch the wire. Zach is over at the zoo, so he can't help you either. Also, this is a no parking zone, so please write your zip code here.");
+                
+        	}
+    	});
+        
+        advancedLessonOne.setVisible(true);
+        advancedLessonTwo.setVisible(true);
+        advancedLessonThree.setVisible(true);
+        advancedLessonFour.setVisible(true);
+        advancedLessonFive.setVisible(true);
+        advancedLessonSix.setVisible(true);
+        
+        }
+    });
 
     expertDifficulty.setBounds(0,390,175,60);
 
@@ -731,9 +773,14 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     menuFrame.add(intermLessonTwo);
     menuFrame.add(intermLessonThree);
     menuFrame.add(intermLessonFour);
-    menuFrame.add(intermLessonFive);
-    menuFrame.add(intermLessonSix);
-
+    
+    menuFrame.add(advancedLessonOne);
+    menuFrame.add(advancedLessonTwo);
+    menuFrame.add(advancedLessonThree);
+    menuFrame.add(advancedLessonFour);
+    menuFrame.add(advancedLessonFive);
+    menuFrame.add(advancedLessonSix);
+    
     menuFrame.add(username);
     menuFrame.add(typingTutorTitle);
     menuFrame.add(averageWPMLabel);
@@ -840,7 +887,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		titleArea.setVisible(false);
 		descriptionArea.setVisible(false);
 
-		if (introLessonOne.isVisible() == true || beginnerLessonOne.isVisible() == true || intermLessonOne.isVisible() == true) {
+		if (introLessonOne.isVisible() == true || beginnerLessonOne.isVisible() == true || intermLessonOne.isVisible() == true || advancedLessonOne.isVisible() == true) {
 			introLessonOne.setVisible(false);
 			introLessonTwo.setVisible(false);
 			introLessonThree.setVisible(false);
@@ -860,8 +907,13 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 			intermLessonTwo.setVisible(false);
 			intermLessonThree.setVisible(false);
 			intermLessonFour.setVisible(false);
-			intermLessonFive.setVisible(false);
-			intermLessonSix.setVisible(false);
+			
+			advancedLessonOne.setVisible(false);
+			advancedLessonTwo.setVisible(false);
+			advancedLessonThree.setVisible(false);
+			advancedLessonFour.setVisible(false);
+			advancedLessonFive.setVisible(false);
+			advancedLessonSix.setVisible(false);
 			
 		}
 	}
