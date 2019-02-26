@@ -17,14 +17,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.IntStream;
+import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.Stroke;
 import java.awt.event.*;
 
 public class TypingTutorMenu extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
-
+	
 	public static JFrame menuFrame, soloPracticeFrame, confirmationFrame, addButtonFrame, recommendFrame;
 	private static JButton introDifficulty;
 
@@ -39,6 +41,8 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	private static JButton expertDifficulty;
 	private static JButton settingsButton, startButton, closeProgramButton;
 
+	private static JButton statsButton;
+	
 	private JButton introLessonOne, introLessonTwo, introLessonThree, introLessonFour, introLessonFive, introLessonSix,
 			introLessonSeven;
 	private JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive,
@@ -99,6 +103,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     settingsButton = new JButton("Settings");
     startButton = new JButton("Start");
     closeProgramButton = new JButton("Quit");
+    statsButton = new JButton("Statistics");
     yesButton = new JButton("Yes");
     noButton = new JButton("No");
     
@@ -707,8 +712,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
     closeProgramButton.setBounds(15,510,150,50);
     closeProgramButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-    	  
+      public void actionPerformed(ActionEvent e) {	  
     	int reply = JOptionPane.showConfirmDialog(null, "Are you sure you would like to close Typing Tutor?", "Typing Tutor", JOptionPane.YES_NO_OPTION);
     	if (reply == JOptionPane.YES_OPTION) {
     		System.exit(0);
@@ -716,6 +720,8 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
       }
     });
 
+    statsButton.setBounds(750,0,125,50);
+    
     confirmationLabel.setBounds(90,20,500,50);
     confirmationLabel.setVisible(false);
     
@@ -753,7 +759,8 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     menuFrame.add(settingsButton);
     menuFrame.add(startButton);
     menuFrame.add(closeProgramButton);
-
+    menuFrame.add(statsButton);
+    
     menuFrame.add(introLessonOne);
     menuFrame.add(introLessonTwo);
     menuFrame.add(introLessonThree);
@@ -807,6 +814,10 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		titleArea.setText(title);
 		descriptionArea.setText(description);
 		TypingScreenGUI.textToType = prompt;
+
+        
+
+        
 
 	}
 
@@ -1057,7 +1068,6 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
 	public static void createTextTextFile() {
 		textTextFile = new File(textTextFilePath);
-
 		try {
 			textTextFile.getParentFile().mkdirs();
 			try {
@@ -1070,13 +1080,13 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void nameToArray() throws IOException {
-
-		for (String line : Files.readAllLines(Paths.get("data/textName.txt"))) {
-
-		}
+	public static void drawWPMGraph() {
+		final Color graphColor = Color.ORANGE;
+		final Color graphPointColor = Color.RED;
+		final Stroke graphStroke = new BasicStroke(2f);
+		final int graphPointWidth = 10;
 	}
-
+	
 	// Function used for TypingScreenGUI.java to check whether
 	// or not to count the WPM achieved for that session towards
 	// the user's average WPM.

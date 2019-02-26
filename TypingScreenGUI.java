@@ -158,7 +158,10 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		typingArea.setEditable(true);
 		typingArea.setBounds(30, 350, 1200, 75);
 		typingArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(10, 10, 10, 10)));
-		scene.addWindowListener(new WindowAdapter() {
+		
+        // Deals with auto focusing on the typing area so that
+        // the user doesn't waste time clicking it.
+        scene.addWindowListener(new WindowAdapter() {
 			public void windowOpened(WindowEvent e) {
 				typingArea.requestFocus();
 			}
@@ -191,6 +194,9 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 	}
 
+    // Deals with the output of the end screen. This is seen after the user has
+    // completed their specified prompt. It includes some statistics including the 
+    // time that they took, their WPM, their score and their accuracy.
 	public void endScreen() {
 		finishButton = new JButton("Main Menu");
 		endTime = (System.nanoTime() - startTime) / 1e+9;
@@ -204,6 +210,11 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 		scene.dispose();
 
+        // Checks to see whether or not the wpmBoolean flag is 
+        // set to false. This is needed so that lessons that are flagged
+        // to count towards the user's average WPM are recorded and those
+        // that aren't, simply aren't recorded. wpmBoolean is set to true
+        // for those that are, and false for those that aren't.
 		if (TypingTutorMenu.wpmBoolean == true) {
 			TypingTutorMenu.totalWPM = TypingTutorMenu.totalWPM + wpm;
 			TypingTutorMenu.totalTrials = TypingTutorMenu.totalTrials + 1;
@@ -261,6 +272,11 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 	}
 
+    // Function that's used to calculate the score that the user has
+    // earned after inputting a character correctly. Each time a user 
+    // inputs a correct key, this is called. The points they achieved as
+    // a result of their input key is calculated, and those points are 
+    // then added to their total score.
 	public void calculateScore() {
 		points = (wpm * (double) correctCharacters / (double) totalCharactersInput);
 		score = score + points;
@@ -294,7 +310,11 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	}
 	
 
-	
+    // Function used to add the keys of the on-screen keyboard to the 
+    // frame. It uses the qwerty array which simply contains the characters
+    // that are on the UK qwerty keyboard, and makes use of a for loop to 
+    // put it out onto the screen instead of having to manually specify
+    // each size + location of the buttons.	
 	private void addButtons(String qwerty) {
 		addSpecialKeys();
 		for (int i = 0; i < qwerty.length()-1; i++) {
@@ -319,7 +339,8 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	}
 	
 
-	
+	// Simply adds some keys that are difficult to implement within the 
+    // qwerty array, including the backspace button and the shift button.
 	public void addSpecialKeys() {
 		JButton graveButton = new JButton("`");
 		JButton backspaceButton = new JButton("<<-----");
