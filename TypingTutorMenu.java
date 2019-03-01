@@ -29,20 +29,13 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	
 	public static JFrame menuFrame, soloPracticeFrame, confirmationFrame, addButtonFrame, recommendFrame;
 	private static JButton introDifficulty;
-
 	private static JButton beginnerDifficulty;
-
 	private static JButton intermediateDifficulty;
-
 	private static JButton advancedDifficulty;
-
 	private JButton practiceButton;
-
 	private static JButton expertDifficulty;
 	private static JButton settingsButton, startButton, closeProgramButton;
-
 	private static JButton statsButton;
-	
 	private JButton introLessonOne, introLessonTwo, introLessonThree, introLessonFour, introLessonFive, introLessonSix,
 			introLessonSeven;
 	private JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive,
@@ -287,7 +280,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     advancedLessonSix.setBounds(175,450,175,60);
     advancedLessonSix.setVisible(false);    
     
-    // !-- INTRODUCTION DIFFICULTY --!x
+    // !-- INTRODUCTION DIFFICULTY --!
     introDifficulty.setBounds(0, 150, 175, 60);
     introDifficulty.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {

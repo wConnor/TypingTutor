@@ -8,3 +8,14 @@ Typing Tutor has the following features:
 * Settings such as font size, font colour, background colour etc.
 
 Typing Tutor has been developed as a part of my programming project for the OCR A Level Computer Science programming project.
+
+In order to compile the program, do as follows:
+```
+$ git clone https://github.com/wConnor/TypingTutor.git
+$ javac TypingTutor.java
+```
+
+To finally run the program, use:
+```
+$ java TypingTutor
+```
