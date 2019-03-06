@@ -12,6 +12,7 @@ Typing Tutor has been developed as a part of my programming project for the OCR 
 In order to compile the program, do as follows:
 ```
 $ git clone https://github.com/wConnor/TypingTutor.git
+$ cd TypingTutor
 $ javac TypingTutor.java
 ```
 
