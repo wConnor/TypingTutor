@@ -20,9 +20,8 @@ public class TypingTest extends JFrame implements ActionListener {
 	private JLabel titleLabel, descriptionLabel, testInfoLabel, inputNameLabel;
 	private Font titleFont, descriptionsFont, inputNameFont;
 	private static Border border;
-	public static Boolean completeFlag;
-	
-	public static String username, assignedText;
+	private static Boolean completeFlag;
+	private static String username, assignedText;
 
 	public void startGUI() {
 
@@ -62,13 +61,11 @@ public class TypingTest extends JFrame implements ActionListener {
 				}
 				
 				initialStart.setVisible(false);
-				TypingScreenGUI.textToType = "A good thesis is a statement of roughly one to three sentences that says something intelligent about a literary work. It is not sufficient simply to identify a theme in your thesis.";
+				assignedText = "A good thesis is a statement of roughly one to three sentences that says something intelligent about a literary work. It is not sufficient simply to identify a theme in your thesis.";
 				typingScreen.startGUI();
 				
 			}
 		});
-		
-		// startTestButton.setBounds();
 
 		titleLabel.setBounds(75,0,300,150);
 		titleLabel.setFont(titleFont);
@@ -125,6 +122,18 @@ public class TypingTest extends JFrame implements ActionListener {
 		userFilePrintWriter.close();
 	}
 	
+	public String getText() {
+		return assignedText;
+	}
+	
+    public boolean getCompleteFlag() {
+        return completeFlag;
+    }
+
+    public void setCompleteFlag(boolean x) {
+        completeFlag = x;
+    }
+
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		

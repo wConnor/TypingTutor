@@ -57,19 +57,19 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	private JLabel confirmationLabel;
 	private JLabel textNameLabel, textTextLabel;
 
-	public static JTextArea titleArea;
-	public static JTextArea descriptionArea;
+	private static JTextArea titleArea;
+	private static JTextArea descriptionArea;
 	private JTextArea textNameArea, textTextArea;
 
 	private static JComboBox<String> choicesList;
-	public static double averageWPM, totalWPM;
+	private static double averageWPM, totalWPM;
 	private Font typingTutorTitleFont, titleAreaFont, descriptionAreaFont;
 	private Border border;
-	public static String assignedText, line, data, name;
+	private static String assignedText, line, data, name;
 	private static File textNamesFile, textTextFile;
 	private static String textNamesFilePath, textTextFilePath, wpmFilePath;
-	public static int totalTrials;
-	public static Boolean wpmBoolean;
+	private static int totalTrials;
+	private static Boolean wpmBoolean;
 
 	private static Scanner scan;
 
@@ -154,7 +154,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
     border = BorderFactory.createLineBorder(Color.BLACK);
 
-    TypingScreenGUI.textToType = "This is the default assignedText. This shouldn't be seen as the contents of this variable should be overwritten by the lesson or solo practice mode.";
+    assignedText = "This is the default assignedText. This shouldn't be seen as the contents of this variable should be overwritten by the lesson or solo practice mode.";
 
     wpmBoolean = true;
 
@@ -554,10 +554,10 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
         choicesList.setBounds(180,15,150,20);
         choicesList.setSelectedIndex(0);
-        TypingScreenGUI.textToType = textTexts.get(choicesList.getSelectedIndex());
+        assignedText = textTexts.get(choicesList.getSelectedIndex());
         choicesList.addActionListener(new ActionListener() {
           public void actionPerformed(ActionEvent e) {
-        	  TypingScreenGUI.textToType = textTexts.get(choicesList.getSelectedIndex());
+        	  assignedText = textTexts.get(choicesList.getSelectedIndex());
 
            }
         });
@@ -806,33 +806,31 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
 		titleArea.setText(title);
 		descriptionArea.setText(description);
-		TypingScreenGUI.textToType = prompt;
-
-        
-
-        
+		assignedText = prompt;
 
 	}
 
+	
 	public static void recommendDifficulty() {
 		String difficulty = "";
-
-		if (TypingScreenGUI.score < 4000) {
+		
+		TypingScreenGUI typingScreen = new TypingScreenGUI();
+		if (typingScreen.getScore() < 4000) {
 			difficulty = "Introduction";
-		} else if (TypingScreenGUI.score >= 4000 && TypingScreenGUI.score < 7500) {
+		} else if (typingScreen.getScore() >= 4000 && typingScreen.getScore() < 7500) {
 			difficulty = "Beginner";
-		} else if (TypingScreenGUI.score >= 7500 && TypingScreenGUI.score < 10000) {
+		} else if (typingScreen.getScore() >= 7500 && typingScreen.getScore() < 10000) {
 			difficulty = "Intermediate";
-		} else if (TypingScreenGUI.score >= 10000 && TypingScreenGUI.score < 15000) {
+		} else if (typingScreen.getScore() >= 10000 && typingScreen.getScore() < 15000) {
 			difficulty = "Advanced";
-		} else if (TypingScreenGUI.score >= 15000) {
+		} else if (typingScreen.getScore() >= 15000) {
 			difficulty = "Expert";
 		}
 
 		JLabel testCompleteLabel = new JLabel("Placement Test Complete!");
 		JLabel recommendedDifficultyLabel = new JLabel(
-				"<html><b>Recommended Difficulty: </b>" + difficulty + "<br>You scored " + (int) TypingScreenGUI.score
-						+ " points with a typing speed of " + (int) TypingScreenGUI.wpm + "wpm.");
+				"<html><b>Recommended Difficulty: </b>" + difficulty + "<br>You scored " + (int) typingScreen.getScore()
+						+ " points with a typing speed of " + (int) typingScreen.getWPM() + "wpm.");
 		JLabel difficultyDescription = new JLabel("<html>You have been recommended the " + difficulty
 				+ " difficulty! It is recommended that you start here, however if you wish to go to a different stage instead, then you have the option to do so!");
 		JButton okayButton = new JButton("Continue");
@@ -923,7 +921,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	}
 
 	public String getText() {
-		return TypingTutorMenu.assignedText;
+		return assignedText;
 	}
 
 	// Functions that are used to add both the names of the texts
@@ -1080,13 +1078,6 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		final int graphPointWidth = 10;
 	}
 	
-	// Function used for TypingScreenGUI.java to check whether
-	// or not to count the WPM achieved for that session towards
-	// the user's average WPM.
-	public Boolean wpmSwitch() {
-		return TypingTutorMenu.wpmBoolean;
-	}
-
 	public static void getUsername() {
 		File file = new File("data/user.txt");
 		String line = null;
@@ -1105,9 +1096,34 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
 	}
 
+	/////////
+    public double getTotalWPM() {
+        return totalWPM;
+    }
+
+    public void setTotalWPM(double x) {
+        totalWPM = x;
+    }
+
+    /////////
+    public int getTotalTrials() {
+        return totalTrials;
+    }    
+
+    public void incrementTotalTrials() {
+        totalTrials += 1;
+    }
+
+    /////////
+    public boolean getWPMboolean() {
+    	return wpmBoolean;
+    }
+    
 	@Override
 	public void actionPerformed(ActionEvent e) {
 
 	}
+
+    
 
 }

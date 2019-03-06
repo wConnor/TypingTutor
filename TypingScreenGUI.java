@@ -36,27 +36,27 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	private JLabel wpmLabel, scoreLabel, accuracyLabel, correctLabel, incorrectLabel, fixInputLabel, completeLabel,
 			summaryLabel;
 	private int currentCharacter, correctCharacters, totalCharactersInput, incorrectCharacters;
-	public static double wpm;
+	private static double wpm;
 
-	public double accuracy;
+	private double accuracy;
 
-	public double points;
+	private double points;
 
-	public double startTime;
+	private double startTime;
 
-	public double endTime;
+	private double endTime;
 
-	public double timeElapsed;
+	private double timeElapsed;
 
-	public static double score;
-	public String inputText, localTime;
+	private static double score;
+	private String inputText, localTime;
 
-	public static String textToType;
+	private static String textToType;
 	private Border border;
-	public Font promptFont, typingFont, completeFont, summaryFont;
+	private Font promptFont, typingFont, completeFont, summaryFont;
 	private DateTimeFormatter dtf;
 	private LocalDateTime now;
-	public Highlighter highlighter;
+	private Highlighter highlighter;
 	private HighlightPainter correctPainter, incorrectPainter;
 
 	private String qwerty;
@@ -70,7 +70,13 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		endScene = new JFrame();
 
 		qwerty = "1234567890-=qwertyuiop[]asdfghjkl;'#zxcvbnm,./";
-		
+	    
+		if (typingTest.getCompleteFlag() == false) {
+			textToType = typingTest.getText();
+		} else {
+			textToType = mainMenu.getText();
+		}
+
 		rowBreak1 = 11;
 		rowBreak2 = 24;
 		rowBreak3 = 36;
@@ -116,7 +122,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				scene.dispose();
-				TypingTest.completeFlag = true;
+				typingTest.setCompleteFlag(true);
 				mainMenu.menu();
 			}
 		});
@@ -215,22 +221,20 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
         // to count towards the user's average WPM are recorded and those
         // that aren't, simply aren't recorded. wpmBoolean is set to true
         // for those that are, and false for those that aren't.
-		if (TypingTutorMenu.wpmBoolean == true) {
-			TypingTutorMenu.totalWPM = TypingTutorMenu.totalWPM + wpm;
-			TypingTutorMenu.totalTrials = TypingTutorMenu.totalTrials + 1;
-			
+		if (mainMenu.getWPMboolean() == true) {
+			mainMenu.setTotalWPM(mainMenu.getTotalWPM()+wpm);
+		    mainMenu.incrementTotalTrials();
+
 			try {
-				TypingTutorMenu.writeWPMtoFile(wpm);
+				mainMenu.writeWPMtoFile(wpm);
 				System.out.println(wpm);
 			} catch (IOException e1) {
 				e1.printStackTrace();
-			}
-			TypingTutorMenu.getAverageWPM();
-		} else {
-			System.out.println("wpmBoolean set to " + TypingTutorMenu.wpmBoolean + ". Not counting towards total records.");
-		}
+            }
+        }
+		mainMenu.getAverageWPM();
 
-		System.out.println(TypingTutorMenu.totalWPM + " and " + TypingTutorMenu.totalTrials);
+		System.out.println(mainMenu.getTotalWPM() + " and " + mainMenu.getWPMboolean());
 
 
 		finishButton.setBounds(450, 160, 125, 40);
@@ -238,10 +242,10 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 			public void actionPerformed(ActionEvent e) {
 				endScene.setVisible(false);
 				
-				if (TypingTest.completeFlag != true) {
-					TypingTest.completeFlag = true;
+				if (typingTest.getCompleteFlag() != true) {
+					typingTest.setCompleteFlag(true);
 					mainMenu.menu();
-					TypingTutorMenu.recommendDifficulty();
+					mainMenu.recommendDifficulty();
 				}
 					
 				else {
@@ -471,6 +475,14 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		
     	}
 	}
+
+	public double getWPM() {
+		return wpm;
+	}
+	
+    public double getScore() {
+        return score;
+    }
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
