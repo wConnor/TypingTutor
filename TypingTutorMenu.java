@@ -10,17 +10,12 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.IntStream;
-import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
-import java.awt.Stroke;
 import java.awt.event.*;
 
 public class TypingTutorMenu extends JFrame implements ActionListener {
@@ -65,7 +60,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	private static double averageWPM, totalWPM;
 	private Font typingTutorTitleFont, titleAreaFont, descriptionAreaFont;
 	private Border border;
-	private static String assignedText, line, data, name;
+	private static String assignedText;
 	private static File textNamesFile, textTextFile;
 	private static String textNamesFilePath, textTextFilePath, wpmFilePath;
 	private static int totalTrials;
@@ -657,8 +652,6 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     textNameArea.setBounds(200,30,250,20);
     textNameArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(2, 2, 2, 2)));
     textNameArea.addKeyListener(new KeyAdapter() {
-      @SuppressWarnings("deprecation")
-      @Override
       public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_TAB) {
           if (e.getModifiers() > 0) {
@@ -681,17 +674,15 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     textTextArea.setWrapStyleWord(true);
     textTextArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3)));
     textTextArea.addKeyListener(new KeyAdapter() {
-    @SuppressWarnings("deprecation")
-	@Override
-      public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_TAB) {
-          if (e.getModifiers() > 0) {
+    public void keyPressed(KeyEvent e) {
+    	if (e.getKeyCode() == KeyEvent.VK_TAB) {
+    		if (e.getModifiers() > 0) {
             textTextArea.transferFocusBackward();
-          }
-          else {
-            textTextArea.transferFocus();
-          }
-          e.consume();
+        }
+        else {
+          textTextArea.transferFocus();
+        }
+        e.consume();
         }
       }
     });
@@ -811,7 +802,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	}
 
 	
-	public static void recommendDifficulty() {
+	public void recommendDifficulty() {
 		String difficulty = "";
 		
 		TypingScreenGUI typingScreen = new TypingScreenGUI();
@@ -975,7 +966,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
 	}
 
-	public static void writeWPMtoFile(double wpm) throws IOException {
+	public void writeWPMtoFile(double wpm) throws IOException {
 		FileWriter wpmFileWriter = new FileWriter("data/wpm.txt", true);
 		BufferedWriter wpmFileBufferedWriter = new BufferedWriter(wpmFileWriter);
 		PrintWriter wpmFilePrintWriter = new PrintWriter(wpmFileBufferedWriter);
@@ -1007,7 +998,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		
 	}
 
-	public static void getAverageWPM() {
+	public void getAverageWPM() {
 		try {
 			scan = new Scanner(new File("data/wpm.txt"));
 		} catch (FileNotFoundException e) {
@@ -1071,15 +1062,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void drawWPMGraph() {
-		final Color graphColor = Color.ORANGE;
-		final Color graphPointColor = Color.RED;
-		final Stroke graphStroke = new BasicStroke(2f);
-		final int graphPointWidth = 10;
-	}
-	
 	public static void getUsername() {
-		File file = new File("data/user.txt");
 		String line = null;
 		try {
 			FileReader fileReader = new FileReader("data/user.txt");
@@ -1088,6 +1071,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 			while ((line = bufferedReader.readLine()) != null) {
 				username.setText("Logged in as: " + line);
 			}
+			bufferedReader.close();
 		} catch (FileNotFoundException ex) {
 			System.out.println("Unable to open data/user.txt");
 		} catch (IOException ex) {

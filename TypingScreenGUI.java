@@ -49,7 +49,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	private double timeElapsed;
 
 	private static double score;
-	private String inputText, localTime;
+	private String inputText;
 
 	private static String textToType;
 	private Border border;
