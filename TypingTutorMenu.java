@@ -941,13 +941,30 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 										  + "<b>Average WPM</b>: " + averageWPM + "<br>"
 										  + "<b>Sessions Complete</b>: " +  + lines + "<br>"
 										  + "</html>");
+		JButton closeButton = new JButton("Close");
+		JButton graphButton = new JButton("WPM Graph");
 		
 		
 		statsTitle.setBounds(20,10,350,30);
 		statsTitle.setFont(new Font("Serif", Font.BOLD, 24));
 		
-		statsLabel.setBounds(20,50,350,100);
+		statsLabel.setBounds(20,30,350,100);
 		statsLabel.setFont(new Font("Serif", Font.PLAIN, 16));
+		
+		closeButton.setBounds(20,225,125,45);
+		closeButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				statsFrame.dispose();
+			}
+		});
+		
+		graphButton.setBounds(255,225,125,45);
+		graphButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.out.println("foo");
+			}
+		});
+		
 		
 		statsFrame.setSize(400,300);
 		statsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -957,6 +974,8 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		
 		statsFrame.add(statsTitle);
 		statsFrame.add(statsLabel);
+		statsFrame.add(closeButton);
+		statsFrame.add(graphButton);
 		
 		statsFrame.setVisible(true);
 	}
