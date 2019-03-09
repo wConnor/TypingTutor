@@ -9,11 +9,18 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.attribute.BasicFileAttributeView;
+import java.nio.file.attribute.BasicFileAttributes;
+import java.nio.file.attribute.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.TimeUnit;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
@@ -63,7 +70,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 	private static String assignedText;
 	private static File textNamesFile, textTextFile;
 	private static String textNamesFilePath, textTextFilePath, wpmFilePath;
-	private static int totalTrials;
+	private static int totalTrials, lines;
 	private static Boolean wpmBoolean;
 
 	private static Scanner scan;
@@ -705,6 +712,15 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     });
 
     statsButton.setBounds(750,0,125,50);
+    statsButton.addActionListener(new ActionListener() {
+    	public void actionPerformed(ActionEvent e) {
+    		try {
+				statisticsScreen();
+			} catch (IOException e1) {
+				e1.printStackTrace();
+			}
+    	}
+    });
     
     confirmationLabel.setBounds(90,20,500,50);
     confirmationLabel.setVisible(false);
@@ -726,7 +742,8 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     noButton.setVisible(false);
 
     username.setBounds(800,550,300,20);
-
+    username.setText("Logged in as: " + getUsername());
+    
     typingTutorTitle.setBounds(20,10,200,100);
     typingTutorTitle.setFont(typingTutorTitleFont);
 
@@ -911,6 +928,39 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		}
 	}
 
+	public void statisticsScreen() throws IOException {
+		Path usernamePath = Paths.get("data/user.txt");
+		BasicFileAttributes usernameAttributes = Files.getFileAttributeView(usernamePath, BasicFileAttributeView.class).readAttributes();
+		Date creationDate = new Date(usernameAttributes.creationTime().to(TimeUnit.MILLISECONDS));
+
+		JFrame statsFrame = new JFrame();
+		JLabel statsTitle = new JLabel("<html><b>Statistics for " + getUsername() + "</b></html>");
+		JLabel statsLabel = new JLabel("<html><b>Start Date:</b> " + creationDate.getDate() + "/" + 
+															(creationDate.getMonth() + 1) + "/" +  
+															(creationDate.getYear() + 1900) + "<br>"
+										  + "<b>Average WPM</b>: " + averageWPM + "<br>"
+										  + "<b>Sessions Complete</b>: " +  + lines + "<br>"
+										  + "</html>");
+		
+		
+		statsTitle.setBounds(20,10,350,30);
+		statsTitle.setFont(new Font("Serif", Font.BOLD, 24));
+		
+		statsLabel.setBounds(20,50,350,100);
+		statsLabel.setFont(new Font("Serif", Font.PLAIN, 16));
+		
+		statsFrame.setSize(400,300);
+		statsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		statsFrame.setLocationRelativeTo(null);
+		statsFrame.setLayout(null);
+		statsFrame.setResizable(false);
+		
+		statsFrame.add(statsTitle);
+		statsFrame.add(statsLabel);
+		
+		statsFrame.setVisible(true);
+	}
+	
 	public String getText() {
 		return assignedText;
 	}
@@ -1026,6 +1076,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		} else {
 			averageWPM = (sum / wpmList.length);
 		}
+		lines = wpmList.length;
 		averageWPMLabel.setText("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
 	}
 
@@ -1062,14 +1113,14 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		}
 	}
 
-	public static void getUsername() {
+	public static String getUsername() {
 		String line = null;
 		try {
 			FileReader fileReader = new FileReader("data/user.txt");
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 
 			while ((line = bufferedReader.readLine()) != null) {
-				username.setText("Logged in as: " + line);
+				return line;
 			}
 			bufferedReader.close();
 		} catch (FileNotFoundException ex) {
@@ -1077,6 +1128,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
+		return "N/A";
 
 	}
 
