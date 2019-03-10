@@ -175,7 +175,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
     getUsername();
     recommendFrame.setVisible(false);
     
-
+    System.out.println("--* MAIN MENU *--");
     
 
     // Handles the files. If the contents of the data folder that are expected
@@ -1143,7 +1143,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 			}
 			bufferedReader.close();
 		} catch (FileNotFoundException ex) {
-			System.out.println("Unable to open data/user.txt");
+			System.out.println("data/user.txt does not exist. May have been deleted manually.");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}

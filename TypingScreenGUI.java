@@ -118,6 +118,8 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 		dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
+        System.out.println("--* TYPING SCREEN *--");
+
 		quitButton.setBounds(15,650,150,40);
 		quitButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -211,9 +213,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 				"<html><b>Time Elapsed:</b> " + new DecimalFormat("#0.00").format(endTime) + " seconds <br/><b>Speed:</b> " + (int) wpm
 						+ "wpm<br/><b>Score:</b> " + new DecimalFormat("#0").format(score) + "<br/><b>Accuracy</b>: " + new DecimalFormat("#0.00").format(accuracy) + "%");
 		
-
-		System.out.println(dtf.format(now) + " - COMPLETE!");
-
 		scene.dispose();
 
         // Checks to see whether or not the wpmBoolean flag is 
@@ -227,14 +226,12 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 			try {
 				mainMenu.writeWPMtoFile(wpm);
-				System.out.println(wpm);
 			} catch (IOException e1) {
 				e1.printStackTrace();
             }
         }
 		mainMenu.getAverageWPM();
 
-		System.out.println(mainMenu.getTotalWPM() + " and " + mainMenu.getWPMboolean());
 
 
 		finishButton.setBounds(450, 160, 125, 40);
@@ -285,8 +282,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		points = (wpm * (double) correctCharacters / (double) totalCharactersInput);
 		score = score + points;
 		scoreLabel.setText("Score: " + new DecimalFormat("#0000").format(score));
-		System.out.println(dtf.format(now) + " - Points: " + points);
-		System.out.println(dtf.format(now) + " - Score: " + score);
 	}
 
 	// Function used to calculate the current accuracy of the user.
@@ -296,7 +291,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	public void calculateAccuracy() {
 		double accuracy = ((double) correctCharacters / (double) totalCharactersInput) * 100;
 		accuracyLabel.setText("Accuracy: " + new DecimalFormat("#000.00").format(accuracy) + "%");
-		System.out.println(dtf.format(now) + " - " + accuracy + "% accuracy");
 	}
 
 	// Function used to calculate the current WPM (Words
@@ -309,8 +303,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		double charToWords = correctCharacters / 4.5;
 		wpm = charToWords / (timeElapsed / 1_000_000_000) * 60;
 		wpmLabel.setText("WPM: " + new DecimalFormat("#000.0").format(wpm));
-		System.out.println(dtf.format(now) + " - " + wpm + "wpm");
-		System.out.println("---------");
 	}
 	
 
@@ -398,7 +390,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	public void keyTyped(KeyEvent e) {
 		
 		now = LocalDateTime.now();
-		System.out.println(dtf.format(now) + " - KEY TYPED: " + e.getKeyChar());
 		
 		// If the user has input the same character of the point where they're
 		// currently at within the prompt, increment currentCharacter within the
@@ -422,12 +413,9 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 			fixInputLabel.setVisible(false);
 			incorrectLabel.setVisible(false);
 			correctLabel.setVisible(true);
-			System.out.println(dtf.format(now) + " - CORRECT");
 			currentCharacter++;
 			correctCharacters++;
 			totalCharactersInput++;
-			System.out.println(dtf.format(now) + " - Correct characters: " + correctCharacters);
-			System.out.println(dtf.format(now) + " - Total characters: " + totalCharactersInput);
 			calculateScore();
 		}
 		// If the user has INCORRECTLY input the character of the point where
@@ -458,10 +446,8 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 			fixInputLabel.setVisible(true);
 			correctLabel.setVisible(false);
 			incorrectLabel.setVisible(true);
-			System.out.println(dtf.format(now) + " - INCORRECT");
 			incorrectCharacters++;
 			totalCharactersInput++;
-			System.out.println(dtf.format(now) + "- Incorrect characters: " + incorrectCharacters);
 		}
 
 		// Executes the functions calculateAccuracy and calculateWPM after
@@ -486,7 +472,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		System.out.println(dtf.format(now) + " - Returning to main menu...");
 		endScene.setVisible(false);
 	}
 
