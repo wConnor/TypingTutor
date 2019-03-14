@@ -1,6 +1,14 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.xy.XYDataset;
+import org.jfree.data.xy.XYSeries;
+import org.jfree.data.xy.XYSeriesCollection;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -14,7 +22,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributeView;
 import java.nio.file.attribute.BasicFileAttributes;
-import java.nio.file.attribute.*;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +32,7 @@ import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.*;
 
-public class TypingTutorMenu extends JFrame implements ActionListener {
+public class TypingTutorMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -961,10 +968,23 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		graphButton.setBounds(255,225,125,45);
 		graphButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				System.out.println("foo");
+				JFrame graphFrame = new JFrame();
+                XYDataset data = createDataset();
+                JFreeChart chart = ChartFactory.createXYLineChart("WPM over time",
+                        "Sessions Complete", "Words Per Minute (wpm)", data, PlotOrientation.VERTICAL, true, true,
+                        false);
+
+                ChartPanel chartPanel = new ChartPanel(chart);
+                
+                graphFrame.setSize(600, 400);
+                graphFrame.setLocationRelativeTo(null);
+                graphFrame.setResizable(false);
+                
+                graphFrame.setVisible(true);
+                
+                graphFrame.getContentPane().add(chartPanel);
 			}
 		});
-		
 		
 		statsFrame.setSize(400,300);
 		statsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -980,14 +1000,31 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		statsFrame.setVisible(true);
 	}
 	
-	public String getText() {
-		return assignedText;
-	}
+	// Creates the set of data for use by the graphFrame under the
+	// statistics screen. 
+    private static XYDataset createDataset() {
+
+        double[] wpmArray = wpmFilesToArray();
+
+        final XYSeries data = new XYSeries("WPM");
+        
+        // Adds the sessions complete and the value of adjacent line
+        // to the data set. Each increment of i is one session complete
+        // which reads from the next line down.
+        for (int i = 0; i < wpmArray.length; i++) {
+            data.add(i+1, wpmArray[i]);
+        }     
+        final XYSeriesCollection dataset = new XYSeriesCollection( ); 
+        dataset.addSeries(data);
+        
+        return dataset;
+    }
 
 	// Functions that are used to add both the names of the texts
 	// and the actual text of which a user will input into
 	// the solo practice mode if they wish to make a custom
 	// entry.
+
 	public static void addTextName(String textName) {
 		choicesList.addItem(textName);
 		try {
@@ -1015,7 +1052,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 			textTextPrintWriter.close();
 
 		} catch (Exception E) {
-
+			E.printStackTrace();
 		}
 	}
 
@@ -1030,7 +1067,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 				e.printStackTrace();
 			}
 		} catch (SecurityException se) {
-
+			se.printStackTrace();
 		}
 
 	}
@@ -1066,15 +1103,13 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		textReader.close();
 		
 	}
-
-	public void getAverageWPM() {
+	
+	public static double[] wpmFilesToArray() {
 		try {
 			scan = new Scanner(new File("data/wpm.txt"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		}
-
-		int sum = 0;
 
 		averageWPMs.clear();
 
@@ -1084,10 +1119,17 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		}
 
 		double[] wpmList = averageWPMs.stream().mapToDouble(d -> d).toArray();
-
+		
+		return wpmList;
+	}
+	
+	public void getAverageWPM() {
+		
+		double[] wpmList = wpmFilesToArray();
+		double sum = 0;
+		
 		for (int i = 0; i < wpmList.length; i++) {
 			sum += wpmList[i];
-
 		}
 
 		if (wpmList.length == 0) {
@@ -1095,6 +1137,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 		} else {
 			averageWPM = (sum / wpmList.length);
 		}
+		
 		lines = wpmList.length;
 		averageWPMLabel.setText("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
 	}
@@ -1142,6 +1185,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 				return line;
 			}
 			bufferedReader.close();
+
 		} catch (FileNotFoundException ex) {
 			System.out.println("data/user.txt does not exist. May have been deleted manually.");
 		} catch (IOException ex) {
@@ -1151,7 +1195,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
 
 	}
 
-	/////////
+	// Getter and setter for totalWPM
     public double getTotalWPM() {
         return totalWPM;
     }
@@ -1160,7 +1204,7 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
         totalWPM = x;
     }
 
-    /////////
+    // Getter and setter for totalTrials
     public int getTotalTrials() {
         return totalTrials;
     }    
@@ -1169,15 +1213,16 @@ public class TypingTutorMenu extends JFrame implements ActionListener {
         totalTrials += 1;
     }
 
-    /////////
+    // Getter for wpmBoolean
     public boolean getWPMboolean() {
     	return wpmBoolean;
     }
-    
-	@Override
-	public void actionPerformed(ActionEvent e) {
 
+    // Getter for assignedText
+	public String getText() {
+		return assignedText;
 	}
+    
 
     
 
