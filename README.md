@@ -9,6 +9,8 @@ Typing Tutor has the following features:
 
 Typing Tutor has been developed as a part of my programming project for the OCR A Level Computer Science programming project.
 
+Typing Tutor requires the JFreeChart library to compile. Available at github.com/jfree/jfreechart. This is necessary for the WPM graph available under the statistics section. 
+
 In order to compile the program, do as follows:
 ```
 $ git clone https://github.com/wConnor/TypingTutor.git
