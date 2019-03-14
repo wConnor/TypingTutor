@@ -91,9 +91,9 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		startTime = System.nanoTime();
 
 		fixInputLabel = new JLabel("INPUT: " + textToType.charAt(currentCharacter));
-		accuracyLabel = new JLabel("Accuracy: " + new DecimalFormat("#0").format(accuracy) + "%");
-		scoreLabel = new JLabel("Score: " + new DecimalFormat("#0").format(score));
-		wpmLabel = new JLabel("WPM: " + new DecimalFormat("#0").format(wpm));
+		accuracyLabel = new JLabel("Accuracy: 0%");
+		scoreLabel = new JLabel("Score: 0");
+		wpmLabel = new JLabel("WPM: 0");
 		correctLabel = new JLabel("\u2713 CORRECT \u2713"); // \u2713 = âœ“ (CHECK MARK)
 		incorrectLabel = new JLabel("\u2718 INCORRECT \u2718"); // \u2718 = âœ˜ (HEAVY BALLOT X)
 		completeLabel = new JLabel("Complete!");
