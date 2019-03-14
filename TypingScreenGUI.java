@@ -115,6 +115,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		totalCharactersInput = 0;
 		correctCharacters = 0;
 		incorrectCharacters = 0;
+        score = 0;
 
 		dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
 
