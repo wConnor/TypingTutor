@@ -191,6 +191,9 @@ public class TypingTutorMenu extends JFrame {
 
       addTextName("A Confederacy Of Dunces");
       addTextName("The Stranger");
+      addTextName("How I Feel");
+      addTextName("Encyclopedia of Networking");
+      addTextName("The Fifth Mountain");
     }
     
     if (!textTextFile.exists()) {
@@ -198,6 +201,9 @@ public class TypingTutorMenu extends JFrame {
       createTextTextFile();
       addTextText("A green hunting cap squeezed the top of the fleshy balloon of a head. The green earflaps, full of large ears and uncut hair and the fine bristles that grew in the ears themselves, stuck out on either side like turn signals indicating two directions at once.");
       addTextText("Mother died today. Or maybe yesterday, I don't know. I had a telegram from the home: 'Mother passed away. Funeral tomorrow. Yours sincerely.' That doesn't mean anything. It may have been yesterday.");
+      addTextText("You're asking how do I really feel, and I'm asking now how is this real. Oh, love is a plan that we can't control. All I can hope, that I'll fill the role. No one will ever know how I feel for you. Throw me a lifeline.");
+      addTextText("In synchronous communications, the sender and receiver must synchronize with one another before data is sent. To maintain clock synchronization over long periods, a special bit-transition pattern is embedded in the digital signal that assists in maintaining the timing between sender and receiver.");
+      addTextText("All life's battles teach us something, even those we lose. When you grow up, you'll discover that you have defended lies, deceived yourself, or suffered foolishness. If you're a good warrior you will not blame yourself for this, but neither will you allow your mistakes to repeat themselves.");
     }
 
     if (!wpmFile.exists()) {
