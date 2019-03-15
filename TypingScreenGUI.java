@@ -16,8 +16,6 @@ import java.awt.event.KeyEvent;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
-import java.time.format.DateTimeFormatter;
-import java.time.LocalDateTime;
 import java.util.*;
 
 public class TypingScreenGUI extends JFrame implements KeyListener, ActionListener, WindowListener {
@@ -54,8 +52,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	private static String textToType;
 	private Border border;
 	private Font promptFont, typingFont, completeFont, summaryFont;
-	private DateTimeFormatter dtf;
-	private LocalDateTime now;
 	private Highlighter highlighter;
 	private HighlightPainter correctPainter, incorrectPainter;
 
@@ -116,10 +112,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		correctCharacters = 0;
 		incorrectCharacters = 0;
         score = 0;
-
-		dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-
-        System.out.println("--* TYPING SCREEN *--");
 
 		quitButton.setBounds(15,650,150,40);
 		quitButton.addActionListener(new ActionListener() {
@@ -389,8 +381,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 	@Override
 	public void keyTyped(KeyEvent e) {
-		
-		now = LocalDateTime.now();
 		
 		// If the user has input the same character of the point where they're
 		// currently at within the prompt, increment currentCharacter within the

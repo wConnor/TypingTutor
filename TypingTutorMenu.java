@@ -182,9 +182,6 @@ public class TypingTutorMenu extends JFrame {
     getUsername();
     recommendFrame.setVisible(false);
     
-    System.out.println("--* MAIN MENU *--");
-    
-
     // Handles the files. If the contents of the data folder that are expected
     // to be there aren't, then the program checks each of them and creates
     // said file. Ensures consistency when dealing with files.
@@ -195,19 +192,12 @@ public class TypingTutorMenu extends JFrame {
       addTextName("A Confederacy Of Dunces");
       addTextName("The Stranger");
     }
-    else {
-      System.out.println(textNamesFilePath + " already exists. Not creating.");
-    }
-
     
     if (!textTextFile.exists()) {
       System.out.println(textTextFilePath + " does not exist. Creating file...");
       createTextTextFile();
       addTextText("A green hunting cap squeezed the top of the fleshy balloon of a head. The green earflaps, full of large ears and uncut hair and the fine bristles that grew in the ears themselves, stuck out on either side like turn signals indicating two directions at once.");
       addTextText("Mother died today. Or maybe yesterday, I don't know. I had a telegram from the home: 'Mother passed away. Funeral tomorrow. Yours sincerely.' That doesn't mean anything. It may have been yesterday.");
-    }
-    else {
-      System.out.println(textTextFilePath + " already exists. Not creating.");
     }
 
     if (!wpmFile.exists()) {
@@ -217,9 +207,6 @@ public class TypingTutorMenu extends JFrame {
     	} catch (IOException e1) {
     		e1.printStackTrace();
     	}
-    }
-    else {
-    	System.out.println(wpmFilePath + " already exists. Not creating.");
     }
 
     getAverageWPM();
@@ -575,7 +562,6 @@ public class TypingTutorMenu extends JFrame {
         soloPracticeFrame.setSize(400,300);
         soloPracticeFrame.setTitle("Typing Tutor - Solo Practice Options");
         soloPracticeFrame.setLocationRelativeTo(null);
-        soloPracticeFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         soloPracticeFrame.setResizable(false);
 
         soloPracticeFrame.add(addButton);
@@ -622,7 +608,6 @@ public class TypingTutorMenu extends JFrame {
 
       addButtonFrame.setLayout(null);
       addButtonFrame.setSize(500,350);
-      addButtonFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
       addButtonFrame.setLocationRelativeTo(null);
       addButtonFrame.setResizable(false);
 
@@ -893,7 +878,6 @@ public class TypingTutorMenu extends JFrame {
 		recommendFrame.add(okayButton);
 
 		recommendFrame.setSize(400, 250);
-		recommendFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		recommendFrame.setLocationRelativeTo(null);
 		recommendFrame.setLayout(null);
 		recommendFrame.setResizable(false);
@@ -987,7 +971,6 @@ public class TypingTutorMenu extends JFrame {
 		});
 		
 		statsFrame.setSize(400,300);
-		statsFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		statsFrame.setLocationRelativeTo(null);
 		statsFrame.setLayout(null);
 		statsFrame.setResizable(false);
@@ -1187,7 +1170,7 @@ public class TypingTutorMenu extends JFrame {
 			bufferedReader.close();
 
 		} catch (FileNotFoundException ex) {
-			System.out.println("data/user.txt does not exist. May have been deleted manually.");
+			System.out.println("data/user.txt does not exist.");
 		} catch (IOException ex) {
 			ex.printStackTrace();
 		}
