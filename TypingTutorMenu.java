@@ -933,20 +933,20 @@ public class TypingTutorMenu extends JFrame {
 		JFrame statsFrame = new JFrame();
 		JLabel statsTitle = new JLabel("<html><b>Statistics for " + getUsername() + "</b></html>");
 		JLabel statsLabel = new JLabel("<html><b>Start Date:</b> " + creationDate.getDate() + "/" + 
-															(creationDate.getMonth() + 1) + "/" +  
-															(creationDate.getYear() + 1900) + "<br>"
-										  + "<b>Average WPM</b>: " + averageWPM + "<br>"
-										  + "<b>Sessions Complete</b>: " +  + lines + "<br>"
-										  + "</html>");
+				(creationDate.getMonth() + 1) + "/" +  
+				(creationDate.getYear() + 1900) + "<br>"
+												+ "<b>Average WPM</b>: " + new DecimalFormat("#0.0").format(averageWPM) + "<br>"
+												+ "<b>Sessions Complete</b>: " +  + lines + "<br>"
+												+ "</html>");
 		JButton closeButton = new JButton("Close");
 		JButton graphButton = new JButton("WPM Graph");
 		
 		
 		statsTitle.setBounds(20,10,350,30);
-		statsTitle.setFont(new Font("Serif", Font.BOLD, 24));
+		statsTitle.setFont(new Font("Sans Serif", Font.BOLD, 24));
 		
 		statsLabel.setBounds(20,30,350,100);
-		statsLabel.setFont(new Font("Serif", Font.PLAIN, 16));
+		statsLabel.setFont(new Font("Sans Serif", Font.PLAIN, 16));
 		
 		closeButton.setBounds(20,225,125,45);
 		closeButton.addActionListener(new ActionListener() {
