@@ -18,7 +18,7 @@ import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.util.*;
 
-public class TypingScreenGUI extends JFrame implements KeyListener, ActionListener, WindowListener {
+public class TypingScreenGUI extends JFrame implements KeyListener, ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -90,8 +90,8 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		accuracyLabel = new JLabel("Accuracy: 0%");
 		scoreLabel = new JLabel("Score: 0");
 		wpmLabel = new JLabel("WPM: 0");
-		correctLabel = new JLabel("\u2713 CORRECT \u2713"); // \u2713 = âœ“ (CHECK MARK)
-		incorrectLabel = new JLabel("\u2718 INCORRECT \u2718"); // \u2718 = âœ˜ (HEAVY BALLOT X)
+		correctLabel = new JLabel("\u2713 CORRECT \u2713"); // \u2713 = ✓“ (CHECK MARK)
+		incorrectLabel = new JLabel("\u2718 INCORRECT \u2718"); // \u2718 = ✘˜ (HEAVY BALLOT X)
 		completeLabel = new JLabel("Complete!");
 		border = BorderFactory.createLineBorder(Color.BLACK);
 		typingFont = new Font("SansSerif", Font.PLAIN, 30);
@@ -124,9 +124,9 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		quitButton.setVisible(true);
 
 
-		wpmLabel.setBounds(1175, 12, 100, 10);
+		wpmLabel.setBounds(1175, 9, 100, 20);
 
-		accuracyLabel.setBounds(1145, 25, 150, 20);
+		accuracyLabel.setBounds(1145, 25, 150, 23);
 
 		scoreLabel.setBounds(10, 15, 150, 20);
 
@@ -466,45 +466,4 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		endScene.setVisible(false);
 	}
 
-	@Override
-	public void windowActivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosed(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowClosing(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeactivated(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowDeiconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowIconified(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void windowOpened(WindowEvent arg0) {
-		// TODO Auto-generated method stub
-		
-	}
 }
