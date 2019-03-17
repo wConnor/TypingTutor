@@ -36,7 +36,7 @@ public class TypingTutorMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
-	public static JFrame menuFrame, soloPracticeFrame, confirmationFrame, addButtonFrame, recommendFrame;
+	public static JFrame menuFrame, soloPracticeFrame, addButtonFrame, recommendFrame;
 	private static JButton introDifficulty;
 	private static JButton beginnerDifficulty;
 	private static JButton intermediateDifficulty;
@@ -53,22 +53,14 @@ public class TypingTutorMenu extends JFrame {
 	private JButton advancedLessonOne, advancedLessonTwo, advancedLessonThree, advancedLessonFour, advancedLessonFive,
 	advancedLessonSix;
 
-	private JButton addButton, continueButton, backButtonSolo, backButtonAdd, addButtonAdd;
-	private JButton yesButton, noButton;
 	private static JLabel username;
 
 	private JLabel typingTutorTitle;
 
 	private static JLabel averageWPMLabel;
 
-	private JLabel practiceChoiceLabel;
-
-	private JLabel confirmationLabel;
-	private JLabel textNameLabel, textTextLabel;
-
 	private static JTextArea titleArea;
 	private static JTextArea descriptionArea;
-	private JTextArea textNameArea, textTextArea;
 
 	private static JComboBox<String> choicesList;
 	private static double averageWPM, totalWPM;
@@ -91,10 +83,6 @@ public class TypingTutorMenu extends JFrame {
     TypingScreenGUI typingScreen = new TypingScreenGUI();
     
     menuFrame = new JFrame();
-    soloPracticeFrame = new JFrame();
-    confirmationFrame = new JFrame();
-    addButtonFrame = new JFrame();
-    recommendFrame = new JFrame();
 
     introDifficulty = new JButton("Introduction");
     beginnerDifficulty = new JButton("Beginner");
@@ -106,8 +94,6 @@ public class TypingTutorMenu extends JFrame {
     startButton = new JButton("Start");
     closeProgramButton = new JButton("Quit");
     statsButton = new JButton("Statistics");
-    yesButton = new JButton("Yes");
-    noButton = new JButton("No");
     
     introLessonOne = new JButton();
     introLessonTwo = new JButton();
@@ -136,19 +122,7 @@ public class TypingTutorMenu extends JFrame {
     advancedLessonFive = new JButton();
     advancedLessonSix = new JButton();
     
-    addButton = new JButton("+");
-    continueButton = new JButton("Continue");
-    backButtonSolo = new JButton("Back");
-    backButtonAdd = new JButton("Back");
-    addButtonAdd = new JButton("Add");
-    practiceChoiceLabel = new JLabel("Select a piece of text: ");
-    confirmationLabel = new JLabel("<html><center>Are you sure you want to close Typing Tutor?</center></html>");
-
     choicesList = new JComboBox();
-    textNameLabel = new JLabel("Enter a name: ");
-    textTextLabel = new JLabel("Enter the text: ");
-    textNameArea = new JTextArea();
-    textTextArea = new JTextArea();
 
     username = new JLabel();
     typingTutorTitle = new JLabel("<html>Typing <br> \u0000 \u0000 Tutor</html>");
@@ -180,7 +154,6 @@ public class TypingTutorMenu extends JFrame {
     File wpmFile = new File(wpmFilePath);
     
     getUsername();
-    recommendFrame.setVisible(false);
     
     // Handles the files. If the contents of the data folder that are expected
     // to be there aren't, then the program checks each of them and creates
@@ -542,156 +515,164 @@ public class TypingTutorMenu extends JFrame {
     practiceButton.setBounds(600,0,150,50);
     practiceButton.addActionListener(new ActionListener() {
       public void actionPerformed(ActionEvent e) {
-        try {
-			fileToArrays();
-		} catch (IOException e2) {
-			e2.printStackTrace();
-		}
-
-        addButton.setVisible(true);
-        backButtonSolo.setVisible(true);
-        continueButton.setVisible(true);
-
-        practiceChoiceLabel.setBounds(20,10,175,30);
-
-        choicesList.setBounds(180,15,150,20);
-        choicesList.setSelectedIndex(0);
-        assignedText = textTexts.get(choicesList.getSelectedIndex());
-        choicesList.addActionListener(new ActionListener() {
-          public void actionPerformed(ActionEvent e) {
-        	  assignedText = textTexts.get(choicesList.getSelectedIndex());
-
-           }
-        });
-
-        soloPracticeFrame.setLayout(null);
-        soloPracticeFrame.setSize(400,300);
-        soloPracticeFrame.setTitle("Typing Tutor - Solo Practice Options");
-        soloPracticeFrame.setLocationRelativeTo(null);
-        soloPracticeFrame.setResizable(false);
-
-        soloPracticeFrame.add(addButton);
-        soloPracticeFrame.add(backButtonSolo);
-        soloPracticeFrame.add(continueButton);
-        soloPracticeFrame.add(choicesList);
-        soloPracticeFrame.add(practiceChoiceLabel);
-
-        soloPracticeFrame.setVisible(true);
-
-      }
-    });
-
-    continueButton.setBounds(275,225,110,40);
-    continueButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-    	wpmBoolean = true;
-        menuFrame.dispose();
-        soloPracticeFrame.setVisible(false);
-        typingScreen.startGUI();
-      }
-    });
-    continueButton.setVisible(false);
-
-
-    backButtonSolo.setBounds(10,225,110,40);
-    backButtonSolo.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        soloPracticeFrame.dispose();
-      }
-    });
-    backButtonSolo.setVisible(false);
-
-    addButton.setBounds(335,15,50,20);
-    addButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-
-      backButtonAdd.setVisible(true);
-      addButtonAdd.setVisible(true);
-      textNameLabel.setVisible(true);
-      textTextLabel.setVisible(true);
-      textNameArea.setVisible(true);
-      textTextArea.setVisible(true);
-
-      addButtonFrame.setLayout(null);
-      addButtonFrame.setSize(500,350);
-      addButtonFrame.setLocationRelativeTo(null);
-      addButtonFrame.setResizable(false);
-
-      addButtonFrame.add(backButtonAdd);
-      addButtonFrame.add(addButtonAdd);
-      addButtonFrame.add(textNameLabel);
-      addButtonFrame.add(textTextLabel);
-      addButtonFrame.add(textNameArea);
-      addButtonFrame.add(textTextArea);
-
-      addButtonFrame.setVisible(true);
-      }
-    });
-    addButton.setVisible(false);
-
-    backButtonAdd.setBounds(10,280,110,40);
-    backButtonAdd.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        addButtonFrame.dispose();
-      }
-    });
-    backButtonAdd.setVisible(false);
-
-    addButtonAdd.setBounds(380,280,110,40);
-    addButtonAdd.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {    	
+    	  JFrame soloPracticeFrame = new JFrame();
+    	  JButton addButton = new JButton("+");
+    	  JLabel practiceChoiceLabel = new JLabel("Select a piece of text: "); 
+    	  JButton continueButton = new JButton("Continue");
+    	  JButton backButtonSolo = new JButton("Back");
     	  
-         addTextName(textNameArea.getText());
-         addTextText(textTextArea.getText());
-         textNames.add(textNameArea.getText());
-         textTexts.add(textTextArea.getText());
+    	  continueButton.setBounds(275,225,110,40);
+    	  continueButton.addActionListener(new ActionListener() {
+    	    public void actionPerformed(ActionEvent e) {
+    	    	wpmBoolean = true;
+    	    	menuFrame.dispose();
+    	        soloPracticeFrame.setVisible(false);
+    	        typingScreen.startGUI();
+    	    }
+    	  });
 
-         choicesList.addItem(textNameArea.getText());
-         addButtonFrame.dispose();
-      }
+    	  backButtonSolo.setBounds(10,225,110,40);
+    	  backButtonSolo.addActionListener(new ActionListener() {
+    	    public void actionPerformed(ActionEvent e) {
+    	      soloPracticeFrame.dispose();
+    	    }
+    	  });
+    	  
+    	  try {
+    		  fileToArrays();
+    	  } catch (IOException e2) {
+    		  e2.printStackTrace();
+    	  }
+
+    	  addButton.setBounds(335,15,50,20);
+    	  addButton.addActionListener(new ActionListener() {
+    	    public void actionPerformed(ActionEvent e) {
+    	    	JFrame addButtonFrame = new JFrame();
+    	        JButton addButtonAdd = new JButton("Add");
+    	        JButton backButtonAdd = new JButton("Back");
+    	        JLabel textNameLabel = new JLabel("Enter a name: ");
+    	        JLabel textTextLabel = new JLabel("Enter the text: ");
+    	        JTextArea textNameArea = new JTextArea();
+    	        JTextArea textTextArea = new JTextArea();
+    	        
+    	    	addButtonAdd.setBounds(380,280,110,40);
+    	        addButtonAdd.addActionListener(new ActionListener() {
+    	          public void actionPerformed(ActionEvent e) {    	
+    	        	  
+    	             addTextName(textNameArea.getText());
+    	             addTextText(textTextArea.getText());
+    	             textNames.add(textNameArea.getText());
+    	             textTexts.add(textTextArea.getText());
+
+    	             choicesList.addItem(textNameArea.getText());
+    	             addButtonFrame.dispose();
+    	          }
+    	        });
+    	        
+    	        backButtonAdd.setBounds(10,280,110,40);
+    	        backButtonAdd.addActionListener(new ActionListener() {
+    	          public void actionPerformed(ActionEvent e) {
+    	            addButtonFrame.dispose();
+    	          }
+    	        }); 	    	
+
+    	        textNameLabel.setBounds(20,30,200,30);
+    	        textNameLabel.setVisible(false);
+
+    	        textNameArea.setBounds(200,30,250,20);
+    	        textNameArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(2, 2, 2, 2)));
+    	        textNameArea.addKeyListener(new KeyAdapter() {
+    	          public void keyPressed(KeyEvent e) {
+    	            if (e.getKeyCode() == KeyEvent.VK_TAB) {
+    	              if (e.getModifiers() > 0) {
+    	                textNameArea.transferFocusBackward();
+    	              }
+    	              else {
+    	                textNameArea.transferFocus();
+    	              }
+    	              e.consume();
+    	            }
+    	          }
+    	        });
+
+    	        textTextLabel.setBounds(20,60,200,20);
+
+    	        textTextArea.setBounds(200,60,250,150);
+    	        textTextArea.setLineWrap(true);
+    	        textTextArea.setWrapStyleWord(true);
+    	        textTextArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3)));
+    	        textTextArea.addKeyListener(new KeyAdapter() {
+    	        public void keyPressed(KeyEvent e) {
+    	        	if (e.getKeyCode() == KeyEvent.VK_TAB) {
+    	        		if (e.getModifiers() > 0) {
+    	                textTextArea.transferFocusBackward();
+    	            }
+    	            else {
+    	              textTextArea.transferFocus();
+    	            }
+    	            e.consume();
+    	            }
+    	          }
+    	        });
+ 	    	
+    	    	backButtonAdd.setVisible(true);
+    	    	addButtonAdd.setVisible(true);
+    	    	textNameLabel.setVisible(true);
+    	    	textTextLabel.setVisible(true);
+    	    	textNameArea.setVisible(true);
+    	    	textTextArea.setVisible(true);
+
+    	    	addButtonFrame.setLayout(null);
+    	    	addButtonFrame.setSize(500,350);
+    	    	addButtonFrame.setLocationRelativeTo(null);
+    	    	addButtonFrame.setResizable(false);
+
+    	    	addButtonFrame.add(backButtonAdd);
+    	    	addButtonFrame.add(addButtonAdd);
+    	      	addButtonFrame.add(textNameLabel);
+    	      	addButtonFrame.add(textTextLabel);
+    	      	addButtonFrame.add(textNameArea);
+    	      	addButtonFrame.add(textTextArea);
+
+    	      	addButtonFrame.setVisible(true);
+    	      	
+    	      	
+    	      	}
+    	    });
+    	    
+    	  
+    	  addButton.setVisible(true);
+    	  backButtonSolo.setVisible(true);
+    	  continueButton.setVisible(true);
+
+    	  practiceChoiceLabel.setBounds(20,10,175,30);
+
+    	  choicesList.setBounds(180,15,150,20);
+    	  choicesList.setSelectedIndex(0);
+    	  assignedText = textTexts.get(choicesList.getSelectedIndex());
+    	  choicesList.addActionListener(new ActionListener() {
+    		  public void actionPerformed(ActionEvent e) {
+    			  assignedText = textTexts.get(choicesList.getSelectedIndex());
+
+    		  }
+    	  });
+
+    	  soloPracticeFrame.setLayout(null);
+    	  soloPracticeFrame.setSize(400,300);
+    	  soloPracticeFrame.setTitle("Typing Tutor - Solo Practice Options");
+    	  soloPracticeFrame.setLocationRelativeTo(null);
+    	  soloPracticeFrame.setResizable(false);
+
+    	  soloPracticeFrame.add(addButton);
+    	  soloPracticeFrame.add(backButtonSolo);
+    	  soloPracticeFrame.add(continueButton);
+    	  soloPracticeFrame.add(choicesList);
+    	  soloPracticeFrame.add(practiceChoiceLabel);
+
+    	  soloPracticeFrame.setVisible(true);
+
+      	}
     });
-
-    textNameLabel.setBounds(20,30,200,30);
-    textNameLabel.setVisible(false);
-
-    textNameArea.setBounds(200,30,250,20);
-    textNameArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(2, 2, 2, 2)));
-    textNameArea.addKeyListener(new KeyAdapter() {
-      public void keyPressed(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_TAB) {
-          if (e.getModifiers() > 0) {
-            textNameArea.transferFocusBackward();
-          }
-          else {
-            textNameArea.transferFocus();
-          }
-          e.consume();
-        }
-      }
-    });
-    textNameArea.setVisible(false);
-
-    textTextLabel.setBounds(20,60,200,20);
-    textTextLabel.setVisible(false);
-
-    textTextArea.setBounds(200,60,250,150);
-    textTextArea.setLineWrap(true);
-    textTextArea.setWrapStyleWord(true);
-    textTextArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3)));
-    textTextArea.addKeyListener(new KeyAdapter() {
-    public void keyPressed(KeyEvent e) {
-    	if (e.getKeyCode() == KeyEvent.VK_TAB) {
-    		if (e.getModifiers() > 0) {
-            textTextArea.transferFocusBackward();
-        }
-        else {
-          textTextArea.transferFocus();
-        }
-        e.consume();
-        }
-      }
-    });
-    textTextArea.setVisible(false);
 
     // -- OTHER MENU BUTTONS -- 
     // This section will deal with the buttons that are displayed on the main menu,
@@ -720,25 +701,6 @@ public class TypingTutorMenu extends JFrame {
     	}
     });
     
-    confirmationLabel.setBounds(90,20,500,50);
-    confirmationLabel.setVisible(false);
-    
-    yesButton.setBounds(15,115,150,50);
-    yesButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        System.exit(0);
-      }
-    });
-    yesButton.setVisible(false);
-
-    noButton.setBounds(335,115,150,50);
-    noButton.addActionListener(new ActionListener() {
-      public void actionPerformed(ActionEvent e) {
-        confirmationFrame.dispose();
-      }
-    });
-    noButton.setVisible(false);
-
     username.setBounds(800,550,300,20);
     username.setText("Logged in as: " + getUsername());
     
@@ -818,6 +780,7 @@ public class TypingTutorMenu extends JFrame {
 
 	
 	public void recommendDifficulty() {
+		JFrame recommendFrame = new JFrame();
 		String difficulty = "";
 		
 		TypingScreenGUI typingScreen = new TypingScreenGUI();

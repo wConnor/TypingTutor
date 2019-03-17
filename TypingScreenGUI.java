@@ -31,8 +31,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	private JButton finishButton, quitButton;
 	private JTextArea promptArea;
 	private JTextField typingArea;
-	private JLabel wpmLabel, scoreLabel, accuracyLabel, correctLabel, incorrectLabel, fixInputLabel, completeLabel,
-			summaryLabel;
+	private JLabel wpmLabel, scoreLabel, accuracyLabel, correctLabel, incorrectLabel, fixInputLabel, completeLabel;
 	private int currentCharacter, correctCharacters, totalCharactersInput, incorrectCharacters;
 	private static double wpm;
 
@@ -41,8 +40,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	private double points;
 
 	private double startTime;
-
-	private double endTime;
 
 	private double timeElapsed;
 
@@ -63,7 +60,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	public void startGUI() {
 
 		scene = new JFrame();
-		endScene = new JFrame();
+
 
 		qwerty = "1234567890-=qwertyuiop[]asdfghjkl;'#zxcvbnm,./";
 	    
@@ -199,10 +196,11 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
     // completed their specified prompt. It includes some statistics including the 
     // time that they took, their WPM, their score and their accuracy.
 	public void endScreen() {
-		finishButton = new JButton("Main Menu");
-		endTime = (System.nanoTime() - startTime) / 1e+9;
-		accuracy = ((double) correctCharacters / (double) totalCharactersInput) * 100;
-		summaryLabel = new JLabel(
+		JFrame endScene = new JFrame();
+		JButton finishButton = new JButton("Main Menu");
+		double endTime = (System.nanoTime() - startTime) / 1e+9;
+		double accuracy = ((double) correctCharacters / (double) totalCharactersInput) * 100;
+		JLabel summaryLabel = new JLabel(
 				"<html><b>Time Elapsed:</b> " + new DecimalFormat("#0.00").format(endTime) + " seconds <br/><b>Speed:</b> " + (int) wpm
 						+ "wpm<br/><b>Score:</b> " + new DecimalFormat("#0").format(score) + "<br/><b>Accuracy</b>: " + new DecimalFormat("#0.00").format(accuracy) + "%");
 		
@@ -224,8 +222,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
             }
         }
 		mainMenu.getAverageWPM();
-
-
 
 		finishButton.setBounds(450, 160, 125, 40);
 		finishButton.addActionListener(new ActionListener() {
@@ -263,7 +259,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		endScene.setResizable(false);
 		endScene.setLocationRelativeTo(null);
 		endScene.setVisible(true);
-
 	}
 
     // Function that's used to calculate the score that the user has
@@ -380,8 +375,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	}
 
 	@Override
-	public void keyTyped(KeyEvent e) {
-		
+	public void keyTyped(KeyEvent e) {		
 		// If the user has input the same character of the point where they're
 		// currently at within the prompt, increment currentCharacter within the
 		// prompt, correctCharacters input, and the totalCharactersInput. Ensures that
@@ -394,12 +388,10 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 			try {
 				highlighter.addHighlight(currentCharacter, currentCharacter + 1, correctPainter);
-			
 			}
 			catch (BadLocationException e1) {
-			
-			}
-			
+				e1.printStackTrace();
+			}			
 
 			fixInputLabel.setVisible(false);
 			incorrectLabel.setVisible(false);
@@ -409,6 +401,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 			totalCharactersInput++;
 			calculateScore();
 		}
+		
 		// If the user has INCORRECTLY input the character of the point where
 		// they're currently at within the prompt, increment the incorrectCharacters
 		// total and the totalCharactersInput. Tells the user which key to also
@@ -449,7 +442,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
     if (correctCharacters == textToType.length()) {
 		completeLabel.setVisible(true);
 		endScreen();
-		
     	}
 	}
 
@@ -465,5 +457,4 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	public void actionPerformed(ActionEvent e) {
 		endScene.setVisible(false);
 	}
-
 }
