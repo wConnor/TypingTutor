@@ -61,7 +61,6 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 		scene = new JFrame();
 
-
 		qwerty = "1234567890-=qwertyuiop[]asdfghjkl;'#zxcvbnm,./";
 	    
 		if (typingTest.getCompleteFlag() == false) {

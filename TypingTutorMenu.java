@@ -521,7 +521,7 @@ public class TypingTutorMenu extends JFrame {
     	  JButton continueButton = new JButton("Continue");
     	  JButton backButtonSolo = new JButton("Back");
     	  
-    	  continueButton.setBounds(275,225,110,40);
+    	  continueButton.setBounds(275,220,110,40);
     	  continueButton.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
     	    	wpmBoolean = true;
@@ -531,7 +531,7 @@ public class TypingTutorMenu extends JFrame {
     	    }
     	  });
 
-    	  backButtonSolo.setBounds(10,225,110,40);
+    	  backButtonSolo.setBounds(10,220,110,40);
     	  backButtonSolo.addActionListener(new ActionListener() {
     	    public void actionPerformed(ActionEvent e) {
     	      soloPracticeFrame.dispose();

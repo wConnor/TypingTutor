@@ -26,6 +26,7 @@ public class TypingTest extends JFrame implements ActionListener {
 	public void startGUI() {
 
 		TypingScreenGUI typingScreen = new TypingScreenGUI();
+		assignedText = "A good thesis is a statement of roughly one to three sentences that says something intelligent about a literary work. It is not sufficient simply to identify a theme in your thesis.";
 		
 		initialStart = new JFrame();
 		nameInput = new JTextArea();
@@ -51,9 +52,7 @@ public class TypingTest extends JFrame implements ActionListener {
 		startTestButton.setBounds(110,490,180,30);
 		startTestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				String username = nameInput.getText();
-				String assignedText = "A good thesis is a statement of roughly one to three sentences that says something intelligent about a literary work. It is not sufficient simply to identify a theme in your thesis.";
-				
+				username = nameInput.getText();
 				try {
 					createUserFile();
 				} catch (IOException e1) {
@@ -85,8 +84,6 @@ public class TypingTest extends JFrame implements ActionListener {
 		initialStart.add(descriptionLabel);
 		initialStart.add(testInfoLabel);
 		initialStart.add(inputNameLabel);
-		
-		
 		
 		initialStart.setSize(400, 575);
 		initialStart.setLayout(null);
