@@ -616,7 +616,7 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Finale",
 										"The final lesson of Typing Tutor - this will be a difficult practice lesson that will hopefully put all of the learning that has taken place throughout the program - it will be in the form of a simple piece of text. Thank you for using Typing Tutor, and if oyu wish to continue using the program to learn, feel free to use the solo pratcice mode available at the top! ",
-										"\"When I hear you give your reasons,\" I remarked, \"the thing always appears to me to be so ridiculously simple that I could easily do it myself, though at each successive instance of your reasoning I am baffled until you explain your process.",
+										"\"When I hear you give your reasons,\" I remarked, \"the thing always appears to me to be so ridiculously simple that I could easily do it myself, though at each successive instance of your reasoning I am baffled until you explain your process.\"",
 										true);
 					}
 				});
