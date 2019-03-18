@@ -45,6 +45,7 @@ public class TypingTutorMenu extends JFrame {
 	private static JButton expertDifficulty;
 	private static JButton settingsButton, startButton, closeProgramButton;
 	private static JButton statsButton;
+	
 	private JButton introLessonOne, introLessonTwo, introLessonThree, introLessonFour, introLessonFive, introLessonSix,
 			introLessonSeven;
 	private JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive,
@@ -52,7 +53,8 @@ public class TypingTutorMenu extends JFrame {
 	private JButton intermLessonOne, intermLessonTwo, intermLessonThree, intermLessonFour;
 	private JButton advancedLessonOne, advancedLessonTwo, advancedLessonThree, advancedLessonFour, advancedLessonFive,
 			advancedLessonSix;
-
+	private JButton expertLessonOne, expertLessonTwo, expertLessonThree;
+	
 	private static JLabel username;
 
 	private JLabel typingTutorTitle;
@@ -127,6 +129,10 @@ public class TypingTutorMenu extends JFrame {
 		advancedLessonFive = new JButton();
 		advancedLessonSix = new JButton();
 
+		expertLessonOne = new JButton();
+		expertLessonTwo = new JButton();
+		expertLessonThree = new JButton();
+	
 		choicesList = new JComboBox();
 
 		username = new JLabel();
@@ -269,6 +275,13 @@ public class TypingTutorMenu extends JFrame {
 		advancedLessonSix.setBounds(175, 450, 175, 60);
 		advancedLessonSix.setVisible(false);
 
+		expertLessonOne.setBounds(175, 150, 175, 60);
+		expertLessonOne.setVisible(false);
+		expertLessonTwo.setBounds(175, 210, 175, 60);
+		expertLessonTwo.setVisible(false);
+		expertLessonThree.setBounds(175, 270, 175, 60);
+		expertLessonThree.setVisible(false);
+		
 		// !-- INTRODUCTION DIFFICULTY --!
 		introDifficulty.setBounds(0, 150, 175, 60);
 		introDifficulty.addActionListener(new ActionListener() {
@@ -280,7 +293,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("The F and J Keys",
 								"In this lesson, you will be practicing the use of the F and J keys when it comes to typing. Both of these keys are very important and it's critical that you come to familiarise yourself with these keys to learn the ability of touch typing.\n\nAs you may have noticed on the keyboard, there's small little lumps on the F and J keys. This is because these are the keys where both of your index fingers should be placed whilst you're typing.",
-								"fffffffff fffffffff fffffffff jjjjjjjjj jjjjjjjjj jjjjjjjjj ff jj ff jj f j f j fff jjj f f j j j f");
+								"fff jjj fff jjj fff fff jjj jjj fff fff jjj jjj fff jjj ff jj fff jjj jjj fff fff jjj",
+								false);
 					}
 				});
 
@@ -289,7 +303,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Common Keys",
 								"In this lesson, the common keys that are used when typing will be practiced. These keys will be close to the F and J keys, and are used with most words that'll be typed on the keyboard, such as the letters t, d, and k (for example).\n\nIn later lessons, more practice of keys will be present, notably the more difficult and less common ones.\n\n ** Does not count towards average WPM **",
-								"f e i f d k r f e j t k d g f l e f a h e f g d h j d k o s");
+								"f e i f d k r f e j t k d g f l e f a h e f g d h j d k o s",
+								false);
 
 					}
 				});
@@ -299,7 +314,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("More Common Keys",
 								"This lesson is very similar to the last one - more of the common keys that are used in the English language that one should expect to see / use as they're typing will be practiced here.",
-								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr");
+								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr",
+								false);
 
 					}
 				});
@@ -309,7 +325,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Uncommon Keys",
 								"This lesson is rather different compared to the previous ones. Here, keys that are more difficult to reach and are a little more uncommon will be practiced, including q, z, j, k, x etc..",
-								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr");
+								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr",
+								false);
 
 					}
 				});
@@ -319,7 +336,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("More Uncommon Keys",
 								"A continuation of the previous lesson, this will again go over some more uncommon keys and help you become more familiar with the keyboard.",
-								"qqqq xx zz rrrr kk vvvv bb y w g ppp zzz zzxxk kz qqjj xkv rrr hhh");
+								"qqqq xx zz rrrr kk vvvv bb y w g ppp zzz zzxxk kz qqjj xkv rrr hhh",
+								false);
 
 					}
 				});
@@ -329,7 +347,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Combining the Common and Uncommon",
 								"We'll be combining what we have previously practiced - both common and uncommon keys. They'll be in a completely random order for you to practice and start to become comfortable with hitting any key that is needed.",
-								"tt  dd x za al f t d i i a ee uuu iii ooxx ppp ggg hhh aaa sss bbb mmm lll zeeii aaaiiie eoop leeerr nnn eeeennn aaaa");
+								"tt dd x za al f t d i i a ee uuu iii ooxx ppp ggg hhh aaa sss bbb mmm lll zeeii aaaiiie eoop leeerr nnn eeeennn aaaa",
+								false);
 
 					}
 				});
@@ -339,7 +358,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Summary of Introduction",
 								"Everything that has been learned during this difficulty will be roughly summarised here, with the combination of both the common keys on the keyboard, and the uncommon keys.",
-								"eeee ttt ooooo aaa iii fff jjj fff jj f j fj jf f j nnn sss rrr fffhhhjjj lllllf jddd mm ffff jjjj uuuu gggg ccc ggg ffff jjjj www yyy bbb vvvv kk zzzz jjj xxx k bbb www yyy");
+								"eeee ttt ooooo aaa iii fff jjj fff jj f j fj jf f j nnn sss rrr fffhhhjjj lllllf jddd mm ffff jjjj uuuu gggg ccc ggg ffff jjjj www yyy bbb vvvv kk zzzz jjj xxx k bbb www yyy",
+								false);
 
 					}
 				});
@@ -366,7 +386,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Simple Words",
 								"Continuing on from the previous stages of the course, this lesson will combine all of the various keys that we have previously practiced and put them into real-use. Simple words will be practiced here which appear frequently in everyday text.",
-								"come put take be do see a will want how why far out who yes but or please when no every body part then there");
+								"come put take be do see a will want how why far out who yes but or please when no every body part then there",
+								false);
 
 					}
 				});
@@ -376,7 +397,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("More Word Practice",
 								"Similar to lesson one, this lesson will have more English words for you to practice. After becoming familiar with the different keys on the keyboard from the introduction stage of the typing course, hitting those keys which may have been difficult should be much easier.\n\nThese words are taken from a collection of basic English words from an online source to ensure that your typing practice has a real-world use.",
-								"blue beautiful equal hollow flat kind male married earth delicate worry fear high ill important kind child happy sharp slow natural tree can where bottle phone card coin pencil poor physical slow special");
+								"blue beautiful equal hollow flat kind male married earth delicate worry fear high ill important kind child happy sharp slow natural tree can where bottle phone card coin pencil poor physical slow special",
+								false);
 
 					}
 				});
@@ -386,7 +408,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Incorporating Basic Punctuation",
 								"In order to incorporate more real-world use into your learning, we'll be going over some basic punctuation that's used in writing online with a quick lesson showing them off.\n\nSome of the punctuation may include: , (comma), : (colon), . (full stop), and ' (apostrophe). Feel free to look at the on-screen keyboard to find out where the keys are without looking at your own. Eyes on the screen!",
-								", . run , aqua. ' . , walk ' , \" ' hello ! ' . thunder , ' . , \" ! take , sun");
+								", . run , aqua. ' . , walk ' , \" ' hello ! ' . thunder , ' . , \" ! take , sun",
+								false);
 
 					}
 				});
@@ -396,7 +419,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Basic Sentences",
 								"This lesson brings all that has been learnt to the next step - typing sentences. Real-world sentences have grammar and basic punctuation, such as the commas and such that were practiced in the previous lesson.\n\nBoth the basic words and basic punctuation are going to tested out. This lesson aims to help you improve on writing sentences with basic grammar included!",
-								"The quick brown fox jumps over the lazy dog and, swiftly, vanishes from the scene. The dog lifts itself from the ground, confused as to what has happened. A young boy comes along and asks himself, \"Where'd that quick brown fox go?");
+								"The quick brown fox jumps over the lazy dog and, swiftly, vanishes from the scene. The dog lifts itself from the ground, confused as to what has happened. A young boy comes along and asks himself, \"Where'd that quick brown fox go?",
+								false);
 
 					}
 				});
@@ -406,7 +430,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("More Basic Sentences",
 								"As a continuation from the previous lesson, this one includes another set of basic sentences for you to try out!\n\nMore specifically, this lesson will show off a small segment of a conversation between two coworkers, meaning that you'll get some practice using apostrophes and speech marks.",
-								"\"How're you doing?\" asked the coworker. I replied \"I'm doing fine thanks, and how are you? Do you have anything planned for the weekend? It is Friday after all!\" \"Hmmm... nothing much really. How long have you been working here then? I don't really recognise you.\" he replied.");
+								"\"How're you doing?\" asked the coworker. I replied \"I'm doing fine thanks, and how are you? Do you have anything planned for the weekend? It is Friday after all!\" \"Hmmm... nothing much really. How long have you been working here then? I don't really recognise you.\" he replied.",
+								true);
 
 					}
 				});
@@ -431,7 +456,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Complex Sentences",
 								"A good introduction to the intermediate stage would include having more complex sentences thrown at you. Similar to the previous stage (beginner), you'll be presented with real-world sentences, which include the use of punctuation.\n\nThis lesson will also introduce some more complex grammar structures, such as using embedded clauses. Most notably used in literature.",
-								"Although he was wealthy, he was still unhappy. The Scarecrow and the Tin Woodman stood up in a corner and kept quiet all night, although of course they could not sleep. Many years later, as he faced the firing squad, Colonel Aurelian Buendia was to remember that distant afternoon when his father took him to discover ice.");
+								"Although he was wealthy, he was still unhappy. The Scarecrow and the Tin Woodman stood up in a corner and kept quiet all night, although of course they could not sleep. Many years later, as he faced the firing squad, Colonel Aurelian Buendia was to remember that distant afternoon when his father took him to discover ice.",
+								true);
 
 					}
 				});
@@ -441,7 +467,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("More Complex Sentences",
 								"This lesson will give you a little more practice with more complex sentences that, again, have some different grammatical points which must be taken in to account in addition to capital letters for names (very important when it comes to formal writing!)\n\nThe difficulty won't be stepped up significantly compared to the last lesson.",
-								"As Grainier drove along in the wagon behind a wide, slow, sand-colored mare, clusters of orange butterflies exploded off the blackish purple piles of bear sign and winked and fluttered magically like leaves without trees. Because he was so small, Stuart was often hard to find around the house.");
+								"As Grainier drove along in the wagon behind a wide, slow, sand-colored mare, clusters of orange butterflies exploded off the blackish purple piles of bear sign and winked and fluttered magically like leaves without trees. Because he was so small, Stuart was often hard to find around the house.",
+								true);
 
 					}
 				});
@@ -451,7 +478,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Introducing More Punctuation",
 								"We'll take a break from longer complex sentences and put our aim on getting used to some more punctuation, especially the ones that are less common like the semi-colon (;), the brackets (), the colon (:) and such.\n\nBeing able to come to grips with these punctuation marks should help you become a lot more fluent with typing in almost any situation which you may come across.\n\nDon't worry if your WPM is lower than normal, as that's completely natural when they're presented in such a way!",
-								": - : ) : ; ( - ! ; @ \" # ; ~ # @ / : ... ; ! - . , : ; . , ) \" / ; '");
+								": - : ) : ; ( - ! ; @ \" # ; ~ # @ / : ... ; ! - . , : ; . , ) \" / ; '",
+								false);
 
 					}
 				});
@@ -461,7 +489,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Practicing New Punctuation",
 								"Now we'll be using the punctuation that we have just learnt about with some random words - it's not meant to make sense, so don't worry if it confuses you!\n\nFurther down the line, we'll be practicing the use of these punctuation marks that we've practiced typing with more realistic context.",
-								"aqua; hello the - now... with! however despite such to (do not) punctuation action: one word! close@ fluency; gratitude nature... you're perform practice; greet is / was apostrophe ' ! ! - deduction, negligence; parameter.");
+								"aqua; hello the - now... with! however despite such to (do not) punctuation action: one word! close@ fluency; gratitude nature... you're perform practice; greet is / was apostrophe ' ! ! - deduction, negligence; parameter.",
+								false);
 
 					}
 				});
@@ -485,7 +514,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Introducing Difficult Sentecnes",
 								"This lesson will be similar to the previous one, where all punctuation that has previously been learnt throughout Typing Tutor will be practiced, including the basics from full-stops, to the more complex of hyphens.\n\nThe extract that'll be used will come from a complex piece of literature.",
-								"My propositions are elucidatory in this way: he who understands me finally recognizes them as senseless, when he has climbed out through them, on them, over them. (He must so to speak throwaway the ladder, after he has climbed up on it). He must surmount these propositions; then he sees the world rightly. Whereof one cannot speak, thereof one must be silent.");
+								"My propositions are elucidatory in this way: he who understands me finally recognizes them as senseless, when he has climbed out through them, on them, over them. (He must so to speak throwaway the ladder, after he has climbed up on it). He must surmount these propositions; then he sees the world rightly. Whereof one cannot speak, thereof one must be silent.",
+								true);
 
 					}
 				});
@@ -495,7 +525,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("More Complex Practice",
 								"After the previous stage which was completely random words with the new punctuation in random places, we'll now be practicing the use of the punctuation into more real scenarios that actually make sense!\n\nHere, your WPM may pick up speed compared to the previous lessons, but if you see a decrease, don't be put off! It simply takes practice to become an expert with a newly learnt skill.",
-								"The right method of philosophy would be this. To say nothing except what can be said, i.e. the propositions of natural science, i.e. something that has nothing to do with philosophy: and then always, when someone else wished to say something metaphys-ical, to demonstrate to him that he had given no meaning to certain signs in his propositions.");
+								"The right method of philosophy would be this. To say nothing except what can be said, i.e. the propositions of natural science, i.e. something that has nothing to do with philosophy: and then always, when someone else wished to say something metaphys-ical, to demonstrate to him that he had given no meaning to certain signs in his propositions.",
+								true);
 
 					}
 				});
@@ -505,7 +536,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Difficult Words",
 								"Words that aren't used very often in writing will be practiced here. Similar to English, these words will obviously be the ones that contain letters such as Z and Q.\n\nHitting these keys on the keyboard is quite difficult, even for an experienced typist. These keys are placed in their positions the way they are because they're not used very often in the English language - that's how the QWERTY keyboard works.",
-								"zaps quiet xenial zebra xanthic quiz zap zipping xyst zorillas zoophile zip zag xeroxing xylol xi zarzuela zanders");
+								"zaps quiet xenial zebra xanthic quiz zap zipping xyst zorillas zoophile zip zag xeroxing xylol xi zarzuela zanders",
+								false);
 
 					}
 				});
@@ -515,7 +547,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Practicing the Use of Those Keys",
 								"Previously, we introduced some words that started with Z and Q, both of which are rather uncommon letters that one types when they're using the keyboard, however it's very possible that you'll eventually need to write a word that contains either one of your keys, so being prepared for it is the key. Always expect the unexpected.",
-								"You will zap yourself if you touch the wire. Zach is over at the zoo, so he can't help you either. Also, this is a no parking zone, so please write your zip code here.");
+								"You will zap yourself if you touch the wire. Zach is over at the zoo, so he can't help you either. Also, this is a no parking zone, so please write your zip code here.",
+								false);
 
 					}
 				});
@@ -525,7 +558,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Long, Uncommon Words",
 								"Words that you have probably not seen before and probably won't use on a regular basis will be practiced here. These words are long and you may not know the meanings of them, but they make for a good practice material to keep focus when typing and test whether you're familiar with the positions of the keys on the keyboard.",
-								"Floccinaucinihilipilification Ambidextrous Honorificabilitudinitatibus Antidisestabhlishment Catoptromancy Insangelous Quadragenarian Perhendinancer Xylopyrography Solitude Unwelewable");
+								"Floccinaucinihilipilification Ambidextrous Honorificabilitudinitatibus Antidisestabhlishment Catoptromancy Insangelous Quadragenarian Perhendinancer Xylopyrography Solitude Unwelewable",
+								false);
 
 					}
 				});
@@ -535,7 +569,8 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Practice",
 								"Simply put, this lesson will simply be a pratcice piece of text presented to you in order consolidate the learning that has taken place throughout the advanced section of Typing Tutor, well done for making it this far!",
-								"The differences in communication styles between men and women have been a topic of interest in the research world for many years. These differences may lead to miscommunication, conflict, and even dissatisfaction between couples. This study analyzes the communication styles among genders, more specifically among married couples.");
+								"The differences in communication styles between men and women have been a topic of interest in the research world for many years. These differences may lead to miscommunication, conflict, and even dissatisfaction between couples. This study analyzes the communication styles among genders, more specifically among married couples.",
+								true);
 
 					}
 				});
@@ -550,12 +585,52 @@ public class TypingTutorMenu extends JFrame {
 			}
 		});
 
+		// !-- ADVANCED DIFFICULTY --!
 		expertDifficulty.setBounds(0, 390, 175, 60);
-
+		expertDifficulty.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				difficultySelected();
+				
+				expertLessonOne.setText("<html><center>Lesson 1 - Left Side</center></html>");
+				expertLessonOne.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						lessonSelected("Left Side",
+										"This lesson will focus on using the left side of the keyboard and practicing using only the left hand whilst typing as, naturally, the right hand shouldn't go over to the side of that keyboard.",
+										"z!!! a\"\"\" a!!! z!!! a!!! z\"\"\" x!!! s!!! s£££ x!!! z!\"! zx\"\"! a! a!! a! s! aa!!! a!! a! a!!! a! a!a! A!!! s!!! SA!!",
+										false);
+					}
+				});
+				
+				expertLessonTwo.setText("<html><center>Lesson 2 - Right Side</center></html>");
+				expertLessonTwo.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						lessonSelected("Left Side",
+										"Similar to the previous lesson, this lesson will be focusing on one side of the keyboard the use of a single hand in order to practice some of the techniques used with touch typing.",
+										"l[ l)) -- :: l:: l{{ l>> k}} p{{ \'\' .] m] ol l; l\' \'\' + l+ i+ p-- p_ l; o+ m. m>> l:: p{{",
+										false);
+					}
+				});
+				
+				expertLessonThree.setText("<html><center>Lesson 3 - Finale</center></html>");
+				expertLessonThree.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						lessonSelected("Finale",
+										"The final lesson of Typing Tutor - this will be a difficult practice lesson that will hopefully put all of the learning that has taken place throughout the program - it will be in the form of a simple piece of text. Thank you for using Typing Tutor, and if oyu wish to continue using the program to learn, feel free to use the solo pratcice mode available at the top! ",
+										"\"When I hear you give your reasons,\" I remarked, \"the thing always appears to me to be so ridiculously simple that I could easily do it myself, though at each successive instance of your reasoning I am baffled until you explain your process.",
+										true);
+					}
+				});
+				
+				
+				expertLessonOne.setVisible(true);
+				expertLessonTwo.setVisible(true);
+				expertLessonThree.setVisible(true);
+			}
+		});
+		
 		startButton.setBounds(860, 505, 100, 35);
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				wpmBoolean = false;
 				titleArea.setText(null);
 				descriptionArea.setText(null);
 				menuFrame.dispose();
@@ -828,6 +903,10 @@ public class TypingTutorMenu extends JFrame {
 		menuFrame.add(advancedLessonFive);
 		menuFrame.add(advancedLessonSix);
 
+		menuFrame.add(expertLessonOne);
+		menuFrame.add(expertLessonTwo);
+		menuFrame.add(expertLessonThree);
+		
 		menuFrame.add(username);
 		menuFrame.add(typingTutorTitle);
 		menuFrame.add(averageWPMLabel);
@@ -845,7 +924,7 @@ public class TypingTutorMenu extends JFrame {
 
 	}
 
-	public static void lessonSelected(String title, String description, String prompt) {
+	public static void lessonSelected(String title, String description, String prompt, boolean wpmBool) {
 		titleArea.setVisible(true);
 		descriptionArea.setVisible(true);
 		startButton.setVisible(true);
@@ -853,6 +932,7 @@ public class TypingTutorMenu extends JFrame {
 		titleArea.setText(title);
 		descriptionArea.setText(description);
 		assignedText = prompt;
+		wpmBoolean = wpmBool;
 
 	}
 
@@ -961,6 +1041,10 @@ public class TypingTutorMenu extends JFrame {
 			advancedLessonFour.setVisible(false);
 			advancedLessonFive.setVisible(false);
 			advancedLessonSix.setVisible(false);
+			
+			expertLessonOne.setVisible(false);
+			expertLessonTwo.setVisible(false);
+			expertLessonThree.setVisible(false);
 
 		}
 	}
