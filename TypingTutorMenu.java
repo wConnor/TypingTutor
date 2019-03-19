@@ -512,7 +512,7 @@ public class TypingTutorMenu extends JFrame {
 				advancedLessonOne.setText("<html><center>Lesson 1 - Introducing Difficult Sentences</html></center>");
 				advancedLessonOne.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent ev) {
-						lessonSelected("Introducing Difficult Sentecnes",
+						lessonSelected("Introducing Difficult Sentences",
 								"This lesson will be similar to the previous one, where all punctuation that has previously been learnt throughout Typing Tutor will be practiced, including the basics from full-stops, to the more complex of hyphens.\n\nThe extract that'll be used will come from a complex piece of literature.",
 								"My propositions are elucidatory in this way: he who understands me finally recognizes them as senseless, when he has climbed out through them, on them, over them. (He must so to speak throwaway the ladder, after he has climbed up on it). He must surmount these propositions; then he sees the world rightly. Whereof one cannot speak, thereof one must be silent.",
 								true);
@@ -671,10 +671,13 @@ public class TypingTutorMenu extends JFrame {
 		practiceButton.setBounds(600, 0, 150, 50);
 		practiceButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JButton addButton = new JButton("+");
-				JLabel practiceChoiceLabel = new JLabel("Select a piece of text: ");
 				JButton continueButton = new JButton("Continue");
 				JButton backButtonSolo = new JButton("Back");
+				JButton addButton = new JButton("+");
+				JLabel practiceChoiceLabel = new JLabel("Select a piece of text: ");
+				JLabel previewLabel = new JLabel("Preview of selected text: ");
+				JTextArea previewArea = new JTextArea();
+
 
 				continueButton.setBounds(275, 220, 110, 40);
 				continueButton.addActionListener(new ActionListener() {
@@ -806,10 +809,20 @@ public class TypingTutorMenu extends JFrame {
 				choicesList.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						assignedText = textTexts.get(choicesList.getSelectedIndex());
-
+						previewArea.setText(assignedText);
 					}
 				});
 
+				previewLabel.setBounds(20, 50, 150, 20);
+				
+				previewArea.setBounds(180, 50, 200, 120);
+				previewArea.setLineWrap(true);
+				previewArea.setWrapStyleWord(true);
+				previewArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3)));
+				previewArea.setText(textTexts.get(choicesList.getSelectedIndex()));
+				previewArea.setFont(new Font("Sans Serif", Font.PLAIN, 12));
+				previewArea.setEditable(false);
+				
 				soloPracticeFrame.setLayout(null);
 				soloPracticeFrame.setSize(400, 300);
 				soloPracticeFrame.setTitle("Typing Tutor - Solo Practice Options");
@@ -821,6 +834,8 @@ public class TypingTutorMenu extends JFrame {
 				soloPracticeFrame.add(continueButton);
 				soloPracticeFrame.add(choicesList);
 				soloPracticeFrame.add(practiceChoiceLabel);
+				soloPracticeFrame.add(previewLabel);
+				soloPracticeFrame.add(previewArea);
 
 				soloPracticeFrame.setVisible(true);
 
