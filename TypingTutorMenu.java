@@ -217,6 +217,7 @@ public class TypingTutorMenu extends JFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
+
 		JComboBox choicesList = new JComboBox(textNames.toArray());
 
 		// -- STAGES + LESSONS --
