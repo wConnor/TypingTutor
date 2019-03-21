@@ -36,7 +36,8 @@ public class TypingTutorMenu extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 
-	public static JFrame menuFrame, soloPracticeFrame, statsFrame, addButtonFrame, recommendFrame, graphFrame;
+	private static JFrame menuFrame, soloPracticeFrame, statsFrame, addButtonFrame, recommendFrame, graphFrame,
+			settingsFrame, aboutFrame;
 	private static JButton introDifficulty;
 	private static JButton beginnerDifficulty;
 	private static JButton intermediateDifficulty;
@@ -45,7 +46,7 @@ public class TypingTutorMenu extends JFrame {
 	private static JButton expertDifficulty;
 	private static JButton settingsButton, startButton, closeProgramButton;
 	private static JButton statsButton;
-	
+
 	private JButton introLessonOne, introLessonTwo, introLessonThree, introLessonFour, introLessonFive, introLessonSix,
 			introLessonSeven;
 	private JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive,
@@ -54,7 +55,7 @@ public class TypingTutorMenu extends JFrame {
 	private JButton advancedLessonOne, advancedLessonTwo, advancedLessonThree, advancedLessonFour, advancedLessonFive,
 			advancedLessonSix;
 	private JButton expertLessonOne, expertLessonTwo, expertLessonThree;
-	
+
 	private static JLabel username;
 
 	private JLabel typingTutorTitle;
@@ -80,6 +81,8 @@ public class TypingTutorMenu extends JFrame {
 	private static List<String> textTexts;
 	private static List<Double> averageWPMs;
 
+	TypingTutor typingTutorInit = new TypingTutor();
+
 	public void menu() {
 
 		TypingScreenGUI typingScreen = new TypingScreenGUI();
@@ -90,7 +93,9 @@ public class TypingTutorMenu extends JFrame {
 		graphFrame = new JFrame();
 		addButtonFrame = new JFrame();
 		recommendFrame = new JFrame();
-		
+		settingsFrame = new JFrame();
+		aboutFrame = new JFrame();
+
 		introDifficulty = new JButton("Introduction");
 		beginnerDifficulty = new JButton("Beginner");
 		advancedDifficulty = new JButton("Advanced");
@@ -132,7 +137,7 @@ public class TypingTutorMenu extends JFrame {
 		expertLessonOne = new JButton();
 		expertLessonTwo = new JButton();
 		expertLessonThree = new JButton();
-	
+
 		choicesList = new JComboBox();
 
 		username = new JLabel();
@@ -281,7 +286,7 @@ public class TypingTutorMenu extends JFrame {
 		expertLessonTwo.setVisible(false);
 		expertLessonThree.setBounds(175, 270, 175, 60);
 		expertLessonThree.setVisible(false);
-		
+
 		// !-- INTRODUCTION DIFFICULTY --!
 		introDifficulty.setBounds(0, 150, 175, 60);
 		introDifficulty.addActionListener(new ActionListener() {
@@ -303,8 +308,7 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Common Keys",
 								"In this lesson, the common keys that are used when typing will be practiced. These keys will be close to the F and J keys, and are used with most words that'll be typed on the keyboard, such as the letters t, d, and k (for example).\n\nIn later lessons, more practice of keys will be present, notably the more difficult and less common ones.\n\n ** Does not count towards average WPM **",
-								"f e i f d k r f e j t k d g f l e f a h e f g d h j d k o s",
-								false);
+								"f e i f d k r f e j t k d g f l e f a h e f g d h j d k o s", false);
 
 					}
 				});
@@ -314,8 +318,7 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("More Common Keys",
 								"This lesson is very similar to the last one - more of the common keys that are used in the English language that one should expect to see / use as they're typing will be practiced here.",
-								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr",
-								false);
+								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr", false);
 
 					}
 				});
@@ -325,8 +328,7 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Uncommon Keys",
 								"This lesson is rather different compared to the previous ones. Here, keys that are more difficult to reach and are a little more uncommon will be practiced, including q, z, j, k, x etc..",
-								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr",
-								false);
+								"t oo o i a e t ii l d ccc aa rr ee mm aa r r e tt ff e r i a rr", false);
 
 					}
 				});
@@ -336,8 +338,7 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("More Uncommon Keys",
 								"A continuation of the previous lesson, this will again go over some more uncommon keys and help you become more familiar with the keyboard.",
-								"qqqq xx zz rrrr kk vvvv bb y w g ppp zzz zzxxk kz qqjj xkv rrr hhh",
-								false);
+								"qqqq xx zz rrrr kk vvvv bb y w g ppp zzz zzxxk kz qqjj xkv rrr hhh", false);
 
 					}
 				});
@@ -478,8 +479,7 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Introducing More Punctuation",
 								"We'll take a break from longer complex sentences and put our aim on getting used to some more punctuation, especially the ones that are less common like the semi-colon (;), the brackets (), the colon (:) and such.\n\nBeing able to come to grips with these punctuation marks should help you become a lot more fluent with typing in almost any situation which you may come across.\n\nDon't worry if your WPM is lower than normal, as that's completely natural when they're presented in such a way!",
-								": - : ) : ; ( - ! ; @ \" # ; ~ # @ / : ... ; ! - . , : ; . , ) \" / ; '",
-								false);
+								": - : ) : ; ( - ! ; @ \" # ; ~ # @ / : ... ; ! - . , : ; . , ) \" / ; '", false);
 
 					}
 				});
@@ -590,55 +590,51 @@ public class TypingTutorMenu extends JFrame {
 		expertDifficulty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficultySelected();
-				
+
 				expertLessonOne.setText("<html><center>Lesson 1 - Left Side</center></html>");
 				expertLessonOne.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Left Side",
-										"This lesson will focus on using the left side of the keyboard and practicing using only the left hand whilst typing as, naturally, the right hand shouldn't go over to the side of that keyboard.",
-										"z!!! a\"\"\" a!!! z!!! a!!! z\"\"\" x!!! s!!! s£££ x!!! z!\"! zx\"\"! a! a!! a! s! aa!!! a!! a! a!!! a! a!a! A!!! s!!! SA!!",
-										false);
+								"This lesson will focus on using the left side of the keyboard and practicing using only the left hand whilst typing as, naturally, the right hand shouldn't go over to the side of that keyboard.",
+								"z!!! a\"\"\" a!!! z!!! a!!! z\"\"\" x!!! s!!! s£££ x!!! z!\"! zx\"\"! a! a!! a! s! aa!!! a!! a! a!!! a! a!a! A!!! s!!! SA!!",
+								false);
 					}
 				});
-				
+
 				expertLessonTwo.setText("<html><center>Lesson 2 - Right Side</center></html>");
 				expertLessonTwo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Left Side",
-										"Similar to the previous lesson, this lesson will be focusing on one side of the keyboard the use of a single hand in order to practice some of the techniques used with touch typing.",
-										"l[ l)) -- :: l:: l{{ l>> k}} p{{ \'\' .] m] ol l; l\' \'\' + l+ i+ p-- p_ l; o+ m. m>> l:: p{{",
-										false);
+								"Similar to the previous lesson, this lesson will be focusing on one side of the keyboard the use of a single hand in order to practice some of the techniques used with touch typing.",
+								"l[ l)) -- :: l:: l{{ l>> k}} p{{ \'\' .] m] ol l; l\' \'\' + l+ i+ p-- p_ l; o+ m. m>> l:: p{{",
+								false);
 					}
 				});
-				
+
 				expertLessonThree.setText("<html><center>Lesson 3 - Finale</center></html>");
 				expertLessonThree.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Finale",
-										"The final lesson of Typing Tutor - this will be a difficult practice lesson that will hopefully put all of the learning that has taken place throughout the program - it will be in the form of a simple piece of text. Thank you for using Typing Tutor, and if oyu wish to continue using the program to learn, feel free to use the solo pratcice mode available at the top! ",
-										"\"When I hear you give your reasons,\" I remarked, \"the thing always appears to me to be so ridiculously simple that I could easily do it myself, though at each successive instance of your reasoning I am baffled until you explain your process.\"",
-										true);
+								"The final lesson of Typing Tutor - this will be a difficult practice lesson that will hopefully put all of the learning that has taken place throughout the program - it will be in the form of a simple piece of text. Thank you for using Typing Tutor, and if oyu wish to continue using the program to learn, feel free to use the solo pratcice mode available at the top! ",
+								"\"When I hear you give your reasons,\" I remarked, \"the thing always appears to me to be so ridiculously simple that I could easily do it myself, though at each successive instance of your reasoning I am baffled until you explain your process.\"",
+								true);
 					}
 				});
-				
-				
+
 				expertLessonOne.setVisible(true);
 				expertLessonTwo.setVisible(true);
 				expertLessonThree.setVisible(true);
 			}
 		});
-		
+
 		startButton.setBounds(860, 505, 100, 35);
 		startButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				titleArea.setText(null);
 				descriptionArea.setText(null);
-				menuFrame.dispose();
-				soloPracticeFrame.dispose();
-				addButtonFrame.dispose();
-				recommendFrame.dispose();
-				statsFrame.dispose();
-				graphFrame.dispose();
+
+				disposeAll();
+
 				typingScreen.startGUI();
 			}
 		});
@@ -678,7 +674,6 @@ public class TypingTutorMenu extends JFrame {
 				JLabel previewLabel = new JLabel("Preview of selected text: ");
 				JTextArea previewArea = new JTextArea();
 
-
 				continueButton.setBounds(275, 220, 110, 40);
 				continueButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -705,7 +700,7 @@ public class TypingTutorMenu extends JFrame {
 				addButton.setBounds(335, 15, 50, 20);
 				addButton.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						
+
 						JButton addButtonAdd = new JButton("Add");
 						JButton backButtonAdd = new JButton("Back");
 						JLabel textNameLabel = new JLabel("Enter a name: ");
@@ -814,15 +809,16 @@ public class TypingTutorMenu extends JFrame {
 				});
 
 				previewLabel.setBounds(20, 50, 150, 20);
-				
+
 				previewArea.setBounds(180, 50, 200, 120);
 				previewArea.setLineWrap(true);
 				previewArea.setWrapStyleWord(true);
-				previewArea.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3)));
+				previewArea.setBorder(
+						BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3)));
 				previewArea.setText(textTexts.get(choicesList.getSelectedIndex()));
 				previewArea.setFont(new Font("Sans Serif", Font.PLAIN, 12));
 				previewArea.setEditable(false);
-				
+
 				soloPracticeFrame.setLayout(null);
 				soloPracticeFrame.setSize(400, 300);
 				soloPracticeFrame.setTitle("Typing Tutor - Solo Practice Options");
@@ -847,6 +843,11 @@ public class TypingTutorMenu extends JFrame {
 		// but aren't a major part of the program's core function. Examples will include
 		// the quit button and the settings button.
 		settingsButton.setBounds(875, 0, 125, 50);
+		settingsButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				settingsScreen();
+			}
+		});
 
 		closeProgramButton.setBounds(15, 510, 150, 50);
 		closeProgramButton.addActionListener(new ActionListener() {
@@ -921,7 +922,7 @@ public class TypingTutorMenu extends JFrame {
 		menuFrame.add(expertLessonOne);
 		menuFrame.add(expertLessonTwo);
 		menuFrame.add(expertLessonThree);
-		
+
 		menuFrame.add(username);
 		menuFrame.add(typingTutorTitle);
 		menuFrame.add(averageWPMLabel);
@@ -1056,7 +1057,7 @@ public class TypingTutorMenu extends JFrame {
 			advancedLessonFour.setVisible(false);
 			advancedLessonFive.setVisible(false);
 			advancedLessonSix.setVisible(false);
-			
+
 			expertLessonOne.setVisible(false);
 			expertLessonTwo.setVisible(false);
 			expertLessonThree.setVisible(false);
@@ -1069,7 +1070,6 @@ public class TypingTutorMenu extends JFrame {
 		BasicFileAttributes usernameAttributes = Files.getFileAttributeView(usernamePath, BasicFileAttributeView.class)
 				.readAttributes();
 		Date creationDate = new Date(usernameAttributes.creationTime().to(TimeUnit.MILLISECONDS));
-
 
 		JLabel statsTitle = new JLabel("<html><b>Statistics for " + getUsername() + "</b></html>");
 		JLabel statsLabel = new JLabel("<html><b>Start Date:</b> " + creationDate.getDate() + "/"
@@ -1122,6 +1122,132 @@ public class TypingTutorMenu extends JFrame {
 		statsFrame.add(graphButton);
 
 		statsFrame.setVisible(true);
+	}
+
+	public void settingsScreen() {
+		String[] sizes = { "Small", "Medium", "Large" };
+
+		JLabel muteSoundLabel = new JLabel("Mute Sound:");
+		JLabel volumeLabel = new JLabel("Volume:");
+		JLabel promptSizeLabel = new JLabel("Prompt Font Size:");
+		JLabel inputSizeLabel = new JLabel("Input Font Size:");
+		JLabel resetWPMLabel = new JLabel("Reset WPM Records?");
+		JLabel resetDataLabel = new JLabel("Reset All Data?");
+
+		JCheckBox muteSoundBox = new JCheckBox();
+		JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 100);
+		JComboBox<String> promptSizeBox = new JComboBox<String>(sizes);
+		JComboBox<String> inputSizeBox = new JComboBox<String>(sizes);
+		JButton resetWPMButton = new JButton("<html><center>Reset</center></html>");
+		JButton resetDataButton = new JButton("<html><center>Reset</center></html>");
+		JButton aboutButton = new JButton("<html><center>About Typing Tutor</center></html>");
+		JButton backButton = new JButton("Back");
+
+		muteSoundLabel.setBounds(20, 10, 100, 30);
+		muteSoundBox.setBounds(170, 15, 20, 20);
+
+		volumeLabel.setBounds(20, 42, 100, 30);
+		volumeSlider.setBounds(120, 47, 120, 20);
+
+		promptSizeLabel.setBounds(20, 80, 120, 20);
+		promptSizeBox.setBounds(140, 80, 100, 20);
+
+		inputSizeLabel.setBounds(20, 110, 120, 20);
+		inputSizeBox.setBounds(140, 110, 100, 20);
+
+		resetWPMLabel.setBounds(15, 140, 140, 20);
+		resetWPMButton.setBounds(152, 140, 80, 20);
+		resetWPMButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int reply = JOptionPane.showConfirmDialog(null,
+						"Are you sure you would like to reset your WPM data? There's no going back.", "Typing Tutor",
+						JOptionPane.YES_NO_OPTION);
+				if (reply == JOptionPane.YES_OPTION) {
+					resetWPM();
+					averageWPMLabel.setText("Average WPM: 0");
+				}
+			}
+		});
+
+		resetDataLabel.setBounds(20, 170, 140, 20);
+		resetDataButton.setBounds(152, 170, 80, 20);
+		resetDataButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				int reply = JOptionPane.showConfirmDialog(null,
+						"Are you sure you would like to reset all of your data?", "Typing Tutor",
+						JOptionPane.YES_NO_OPTION);
+				if (reply == JOptionPane.YES_OPTION) {
+					resetData();
+				}
+			}
+		});
+
+		aboutButton.setBounds(35, 205, 180, 30);
+		aboutButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				JLabel titleLabel = new JLabel("<html>Typing Tutor</html>");
+				JLabel descriptionLabel = new JLabel(
+						"<html><center>Typing Tutor has been developed as a part of the OCR A Level Computer Science programming project. The problem found has been that students in the current year have rather low typing speeds, and this program intends to assist them in speeding up their WPM.</center></html>");
+				JLabel yearLabel = new JLabel("<html><center>2018</center></html>");
+				JButton backButton = new JButton("Back");
+
+				titleLabel.setBounds(90, 10, 250, 100);
+				titleLabel.setFont(new Font("Sans Serif", Font.PLAIN, 36));
+
+				descriptionLabel.setBounds(50, 100, 300, 150);
+
+				yearLabel.setBounds(185, 85, 50, 30);
+
+				backButton.setBounds(10, 238, 70, 30);
+				backButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						aboutFrame.dispose();
+					}
+				});
+
+				aboutFrame.setSize(400, 300);
+				aboutFrame.setLocationRelativeTo(null);
+				aboutFrame.setLayout(null);
+				aboutFrame.setResizable(false);
+
+				aboutFrame.add(titleLabel);
+				aboutFrame.add(descriptionLabel);
+				aboutFrame.add(yearLabel);
+				aboutFrame.add(backButton);
+
+				aboutFrame.setVisible(true);
+			}
+		});
+
+		backButton.setBounds(5, 245, 80, 25);
+		backButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				settingsFrame.dispose();
+			}
+		});
+
+		settingsFrame.setSize(250, 300);
+		settingsFrame.setLocationRelativeTo(null);
+		settingsFrame.setLayout(null);
+		settingsFrame.setResizable(false);
+
+		settingsFrame.add(muteSoundLabel);
+		settingsFrame.add(volumeLabel);
+		settingsFrame.add(promptSizeLabel);
+		settingsFrame.add(inputSizeLabel);
+		settingsFrame.add(muteSoundBox);
+		settingsFrame.add(volumeSlider);
+		settingsFrame.add(promptSizeBox);
+		settingsFrame.add(inputSizeBox);
+		settingsFrame.add(resetWPMLabel);
+		settingsFrame.add(resetWPMButton);
+		settingsFrame.add(resetDataLabel);
+		settingsFrame.add(resetDataButton);
+		settingsFrame.add(aboutButton);
+		settingsFrame.add(backButton);
+
+		settingsFrame.setVisible(true);
+
 	}
 
 	// Creates the set of data for use by the graphFrame under the
@@ -1319,6 +1445,45 @@ public class TypingTutorMenu extends JFrame {
 
 	}
 
+	public void resetWPM() {
+		File wpmFile = new File("data/wpm.txt");
+
+		if (wpmFile.delete()) {
+			System.out.println("data/wpm.txt deleted successfully.");
+		} else {
+			System.out.println("Failed to delete data/wpm.txt.");
+		}
+	}
+
+	public void resetData() {
+		resetWPM();
+		File dataFile = new File("data/user.txt");
+
+		if (dataFile.delete()) {
+			System.out.println("data/user.txt deleted successfully.");
+		} else {
+			System.out.println("Failed to delete data/user.txt.");
+		}
+
+		disposeAll();
+
+		JOptionPane.showMessageDialog(null, "All data has been reset.");
+
+		typingTutorInit.main(null);
+
+	}
+
+	public void disposeAll() {
+		menuFrame.dispose();
+		soloPracticeFrame.dispose();
+		addButtonFrame.dispose();
+		recommendFrame.dispose();
+		statsFrame.dispose();
+		graphFrame.dispose();
+		settingsFrame.dispose();
+		aboutFrame.dispose();
+	}
+
 	// Getter and setter for totalWPM
 	public double getTotalWPM() {
 		return totalWPM;
@@ -1345,6 +1510,10 @@ public class TypingTutorMenu extends JFrame {
 	// Getter for assignedText
 	public String getText() {
 		return assignedText;
+	}
+
+	public void disposeMenu() {
+		menuFrame.dispose();
 	}
 
 }

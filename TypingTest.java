@@ -49,10 +49,14 @@ public class TypingTest extends JFrame implements ActionListener {
 		nameInput.setBorder(BorderFactory.createCompoundBorder(border, BorderFactory.createEmptyBorder(3, 3, 3, 3)));
 		nameInput.getDocument().putProperty("filterNewLines", Boolean.TRUE);
 		
+		KeyStroke enterKey = KeyStroke.getKeyStroke("ENTER");
+		nameInput.getInputMap().put(enterKey, "noSuchAction");
+		
 		startTestButton.setBounds(110,490,180,30);
 		startTestButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				username = nameInput.getText();
+
 				try {
 					createUserFile();
 				} catch (IOException e1) {
@@ -61,8 +65,7 @@ public class TypingTest extends JFrame implements ActionListener {
 				
 				initialStart.setVisible(false);
 				
-				typingScreen.startGUI();
-				
+				typingScreen.startGUI();	
 			}
 		});
 

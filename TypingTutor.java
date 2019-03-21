@@ -1,17 +1,20 @@
 import java.io.File;
 
+
 public class TypingTutor {
 	public static void main(String args[]) {
 		
 		System.out.println("*--* Typing Tutor started *--*");
+
 		
 		File fileCheck = new File("data/user.txt");
 		TypingTutorMenu mainMenu = new TypingTutorMenu();
 		TypingTest typingTest = new TypingTest();
 		
+		
 		if (!fileCheck.exists()) {
 			mainMenu.menu();
-			TypingTutorMenu.menuFrame.dispose();
+			mainMenu.disposeMenu();
 			typingTest.setCompleteFlag(false);
 			typingTest.startGUI();
 			
@@ -21,8 +24,5 @@ public class TypingTutor {
 			typingTest.setCompleteFlag(true);
 			mainMenu.menu();
 		}
-		
-
-
 	}
 }
