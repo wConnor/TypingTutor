@@ -157,6 +157,9 @@ public class TypingTutorMenu extends JFrame {
 
 		wpmBoolean = true;
 
+		typingAreaSize = 30;
+		promptAreaSize = 36;
+		
 		textNames = new ArrayList<String>();
 		textTexts = new ArrayList<String>();
 		averageWPMs = new ArrayList<Double>();
@@ -1152,6 +1155,7 @@ public class TypingTutorMenu extends JFrame {
 
 		promptSizeLabel.setBounds(20, 80, 120, 20);
 		promptSizeBox.setBounds(140, 80, 100, 20);
+		promptSizeBox.setSelectedIndex(1);
 		promptSizeBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switch(promptSizeBox.getSelectedIndex()) {
@@ -1176,6 +1180,7 @@ public class TypingTutorMenu extends JFrame {
 		
 		inputSizeLabel.setBounds(20, 110, 120, 20);
 		inputSizeBox.setBounds(140, 110, 100, 20);
+		inputSizeBox.setSelectedIndex(1);
 		inputSizeBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				switch(inputSizeBox.getSelectedIndex()) {
