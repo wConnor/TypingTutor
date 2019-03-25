@@ -90,10 +90,10 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		incorrectLabel = new JLabel("\u2718 INCORRECT \u2718"); // \u2718 = ✘˜ (HEAVY BALLOT X)
 		completeLabel = new JLabel("Complete!");
 		border = BorderFactory.createLineBorder(Color.BLACK);
-		typingFont = new Font("SansSerif", Font.PLAIN, 30);
-		promptFont = new Font("Consolas", Font.PLAIN, 36);
-		completeFont = new Font("SansSerif", Font.BOLD, 30);
-		summaryFont = new Font("SansSerif", Font.PLAIN, 26);
+		typingFont = new Font("Sans Serif", Font.PLAIN, mainMenu.getInputSize());
+		promptFont = new Font("Sans Serif", Font.PLAIN, mainMenu.getPromptSize());
+		completeFont = new Font("Sans Serif", Font.BOLD, 30);
+		summaryFont = new Font("Sans Serif", Font.PLAIN, 26);
 		highlighter = promptArea.getHighlighter();
 		correctPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.GREEN);
 		incorrectPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.RED);

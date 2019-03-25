@@ -67,12 +67,12 @@ public class TypingTutorMenu extends JFrame {
 
 	private static JComboBox<String> choicesList;
 	private static double averageWPM, totalWPM;
-	private Font typingTutorTitleFont, titleAreaFont, descriptionAreaFont;
+	private Font typingTutorTitleFont, titleAreaFont, descriptionAreaFont, typingAreaFont, promptAreaFont;
 	private Border border;
 	private static String assignedText;
 	private static File textNamesFile, textTextFile;
 	private static String textNamesFilePath, textTextFilePath, wpmFilePath;
-	private static int totalTrials, lines;
+	private static int totalTrials, lines, typingAreaSize, promptAreaSize;
 	private static Boolean wpmBoolean;
 
 	private static Scanner scan;
@@ -1152,10 +1152,53 @@ public class TypingTutorMenu extends JFrame {
 
 		promptSizeLabel.setBounds(20, 80, 120, 20);
 		promptSizeBox.setBounds(140, 80, 100, 20);
-
+		promptSizeBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switch(promptSizeBox.getSelectedIndex()) {
+				case 0: {
+					promptAreaSize = 32;
+					break;
+				}
+				case 1: {
+					promptAreaSize = 36;
+					break;
+				}
+				case 2: {
+					promptAreaSize = 40;
+					break;
+				}
+				default: 
+					promptAreaSize = 36;
+					break;
+				}
+			}
+		});
+		
 		inputSizeLabel.setBounds(20, 110, 120, 20);
 		inputSizeBox.setBounds(140, 110, 100, 20);
-
+		inputSizeBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				switch(inputSizeBox.getSelectedIndex()) {
+				case 0: {
+					typingAreaSize = 26;
+					break;
+				}
+				
+				case 1: {
+					typingAreaSize = 30;
+					break;
+				}
+				case 2: {
+					typingAreaSize = 34;
+					break;
+				}
+				default: 
+					typingAreaSize = 30;
+					break;
+				}
+			}
+		});
+		
 		resetWPMLabel.setBounds(15, 140, 140, 20);
 		resetWPMButton.setBounds(152, 140, 80, 20);
 		resetWPMButton.addActionListener(new ActionListener() {
@@ -1513,8 +1556,20 @@ public class TypingTutorMenu extends JFrame {
 		return assignedText;
 	}
 
+	// Getter for promptFontSize 
+	public int getPromptSize() {
+		return promptAreaSize;
+	}
+	
+	// Getter for inputFontSize
+	public int getInputSize() {
+		return typingAreaSize;
+	}
+	
 	public void disposeMenu() {
 		menuFrame.dispose();
 	}
 
+	
+	
 }
