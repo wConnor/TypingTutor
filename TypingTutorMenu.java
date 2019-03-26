@@ -58,7 +58,7 @@ public class TypingTutorMenu extends JFrame {
 
 	private static JLabel username;
 
-	private JLabel typingTutorTitle, starLabel;
+	private JLabel typingTutorTitle;
 
 	private static JLabel averageWPMLabel;
 
@@ -67,7 +67,7 @@ public class TypingTutorMenu extends JFrame {
 
 	private static JComboBox<String> choicesList;
 	private static double averageWPM, totalWPM;
-	private Font typingTutorTitleFont, titleAreaFont, descriptionAreaFont;
+	private Font typingTutorTitleFont, titleAreaFont, descriptionAreaFont, typingAreaFont, promptAreaFont;
 	private Border border;
 	private static String assignedText;
 	private static File textNamesFile, textTextFile;
@@ -143,14 +143,13 @@ public class TypingTutorMenu extends JFrame {
 		username = new JLabel();
 		typingTutorTitle = new JLabel("<html>Typing <br> \u0000 \u0000 Tutor</html>");
 		averageWPMLabel = new JLabel("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
-		starLabel = new JLabel("<html><font size=34>★</font>: 0 / 75</html>");
-		
+
 		titleArea = new JTextArea();
 		descriptionArea = new JTextArea();
 
-		typingTutorTitleFont = new Font("Sans Serif", Font.BOLD, 34);
-		titleAreaFont = new Font("Sans Serif", Font.BOLD, 24);
-		descriptionAreaFont = new Font("Sans Serif", Font.PLAIN, 18);
+		typingTutorTitleFont = new Font("SansSerif", Font.BOLD, 34);
+		titleAreaFont = new Font("SansSerif", Font.BOLD, 24);
+		descriptionAreaFont = new Font("SansSerif", Font.PLAIN, 18);
 
 		border = BorderFactory.createLineBorder(Color.BLACK);
 
@@ -609,7 +608,7 @@ public class TypingTutorMenu extends JFrame {
 				expertLessonTwo.setText("<html><center>Lesson 2 - Right Side</center></html>");
 				expertLessonTwo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						lessonSelected("Right Side",
+						lessonSelected("Left Side",
 								"Similar to the previous lesson, this lesson will be focusing on one side of the keyboard the use of a single hand in order to practice some of the techniques used with touch typing.",
 								"l[ l)) -- :: l:: l{{ l>> k}} p{{ \'\' .] m] ol l; l\' \'\' + l+ i+ p-- p_ l; o+ m. m>> l:: p{{",
 								false);
@@ -884,9 +883,6 @@ public class TypingTutorMenu extends JFrame {
 
 		averageWPMLabel.setBounds(30, 100, 250, 20);
 
-		starLabel.setBounds(350,10,150,40);
-		starLabel.setFont(new Font("Sans Serif", Font.PLAIN, 20));
-		
 		menuFrame.setLayout(null);
 
 		menuFrame.add(introDifficulty);
@@ -934,8 +930,7 @@ public class TypingTutorMenu extends JFrame {
 		menuFrame.add(username);
 		menuFrame.add(typingTutorTitle);
 		menuFrame.add(averageWPMLabel);
-		menuFrame.add(starLabel);
-		
+
 		menuFrame.add(titleArea);
 		menuFrame.add(descriptionArea);
 
@@ -984,7 +979,7 @@ public class TypingTutorMenu extends JFrame {
 		JLabel difficultyDescription = new JLabel("<html>You have been recommended the " + difficulty
 				+ " difficulty! It is recommended that you start here, however if you wish to go to a different stage instead, then you have the option to do so!");
 		JButton okayButton = new JButton("Continue");
-		Font testCompleteFont = new Font("Sans Serif", Font.PLAIN, 20);
+		Font testCompleteFont = new Font("SansSerif", Font.PLAIN, 20);
 
 		testCompleteLabel.setBounds(10, 5, 300, 30);
 		testCompleteLabel.setFont(testCompleteFont);
