@@ -65,7 +65,7 @@ public class TypingTest extends JFrame implements ActionListener {
 				
 				initialStart.setVisible(false);
 				
-				typingScreen.startGUI();	
+				typingScreen.beginCountdown();	
 			}
 		});
 
