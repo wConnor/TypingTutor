@@ -639,7 +639,7 @@ public class TypingTutorMenu extends JFrame {
 
 				disposeAll();
 
-				typingScreen.startGUI();
+				typingScreen.beginCountdown();
 			}
 		});
 		startButton.setVisible(false);
@@ -684,7 +684,7 @@ public class TypingTutorMenu extends JFrame {
 						wpmBoolean = true;
 						menuFrame.dispose();
 						soloPracticeFrame.setVisible(false);
-						typingScreen.startGUI();
+						typingScreen.beginCountdown();
 					}
 				});
 
@@ -1518,8 +1518,7 @@ public class TypingTutorMenu extends JFrame {
 
 		JOptionPane.showMessageDialog(null, "All data has been reset.");
 
-		typingTutorInit.main(null);
-
+		typingTutorInit.init();
 	}
 
 	public void disposeAll() {

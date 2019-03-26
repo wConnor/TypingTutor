@@ -1,4 +1,5 @@
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.border.Border;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -7,6 +8,7 @@ import javax.swing.text.Highlighter.HighlightPainter;
 
 import java.io.*;
 import java.text.DecimalFormat;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowAdapter;
@@ -17,6 +19,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 
 public class TypingScreenGUI extends JFrame implements KeyListener, ActionListener {
 
@@ -60,7 +63,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	public void startGUI() {
 
 		scene = new JFrame();
-
+		
 		qwerty = "1234567890-=qwertyuiop[]asdfghjkl;'#zxcvbnm,./";
 	    
 		if (typingTest.getCompleteFlag() == false) {
@@ -361,6 +364,43 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		
 		scene.add(shiftButton1);
 		scene.add(shiftButton2);
+	}
+	
+	// Timer 
+	public void beginCountdown() { 
+		JFrame countdownFrame = new JFrame();
+		JLabel countdownLabel = new JLabel("Get Ready...");
+		final int TIMER_PERIOD = 3000;
+		final int MAX_COUNT = 3;
+		
+		Timer timer = new Timer(TIMER_PERIOD, new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				for (int count = 0; count != MAX_COUNT; ++count) {
+					String text = "GO";
+					countdownLabel.setText(text);
+				}
+				countdownFrame.dispose();
+				((Timer) e.getSource()).stop();
+				startGUI();
+			}	
+		});
+		
+		timer.start();
+		
+		countdownLabel.setBounds(60,50,225,175);
+		countdownLabel.setFont(new Font("Sans Serif", Font.BOLD, 32));
+		countdownLabel.setVisible(true);
+		
+		countdownFrame.setLayout(null);
+		countdownFrame.setSize(300,300);
+		countdownFrame.setResizable(false);
+		countdownFrame.setLocationRelativeTo(null);
+		countdownFrame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		
+		countdownFrame.add(countdownLabel);
+		
+		countdownFrame.setVisible(true);
 	}
 	
 	@Override
