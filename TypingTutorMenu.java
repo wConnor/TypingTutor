@@ -608,7 +608,7 @@ public class TypingTutorMenu extends JFrame {
 				expertLessonTwo.setText("<html><center>Lesson 2 - Right Side</center></html>");
 				expertLessonTwo.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
-						lessonSelected("Left Side",
+						lessonSelected("Right Side",
 								"Similar to the previous lesson, this lesson will be focusing on one side of the keyboard the use of a single hand in order to practice some of the techniques used with touch typing.",
 								"l[ l)) -- :: l:: l{{ l>> k}} p{{ \'\' .] m] ol l; l\' \'\' + l+ i+ p-- p_ l; o+ m. m>> l:: p{{",
 								false);
