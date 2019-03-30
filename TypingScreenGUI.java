@@ -7,7 +7,9 @@ import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
 
 import java.io.*;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.KeyListener;
@@ -19,6 +21,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.Font;
 import java.util.*;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class TypingScreenGUI extends JFrame implements KeyListener, ActionListener {
@@ -369,29 +373,27 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 	// Timer 
 	public void beginCountdown() { 
 		JFrame countdownFrame = new JFrame();
-		JLabel countdownLabel = new JLabel("Get Ready...");
-		final int TIMER_PERIOD = 3000;
-		final int MAX_COUNT = 3;
+		JLabel countdownLabel = new JLabel("3");
+
+	    int delay = 1000;
+	    
+	    ActionListener taskPerformer = new ActionListener() {
+	    	int msToWait = 2000;
+	        public void actionPerformed(ActionEvent evt) {
+	        	if (msToWait != 0) {
+	        		countdownLabel.setText(msToWait/1000 + "");
+	        		msToWait -= 1000;
+	        	} else {
+	        		startGUI();
+	        	}      	
+	        }
+	    };
+	    new Timer(delay, taskPerformer).start();
 		
-		Timer timer = new Timer(TIMER_PERIOD, new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				for (int count = 0; count != MAX_COUNT; ++count) {
-					String text = "GO";
-					countdownLabel.setText(text);
-				}
-				countdownFrame.dispose();
-				((Timer) e.getSource()).stop();
-				startGUI();
-			}	
-		});
-		
-		timer.start();
-		
-		countdownLabel.setBounds(60,50,225,175);
-		countdownLabel.setFont(new Font("Sans Serif", Font.BOLD, 32));
+		countdownLabel.setBounds(125,100,100,100);
+	    countdownLabel.setFont(new Font("Sans Serif", Font.BOLD, 62));
 		countdownLabel.setVisible(true);
-		
+
 		countdownFrame.setLayout(null);
 		countdownFrame.setSize(300,300);
 		countdownFrame.setResizable(false);
@@ -401,6 +403,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		countdownFrame.add(countdownLabel);
 		
 		countdownFrame.setVisible(true);
+		
 	}
 	
 	@Override
