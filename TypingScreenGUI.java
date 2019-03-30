@@ -376,19 +376,23 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		JLabel countdownLabel = new JLabel("3");
 
 	    int delay = 1000;
-	    
-	    ActionListener taskPerformer = new ActionListener() {
+		ActionListener taskPerformer = new ActionListener() {
 	    	int msToWait = 2000;
 	        public void actionPerformed(ActionEvent evt) {
 	        	if (msToWait != 0) {
 	        		countdownLabel.setText(msToWait/1000 + "");
 	        		msToWait -= 1000;
 	        	} else {
+	        		countdownFrame.dispose();
 	        		startGUI();
+	        		((Timer)evt.getSource()).stop();
 	        	}      	
 	        }
 	    };
-	    new Timer(delay, taskPerformer).start();
+	    
+	    Timer timer = new Timer(delay, taskPerformer);
+
+		timer.start();
 		
 		countdownLabel.setBounds(125,100,100,100);
 	    countdownLabel.setFont(new Font("Sans Serif", Font.BOLD, 62));
