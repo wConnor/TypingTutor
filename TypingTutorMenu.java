@@ -60,7 +60,7 @@ public class TypingTutorMenu extends JFrame {
 
 	private JLabel typingTutorTitle;
 
-	private static JLabel averageWPMLabel;
+	private static JLabel averageWPMLabel, starLabel;
 
 	private static JTextArea titleArea;
 	private static JTextArea descriptionArea;
@@ -143,7 +143,8 @@ public class TypingTutorMenu extends JFrame {
 		username = new JLabel();
 		typingTutorTitle = new JLabel("<html>Typing <br> \u0000 \u0000 Tutor</html>");
 		averageWPMLabel = new JLabel("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
-
+		starLabel = new JLabel("");
+		
 		titleArea = new JTextArea();
 		descriptionArea = new JTextArea();
 
@@ -883,6 +884,8 @@ public class TypingTutorMenu extends JFrame {
 
 		averageWPMLabel.setBounds(30, 100, 250, 20);
 
+		calculateStars();
+		
 		menuFrame.setLayout(null);
 
 		menuFrame.add(introDifficulty);
@@ -930,7 +933,8 @@ public class TypingTutorMenu extends JFrame {
 		menuFrame.add(username);
 		menuFrame.add(typingTutorTitle);
 		menuFrame.add(averageWPMLabel);
-
+		menuFrame.add(starLabel);
+		
 		menuFrame.add(titleArea);
 		menuFrame.add(descriptionArea);
 
@@ -1532,6 +1536,17 @@ public class TypingTutorMenu extends JFrame {
 		aboutFrame.dispose();
 	}
 
+	// Calculates the stars earned by the user and also sets the 
+	// starLabel text accordingly
+	public void calculateStars() {
+		int currentStars = 0;
+		int maxStars = 75;
+		
+		starLabel.setFont(new Font("Sans Serif", Font.PLAIN, 34));
+		starLabel.setText("✯: " + currentStars + " / " + maxStars);
+		starLabel.setBounds(350,10,150,60);
+	}
+	
 	// Getter and setter for totalWPM
 	public double getTotalWPM() {
 		return totalWPM;
