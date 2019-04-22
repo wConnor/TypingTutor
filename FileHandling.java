@@ -1,22 +1,25 @@
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
 public class FileHandling {
 	
+	// methods that are used to check whether or not the courseProgress.xml
+	// file exists and, in the case that it doesn't, creates the file.
 	public void createXmlFile() {
 		try {
 			DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -205,4 +208,141 @@ public class FileHandling {
 		}
 	}
 	
+	// methods that are used to create the files that are used
+	// with Typing Tutor if they don't exist. Creates a .txt file for both
+	// the text names and the actual texts into a data directory where the
+	// application is launched.
+	public void createTextNamesFile() {
+		File textNamesFile = new File("data/textNames.txt");
+
+		try {
+			textNamesFile.getParentFile().mkdirs();
+			try {
+				textNamesFile.createNewFile();
+				addTextName("A Confederacy Of Dunces");    
+				addTextName("The Stranger");               
+				addTextName("How I Feel");                 
+				addTextName("Encyclopedia of Networking"); 
+				addTextName("The Fifth Mountain");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (SecurityException se) {
+			se.printStackTrace();
+		}
+	}
+
+	public void createTextTextFile() {
+		File textTextFile = new File("data/textText.txt");
+		try {
+			textTextFile.getParentFile().mkdirs();
+			try {
+				textTextFile.createNewFile();
+				addTextText(
+						"A green hunting cap squeezed the top of the fleshy balloon of a head. The green earflaps, full of large ears and uncut hair and the fine bristles that grew in the ears themselves, stuck out on either side like turn signals indicating two directions at once.");
+				addTextText(
+						"Mother died today. Or maybe yesterday, I don't know. I had a telegram from the home: 'Mother passed away. Funeral tomorrow. Yours sincerely.' That doesn't mean anything. It may have been yesterday.");
+				addTextText(
+						"You're asking how do I really feel, and I'm asking now how is this real. Oh, love is a plan that we can't control. All I can hope, that I'll fill the role. No one will ever know how I feel for you. Throw me a lifeline.");
+				addTextText(
+						"In synchronous communications, the sender and receiver must synchronize with one another before data is sent. To maintain clock synchronization over long periods, a special bit-transition pattern is embedded in the digital signal that assists in maintaining the timing between sender and receiver.");
+				addTextText(
+						"All life's battles teach us something, even those we lose. When you grow up, you'll discover that you have defended lies, deceived yourself, or suffered foolishness. If you're a good warrior you will not blame yourself for this, but neither will you allow your mistakes to repeat themselves.");
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (SecurityException se) {
+			se.printStackTrace();
+		}
+	}
+	
+	public Boolean textNamesExists() {
+		File textNames = new File("data/textNames.txt");
+		if (!textNames.exists()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	public Boolean textTextExists() {
+		File textNames = new File("data/textText.txt");
+		if (!textNames.exists()) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+	
+	// methods that are used to add both the names of the texts
+	// and the actual text of which a user will input into
+	// the solo practice mode if they wish to make a custom
+	// entry.
+	public void addTextName(String name) {
+		try {
+			FileWriter textNameWriter = new FileWriter("data/textNames.txt", true);
+			BufferedWriter textNameBufferedWriter = new BufferedWriter(textNameWriter);
+			PrintWriter textNamePrintWriter = new PrintWriter(textNameBufferedWriter);
+
+			textNamePrintWriter.println(name);
+			textNamePrintWriter.flush();
+			textNamePrintWriter.close();
+
+		} catch (Exception E) {
+			E.printStackTrace();
+		}
+	}
+
+	public void addTextText(String text) {
+		try {
+			FileWriter textTextWriter = new FileWriter("data/textText.txt", true);
+			BufferedWriter textTextBufferedWriter = new BufferedWriter(textTextWriter);
+			PrintWriter textTextPrintWriter = new PrintWriter(textTextBufferedWriter);
+
+			textTextPrintWriter.println(text);
+			textTextPrintWriter.flush();
+			textTextPrintWriter.close();
+
+		} catch (Exception E) {
+			E.printStackTrace();
+		}
+	}
+	
+	// methods used to deal with the file that contains the
+	// wpm records of the user, including both writing to and
+	// reading from.
+	public void createWPMFile() {
+		File wpmFile = new File("data/wpm.txt");
+
+		try {
+			wpmFile.getParentFile().mkdirs();
+			try {
+				wpmFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} catch (SecurityException se) {
+			se.printStackTrace();
+		}
+	}
+	
+	public void writeWPMtoFile(double wpm) throws IOException {
+		FileWriter wpmFileWriter = new FileWriter("data/wpm.txt", true);
+		BufferedWriter wpmFileBufferedWriter = new BufferedWriter(wpmFileWriter);
+		PrintWriter wpmFilePrintWriter = new PrintWriter(wpmFileBufferedWriter);
+
+		wpmFilePrintWriter.println(wpm);
+		wpmFilePrintWriter.flush();
+		wpmFilePrintWriter.close();
+	}
+
+	public Boolean wpmFileExists() {
+		File wpmFile = new File("data/wpm.txt");
+		if (wpmFile.exists() == false) {
+			return false;
+		} else {
+			return true;
+		}
+	}
+
 }

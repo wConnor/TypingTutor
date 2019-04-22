@@ -179,44 +179,24 @@ public class TypingTutorMenu extends JFrame {
 		// Handles the files. If the contents of the data folder that are expected
 		// to be there aren't, then the program checks each of them and creates
 		// said file. Ensures consistency when dealing with files.
-		if (!textNamesFile.exists()) {
+		if (fileHandling.textNamesExists() == false) {
 			System.out.println(textNamesFilePath + " does not exist. Creating file...");
-			createTextNamesFile();
-
-			addTextName("A Confederacy Of Dunces");
-			addTextName("The Stranger");
-			addTextName("How I Feel");
-			addTextName("Encyclopedia of Networking");
-			addTextName("The Fifth Mountain");
+			fileHandling.createTextNamesFile();
 		}
 
-		if (!textTextFile.exists()) {
+		if (fileHandling.textTextExists() == false) {
 			System.out.println(textTextFilePath + " does not exist. Creating file...");
-			createTextTextFile();
-			addTextText(
-					"A green hunting cap squeezed the top of the fleshy balloon of a head. The green earflaps, full of large ears and uncut hair and the fine bristles that grew in the ears themselves, stuck out on either side like turn signals indicating two directions at once.");
-			addTextText(
-					"Mother died today. Or maybe yesterday, I don't know. I had a telegram from the home: 'Mother passed away. Funeral tomorrow. Yours sincerely.' That doesn't mean anything. It may have been yesterday.");
-			addTextText(
-					"You're asking how do I really feel, and I'm asking now how is this real. Oh, love is a plan that we can't control. All I can hope, that I'll fill the role. No one will ever know how I feel for you. Throw me a lifeline.");
-			addTextText(
-					"In synchronous communications, the sender and receiver must synchronize with one another before data is sent. To maintain clock synchronization over long periods, a special bit-transition pattern is embedded in the digital signal that assists in maintaining the timing between sender and receiver.");
-			addTextText(
-					"All life's battles teach us something, even those we lose. When you grow up, you'll discover that you have defended lies, deceived yourself, or suffered foolishness. If you're a good warrior you will not blame yourself for this, but neither will you allow your mistakes to repeat themselves.");
+			fileHandling.createTextTextFile();
 		}
 
-		if (!wpmFile.exists()) {
+		if (fileHandling.wpmFileExists() == false) {
 			System.out.println(wpmFilePath + " does not exist. Creating file...");
-			try {
-				createWPMFile();
-			} catch (IOException e1) {
-				e1.printStackTrace();
-			}
+			fileHandling.createWPMFile();
 		}
 
 		if (fileHandling.xmlFileExists() == false) {
 			fileHandling.createXmlFile();
-		}		
+		}
 		
 		getAverageWPM();
 
@@ -722,8 +702,8 @@ public class TypingTutorMenu extends JFrame {
 						addButtonAdd.addActionListener(new ActionListener() {
 							public void actionPerformed(ActionEvent e) {
 
-								addTextName(textNameArea.getText());
-								addTextText(textTextArea.getText());
+								fileHandling.addTextName(textNameArea.getText());
+								fileHandling.addTextText(textTextArea.getText());
 								textNames.add(textNameArea.getText());
 								textTexts.add(textTextArea.getText());
 
@@ -1328,69 +1308,6 @@ public class TypingTutorMenu extends JFrame {
 		return dataset;
 	}
 
-	// Functions that are used to add both the names of the texts
-	// and the actual text of which a user will input into
-	// the solo practice mode if they wish to make a custom
-	// entry.
-
-	public static void addTextName(String textName) {
-		choicesList.addItem(textName);
-		try {
-			FileWriter textNameWriter = new FileWriter(textNamesFilePath, true);
-			BufferedWriter textNameBufferedWriter = new BufferedWriter(textNameWriter);
-			PrintWriter textNamePrintWriter = new PrintWriter(textNameBufferedWriter);
-
-			textNamePrintWriter.println(textName);
-			textNamePrintWriter.flush();
-			textNamePrintWriter.close();
-
-		} catch (Exception E) {
-
-		}
-	}
-
-	public static void addTextText(String text) {
-		try {
-			FileWriter textTextWriter = new FileWriter(textTextFilePath, true);
-			BufferedWriter textTextBufferedWriter = new BufferedWriter(textTextWriter);
-			PrintWriter textTextPrintWriter = new PrintWriter(textTextBufferedWriter);
-
-			textTextPrintWriter.println(text);
-			textTextPrintWriter.flush();
-			textTextPrintWriter.close();
-
-		} catch (Exception E) {
-			E.printStackTrace();
-		}
-	}
-
-	public void createWPMFile() throws IOException {
-		File wpmFile = new File("data/wpm.txt");
-
-		try {
-			wpmFile.getParentFile().mkdirs();
-			try {
-				wpmFile.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (SecurityException se) {
-			se.printStackTrace();
-		}
-
-	}
-
-	public void writeWPMtoFile(double wpm) throws IOException {
-		FileWriter wpmFileWriter = new FileWriter("data/wpm.txt", true);
-		BufferedWriter wpmFileBufferedWriter = new BufferedWriter(wpmFileWriter);
-		PrintWriter wpmFilePrintWriter = new PrintWriter(wpmFileBufferedWriter);
-
-		wpmFilePrintWriter.println(wpm);
-		wpmFilePrintWriter.flush();
-		wpmFilePrintWriter.close();
-
-	}
-
 	public static void fileToArrays() throws IOException {
 
 		BufferedReader nameReader = new BufferedReader(new FileReader("data/textNames.txt"));
@@ -1450,38 +1367,7 @@ public class TypingTutorMenu extends JFrame {
 		averageWPMLabel.setText("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
 	}
 
-	// Functions that are used to create the files that are used
-	// with Typing Tutor if they don't exist. Creates a .txt file for both
-	// the text names and the actual texts into a data directory where the
-	// application is launched.
-	public static void createTextNamesFile() {
-		textNamesFile = new File(textNamesFilePath);
 
-		try {
-			textNamesFile.getParentFile().mkdirs();
-			try {
-				textNamesFile.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (SecurityException se) {
-
-		}
-	}
-
-	public static void createTextTextFile() {
-		textTextFile = new File(textTextFilePath);
-		try {
-			textTextFile.getParentFile().mkdirs();
-			try {
-				textTextFile.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		} catch (SecurityException se) {
-
-		}
-	}
 
 	public static String getUsername() {
 		String line = null;
@@ -1552,6 +1438,11 @@ public class TypingTutorMenu extends JFrame {
 		starLabel.setBounds(350,10,150,60);
 	}
 	
+	// Adds choice to choicesList
+	public static void addChoice(String text) {
+		choicesList.addItem(text);
+	}
+	
 	// Getter and setter for totalWPM
 	public double getTotalWPM() {
 		return totalWPM;
@@ -1593,7 +1484,4 @@ public class TypingTutorMenu extends JFrame {
 	public void disposeMenu() {
 		menuFrame.dispose();
 	}
-
-	
-	
 }

@@ -31,6 +31,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 
 	TypingTutorMenu mainMenu = new TypingTutorMenu();
 	TypingTest typingTest = new TypingTest();
+	FileHandling fileHandling = new FileHandling();
 	
 	// Declaration of all the variables that will be used within the
 	// GUI of the program.
@@ -222,7 +223,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		    mainMenu.incrementTotalTrials();
 
 			try {
-				mainMenu.writeWPMtoFile(wpm);
+				fileHandling.writeWPMtoFile(wpm);
 			} catch (IOException e1) {
 				e1.printStackTrace();
             }

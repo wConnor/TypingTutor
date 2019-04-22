@@ -1,6 +1,5 @@
 import java.io.File;
 
-
 public class TypingTutor {
 	public static void main(String args[]) {
 		System.out.println("*--* Typing Tutor started *--*");
