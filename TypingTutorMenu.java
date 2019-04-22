@@ -86,7 +86,8 @@ public class TypingTutorMenu extends JFrame {
 	public void menu() {
 
 		TypingScreenGUI typingScreen = new TypingScreenGUI();
-
+		FileHandling fileHandling = new FileHandling();
+		
 		menuFrame = new JFrame();
 		soloPracticeFrame = new JFrame();
 		statsFrame = new JFrame();
@@ -213,6 +214,10 @@ public class TypingTutorMenu extends JFrame {
 			}
 		}
 
+		if (fileHandling.xmlFileExists() == false) {
+			fileHandling.createXmlFile();
+		}		
+		
 		getAverageWPM();
 
 		////////////////////////////////////////////////////////////////////////////
