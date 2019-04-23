@@ -491,7 +491,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		endScreen();
     	}
 	}
-
+	
 	public double getWPM() {
 		return wpm;
 	}
