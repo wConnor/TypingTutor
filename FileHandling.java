@@ -1,5 +1,7 @@
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,17 +9,21 @@ import java.io.PrintWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.Result;
+import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
+import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
+import org.w3c.dom.Node;
 
 public class FileHandling {
-	
+
 	// methods that are used to check whether or not the courseProgress.xml
 	// file exists and, in the case that it doesn't, creates the file.
 	public void createXmlFile() {
@@ -32,161 +38,87 @@ public class FileHandling {
 			
 			// creates the introduction difficulty element and
 			// its individual lessons as children
-			Element introDifficulty = doc.createElement("Introduction");
-			rootElement.appendChild(introDifficulty);
+			Node introLesson1Node = createLessonNode("introLesson1", doc, "11");
+			Node introLesson2Node = createLessonNode("introLesson2", doc, "12");
+			Node introLesson3Node = createLessonNode("introLesson3", doc, "13");
+			Node introLesson4Node = createLessonNode("introLesson4", doc, "14");
+			Node introLesson5Node = createLessonNode("introLesson5", doc, "15");
+			Node introLesson6Node = createLessonNode("introLesson6", doc, "16");
+			Node introLesson7Node = createLessonNode("introLesson7", doc, "17");
 			
-			Element introLessonOne = doc.createElement("Lesson1");
-			Element introLessonTwo = doc.createElement("Lesson2");
-			Element introLessonThree = doc.createElement("Lesson3");
-			Element introLessonFour = doc.createElement("Lesson4");
-			Element introLessonFive = doc.createElement("Lesson5");
-			Element introLessonSix = doc.createElement("Lesson6");
-			Element introLessonSeven = doc.createElement("Lesson7");
-
-			introLessonOne.setAttribute("Complete", "No");
-			introLessonTwo.setAttribute("Complete", "No");
-			introLessonThree.setAttribute("Complete", "No");
-			introLessonFour.setAttribute("Complete", "No");
-			introLessonFive.setAttribute("Complete", "No");
-			introLessonSix.setAttribute("Complete", "No");
-			introLessonSeven.setAttribute("Complete", "No");
-			
-			introLessonOne.setAttribute("Stars", "0");
-			introLessonTwo.setAttribute("Stars", "0");
-			introLessonThree.setAttribute("Stars", "0");
-			introLessonFour.setAttribute("Stars", "0");
-			introLessonFive.setAttribute("Stars", "0");
-			introLessonSix.setAttribute("Stars", "0");
-			introLessonSeven.setAttribute("Stars", "0");
-			
-			introDifficulty.appendChild(introLessonOne);
-			introDifficulty.appendChild(introLessonTwo);
-			introDifficulty.appendChild(introLessonThree);
-			introDifficulty.appendChild(introLessonFour);
-			introDifficulty.appendChild(introLessonFive);
-			introDifficulty.appendChild(introLessonSix);
-			introDifficulty.appendChild(introLessonSeven);
+			rootElement.appendChild(introLesson1Node);
+			rootElement.appendChild(introLesson2Node);
+			rootElement.appendChild(introLesson3Node);
+			rootElement.appendChild(introLesson4Node);
+			rootElement.appendChild(introLesson5Node);
+			rootElement.appendChild(introLesson6Node);
+			rootElement.appendChild(introLesson7Node);
 			
 			// creates the beginner difficulty element and
 			// its individual lessons as children
-			Element beginnerDifficulty = doc.createElement("Beginner");
-			rootElement.appendChild(beginnerDifficulty);
+			Node beginnerLesson1Node = createLessonNode("beginnerLesson1", doc, "21");
+			Node beginnerLesson2Node = createLessonNode("beginnerLesson2", doc, "22");
+			Node beginnerLesson3Node = createLessonNode("beginnerLesson3", doc, "23");
+			Node beginnerLesson4Node = createLessonNode("beginnerLesson4", doc, "24");
+			Node beginnerLesson5Node = createLessonNode("beginnerLesson5", doc, "25");
+			Node beginnerLesson6Node = createLessonNode("beginnerLesson6", doc, "26");
 			
-			Element beginnerLessonOne = doc.createElement("Lesson1");
-			Element beginnerLessonTwo = doc.createElement("Lesson2");
-			Element beginnerLessonThree = doc.createElement("Lesson3");
-			Element beginnerLessonFour = doc.createElement("Lesson4");
-			Element beginnerLessonFive = doc.createElement("Lesson5");
-			Element beginnerLessonSix = doc.createElement("Lesson6");
-
-			beginnerLessonOne.setAttribute("Complete", "No");
-			beginnerLessonTwo.setAttribute("Complete", "No");
-			beginnerLessonThree.setAttribute("Complete", "No");
-			beginnerLessonFour.setAttribute("Complete", "No");
-			beginnerLessonFive.setAttribute("Complete", "No");
-			beginnerLessonSix.setAttribute("Complete", "No");
-			
-			beginnerLessonOne.setAttribute("Stars", "0");
-			beginnerLessonTwo.setAttribute("Stars", "0");
-			beginnerLessonThree.setAttribute("Stars", "0");
-			beginnerLessonFour.setAttribute("Stars", "0");
-			beginnerLessonFive.setAttribute("Stars", "0");
-			beginnerLessonSix.setAttribute("Stars", "0");
-			
-			beginnerDifficulty.appendChild(beginnerLessonOne);
-			beginnerDifficulty.appendChild(beginnerLessonTwo);
-			beginnerDifficulty.appendChild(beginnerLessonThree);
-			beginnerDifficulty.appendChild(beginnerLessonFour);
-			beginnerDifficulty.appendChild(beginnerLessonFive);
-			beginnerDifficulty.appendChild(beginnerLessonSix);
+			rootElement.appendChild(beginnerLesson1Node);
+			rootElement.appendChild(beginnerLesson2Node);
+			rootElement.appendChild(beginnerLesson3Node);
+			rootElement.appendChild(beginnerLesson4Node);
+			rootElement.appendChild(beginnerLesson5Node);
+			rootElement.appendChild(beginnerLesson6Node);
 			
 			// creates the intermediate difficulty element and
 			// its individual lessons as children
-			Element intermDifficulty = doc.createElement("Intermediate");
-			rootElement.appendChild(intermDifficulty);
+			Node intermLesson1Node = createLessonNode("intermLesson1", doc, "31");
+			Node intermLesson2Node = createLessonNode("intermLesson2", doc, "32");
+			Node intermLesson3Node = createLessonNode("intermLesson3", doc, "33");
+			Node intermLesson4Node = createLessonNode("intermLesson4", doc, "34");
 			
-			Element intermLessonOne = doc.createElement("Lesson1");
-			Element intermLessonTwo = doc.createElement("Lesson2");
-			Element intermLessonThree = doc.createElement("Lesson3");
-			Element intermLessonFour = doc.createElement("Lesson4");
-            
-			intermLessonOne.setAttribute("Complete", "No");
-			intermLessonTwo.setAttribute("Complete", "No");
-			intermLessonThree.setAttribute("Complete", "No");
-			intermLessonFour.setAttribute("Complete", "No");
-			
-			intermLessonOne.setAttribute("Stars", "0");
-			intermLessonTwo.setAttribute("Stars", "0");
-			intermLessonThree.setAttribute("Stars", "0");
-			intermLessonFour.setAttribute("Stars", "0");
-			
-			intermDifficulty.appendChild(intermLessonOne);
-			intermDifficulty.appendChild(intermLessonTwo);
-			intermDifficulty.appendChild(intermLessonThree);
-			intermDifficulty.appendChild(intermLessonFour);
-
+			rootElement.appendChild(intermLesson1Node);
+			rootElement.appendChild(intermLesson2Node);
+			rootElement.appendChild(intermLesson3Node);
+			rootElement.appendChild(intermLesson4Node);
 			
 			// creates the advanced difficulty element and
 			// its individual lessons as children
-			Element advancedDifficulty = doc.createElement("Advanced");
-			rootElement.appendChild(advancedDifficulty);
+			Node advancedLesson1Node = createLessonNode("advancedLesson1", doc, "41");
+			Node advancedLesson2Node = createLessonNode("advancedLesson2", doc, "42");
+			Node advancedLesson3Node = createLessonNode("advancedLesson3", doc, "43");
+			Node advancedLesson4Node = createLessonNode("advancedLesson4", doc, "44");
+			Node advancedLesson5Node = createLessonNode("advancedLesson5", doc, "45");
+			Node advancedLesson6Node = createLessonNode("advancedLesson6", doc, "46");
 			
-			Element advancedLessonOne = doc.createElement("Lesson1");
-			Element advancedLessonTwo = doc.createElement("Lesson2");
-			Element advancedLessonThree = doc.createElement("Lesson3");
-			Element advancedLessonFour = doc.createElement("Lesson4");
-			Element advancedLessonFive = doc.createElement("Lesson5");
-			Element advancedLessonSix = doc.createElement("Lesson6");
-					
-			advancedLessonOne.setAttribute("Complete", "No");
-			advancedLessonTwo.setAttribute("Complete", "No");
-			advancedLessonThree.setAttribute("Complete", "No");
-			advancedLessonFour.setAttribute("Complete", "No");
-			advancedLessonFive.setAttribute("Complete", "0");
-			advancedLessonSix.setAttribute("Complete", "0");
-			
-			advancedLessonOne.setAttribute("Stars", "0");
-			advancedLessonTwo.setAttribute("Stars", "0");
-			advancedLessonThree.setAttribute("Stars", "0");
-			advancedLessonFour.setAttribute("Stars", "0");
-			advancedLessonFive.setAttribute("Stars", "0");
-			advancedLessonSix.setAttribute("Stars", "0");
-			
-			advancedDifficulty.appendChild(advancedLessonOne);
-			advancedDifficulty.appendChild(advancedLessonTwo);
-			advancedDifficulty.appendChild(advancedLessonThree);
-			advancedDifficulty.appendChild(advancedLessonFour);
-			advancedDifficulty.appendChild(advancedLessonFive);
-			advancedDifficulty.appendChild(advancedLessonSix);
+			rootElement.appendChild(advancedLesson1Node);
+			rootElement.appendChild(advancedLesson2Node);
+			rootElement.appendChild(advancedLesson3Node);
+			rootElement.appendChild(advancedLesson4Node);
+			rootElement.appendChild(advancedLesson5Node);
+			rootElement.appendChild(advancedLesson6Node);
 			
 			// creates the expert difficulty element and
 			// its individual lessons as children
-			Element expertDifficulty = doc.createElement("Expert");
-			rootElement.appendChild(expertDifficulty);
-			        
-			Element expertLessonOne = doc.createElement("Lesson1");
-			Element expertLessonTwo = doc.createElement("Lesson2");
-			Element expertLessonThree = doc.createElement("Lesson3");
+			Node expertLesson1Node = createLessonNode("expertLesson1", doc, "51");
+			Node expertLesson2Node = createLessonNode("expertLesson2", doc, "52");
+			Node expertLesson3Node = createLessonNode("expertLesson3", doc, "53");
 
-			expertLessonOne.setAttribute("Complete", "No");
-			expertLessonTwo.setAttribute("Complete", "No");
-			expertLessonThree.setAttribute("Complete", "No");
-            
-			expertLessonOne.setAttribute("Stars", "0");
-			expertLessonTwo.setAttribute("Stars", "0");
-			expertLessonThree.setAttribute("Stars", "0");
-
-			expertDifficulty.appendChild(expertLessonOne);
-			expertDifficulty.appendChild(expertLessonTwo);
-			expertDifficulty.appendChild(expertLessonThree);
+			rootElement.appendChild(expertLesson1Node);
+			rootElement.appendChild(expertLesson2Node);
+			rootElement.appendChild(expertLesson3Node);
 			
 			// creates courseProgress.xml in data directory.
-			TransformerFactory transformerFactory = TransformerFactory.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(new File("data/courseProgress.xml"));			
-			
-			transformer.transform(source, result);
+		    Source xmlSource = new DOMSource(doc);
+			try {
+				Result result = new StreamResult(new FileOutputStream("data/courseProgress.xml"));
+			    TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			    Transformer transformer = transformerFactory.newTransformer();
+			    transformer.setOutputProperty("indent", "yes");
+			    transformer.transform(xmlSource, result);		
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
 			
 			System.out.println("data/courseProgress.xml successfully created.");
 			
@@ -199,6 +131,25 @@ public class FileHandling {
 		}
 	}
 
+	public Node createLessonNode(String name, Document document, String id) {
+		Element complete = document.createElement("Complete");
+		Element stars = document.createElement("Stars");
+		
+		complete.appendChild(document.createTextNode("No"));
+		stars.appendChild(document.createTextNode("0"));
+		
+		Element lesson = document.createElement(name);
+		
+		Attr idAttr = document.createAttribute("id");
+		idAttr.setValue(id);
+		
+		lesson.setAttributeNode(idAttr);
+		lesson.appendChild(complete);
+		lesson.appendChild(stars);
+		
+		return lesson;
+	}
+	
 	public Boolean xmlFileExists() {
 		File xmlFile = new File("data/courseProgress.xml");
 		if (!xmlFile.exists()) {
@@ -345,4 +296,17 @@ public class FileHandling {
 		}
 	}
 
+	
+	/*public void xmlSet(String lesson) {	
+		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
+		Document doc = docBuilder.parse("data/courseProgress.xml");
+		Node course = doc.get
+		
+		switch(lesson) {
+			case "introL1":
+				intro.setAttribute("Complete", "Yes");
+				break;
+		}
+	}*/
 }
