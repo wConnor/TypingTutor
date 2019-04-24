@@ -5,6 +5,11 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 import javax.swing.text.Highlighter.HighlightPainter;
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
+import javax.xml.xpath.XPathExpressionException;
+
+import org.xml.sax.SAXException;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -235,6 +240,20 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 			public void actionPerformed(ActionEvent e) {
 				endScene.setVisible(false);
 				
+				try {
+					fileHandling.editXmlFile(mainMenu.getLesson());
+				} catch (XPathExpressionException e1) {
+					e1.printStackTrace();
+				} catch (SAXException e1) {
+					e1.printStackTrace();
+				} catch (IOException e1) {
+					e1.printStackTrace();
+				} catch (ParserConfigurationException e1) {
+					e1.printStackTrace();
+				} catch (TransformerException e1) {
+					e1.printStackTrace();
+				}
+		
 				if (typingTest.getCompleteFlag() != true) {
 					typingTest.setCompleteFlag(true);
 					mainMenu.menu();
@@ -243,6 +262,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 					
 				else {
 					mainMenu.menu();
+					mainMenu.colourButton(mainMenu.getLesson());
 				}	
 			}
 		});

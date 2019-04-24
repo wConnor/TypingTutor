@@ -47,7 +47,7 @@ public class TypingTutorMenu extends JFrame {
 	private static JButton settingsButton, startButton, closeProgramButton;
 	private static JButton statsButton;
 
-	private JButton introLessonOne, introLessonTwo, introLessonThree, introLessonFour, introLessonFive, introLessonSix,
+	public static JButton introLessonOne, introLessonTwo, introLessonThree, introLessonFour, introLessonFive, introLessonSix,
 			introLessonSeven;
 	private JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive,
 			beginnerLessonSix;
@@ -1298,6 +1298,27 @@ public class TypingTutorMenu extends JFrame {
 
 	}
 
+	// Changes the lesson button colour to green if completed
+	public void colourButton(String lesson) {
+		switch (lesson) {
+		case "introL1":
+			introLessonOne.setBackground(Color.GREEN);
+			break;
+		case "introL2":
+			introLessonTwo.setBackground(Color.GREEN);
+			break;
+		case "introL3":
+			introLessonThree.setBackground(Color.GREEN);
+			break;
+		case "introL4":
+			introLessonFour.setBackground(Color.GREEN);
+			break;
+	
+		default:
+				break;
+		}
+	}
+	
 	// Creates the set of data for use by the graphFrame under the
 	// statistics screen.
 	private static XYDataset createDataset() {
