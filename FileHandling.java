@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -9,18 +10,25 @@ import java.io.PrintWriter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
+import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
 
 import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.xml.sax.SAXException;
 
 public class FileHandling {
 
@@ -36,6 +44,20 @@ public class FileHandling {
 			Element rootElement = doc.createElement("course");
 			doc.appendChild(rootElement);
 			
+			// creates each of the difficulties as individual elements
+			// simply to make the .xml file more visually appealing
+			Element introDifficulty = doc.createElement("Introduction");
+			Element beginnerDifficulty = doc.createElement("Beginner");
+			Element intermDifficulty = doc.createElement("Intermediate");
+			Element advancedDifficulty = doc.createElement("Advanced");
+			Element expertDifficulty = doc.createElement("Expert");
+			
+			rootElement.appendChild(introDifficulty);
+			rootElement.appendChild(beginnerDifficulty);
+			rootElement.appendChild(intermDifficulty);
+			rootElement.appendChild(advancedDifficulty);
+			rootElement.appendChild(expertDifficulty);
+			
 			// creates the introduction difficulty element and
 			// its individual lessons as children
 			Node introLesson1Node = createLessonNode("introLesson1", doc, "11");
@@ -46,13 +68,13 @@ public class FileHandling {
 			Node introLesson6Node = createLessonNode("introLesson6", doc, "16");
 			Node introLesson7Node = createLessonNode("introLesson7", doc, "17");
 			
-			rootElement.appendChild(introLesson1Node);
-			rootElement.appendChild(introLesson2Node);
-			rootElement.appendChild(introLesson3Node);
-			rootElement.appendChild(introLesson4Node);
-			rootElement.appendChild(introLesson5Node);
-			rootElement.appendChild(introLesson6Node);
-			rootElement.appendChild(introLesson7Node);
+			introDifficulty.appendChild(introLesson1Node);
+			introDifficulty.appendChild(introLesson2Node);
+			introDifficulty.appendChild(introLesson3Node);
+			introDifficulty.appendChild(introLesson4Node);
+			introDifficulty.appendChild(introLesson5Node);
+			introDifficulty.appendChild(introLesson6Node);
+			introDifficulty.appendChild(introLesson7Node);
 			
 			// creates the beginner difficulty element and
 			// its individual lessons as children
@@ -63,12 +85,12 @@ public class FileHandling {
 			Node beginnerLesson5Node = createLessonNode("beginnerLesson5", doc, "25");
 			Node beginnerLesson6Node = createLessonNode("beginnerLesson6", doc, "26");
 			
-			rootElement.appendChild(beginnerLesson1Node);
-			rootElement.appendChild(beginnerLesson2Node);
-			rootElement.appendChild(beginnerLesson3Node);
-			rootElement.appendChild(beginnerLesson4Node);
-			rootElement.appendChild(beginnerLesson5Node);
-			rootElement.appendChild(beginnerLesson6Node);
+			beginnerDifficulty.appendChild(beginnerLesson1Node);
+			beginnerDifficulty.appendChild(beginnerLesson2Node);
+			beginnerDifficulty.appendChild(beginnerLesson3Node);
+			beginnerDifficulty.appendChild(beginnerLesson4Node);
+			beginnerDifficulty.appendChild(beginnerLesson5Node);
+			beginnerDifficulty.appendChild(beginnerLesson6Node);
 			
 			// creates the intermediate difficulty element and
 			// its individual lessons as children
@@ -77,10 +99,10 @@ public class FileHandling {
 			Node intermLesson3Node = createLessonNode("intermLesson3", doc, "33");
 			Node intermLesson4Node = createLessonNode("intermLesson4", doc, "34");
 			
-			rootElement.appendChild(intermLesson1Node);
-			rootElement.appendChild(intermLesson2Node);
-			rootElement.appendChild(intermLesson3Node);
-			rootElement.appendChild(intermLesson4Node);
+			intermDifficulty.appendChild(intermLesson1Node);
+			intermDifficulty.appendChild(intermLesson2Node);
+			intermDifficulty.appendChild(intermLesson3Node);
+			intermDifficulty.appendChild(intermLesson4Node);
 			
 			// creates the advanced difficulty element and
 			// its individual lessons as children
@@ -91,12 +113,12 @@ public class FileHandling {
 			Node advancedLesson5Node = createLessonNode("advancedLesson5", doc, "45");
 			Node advancedLesson6Node = createLessonNode("advancedLesson6", doc, "46");
 			
-			rootElement.appendChild(advancedLesson1Node);
-			rootElement.appendChild(advancedLesson2Node);
-			rootElement.appendChild(advancedLesson3Node);
-			rootElement.appendChild(advancedLesson4Node);
-			rootElement.appendChild(advancedLesson5Node);
-			rootElement.appendChild(advancedLesson6Node);
+			advancedDifficulty.appendChild(advancedLesson1Node);
+			advancedDifficulty.appendChild(advancedLesson2Node);
+			advancedDifficulty.appendChild(advancedLesson3Node);
+			advancedDifficulty.appendChild(advancedLesson4Node);
+			advancedDifficulty.appendChild(advancedLesson5Node);
+			advancedDifficulty.appendChild(advancedLesson6Node);
 			
 			// creates the expert difficulty element and
 			// its individual lessons as children
@@ -104,9 +126,9 @@ public class FileHandling {
 			Node expertLesson2Node = createLessonNode("expertLesson2", doc, "52");
 			Node expertLesson3Node = createLessonNode("expertLesson3", doc, "53");
 
-			rootElement.appendChild(expertLesson1Node);
-			rootElement.appendChild(expertLesson2Node);
-			rootElement.appendChild(expertLesson3Node);
+			expertDifficulty.appendChild(expertLesson1Node);
+			expertDifficulty.appendChild(expertLesson2Node);
+			expertDifficulty.appendChild(expertLesson3Node);
 			
 			// creates courseProgress.xml in data directory.
 		    Source xmlSource = new DOMSource(doc);
@@ -114,8 +136,10 @@ public class FileHandling {
 				Result result = new StreamResult(new FileOutputStream("data/courseProgress.xml"));
 			    TransformerFactory transformerFactory = TransformerFactory.newInstance();
 			    Transformer transformer = transformerFactory.newTransformer();
-			    transformer.setOutputProperty("indent", "yes");
-			    transformer.transform(xmlSource, result);		
+			    transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+			    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			    transformer.transform(xmlSource, result);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
@@ -148,6 +172,46 @@ public class FileHandling {
 		lesson.appendChild(stars);
 		
 		return lesson;
+	}
+	
+	public void editXmlFile(String lesson) throws SAXException, IOException, ParserConfigurationException, XPathExpressionException, TransformerException {
+		DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
+		DocumentBuilder b = f.newDocumentBuilder();
+		Document doc = b.parse(new File("data/courseProgress.xml"));
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		Node completeNode = null;
+		
+		switch(lesson) {
+		case "introL1":
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson1/Complete").evaluate(doc, XPathConstants.NODE);
+			
+			break;
+			
+		default:
+			break;	
+		}
+		completeNode.setTextContent("Yes");
+		
+	    Source xmlSource = new DOMSource(doc);
+		try {
+			Result result = new StreamResult(new FileOutputStream("data/courseProgress.xml"));
+		    TransformerFactory transformerFactory = TransformerFactory.newInstance();
+		    Transformer transformer = transformerFactory.newTransformer();
+		    transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+		    transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+		    transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+		    transformer.transform(xmlSource, result);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void checkXmlComplete() throws ParserConfigurationException, SAXException, IOException {
+		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+		Document doc = dBuilder.parse("data/courseProgress.xml");
+		
+		doc.getDocumentElement().normalize();
 	}
 	
 	public Boolean xmlFileExists() {
@@ -295,18 +359,4 @@ public class FileHandling {
 			return true;
 		}
 	}
-
-	
-	/*public void xmlSet(String lesson) {	
-		DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder docBuilder = docFactory.newDocumentBuilder();
-		Document doc = docBuilder.parse("data/courseProgress.xml");
-		Node course = doc.get
-		
-		switch(lesson) {
-			case "introL1":
-				intro.setAttribute("Complete", "Yes");
-				break;
-		}
-	}*/
 }
