@@ -184,13 +184,118 @@ public class FileHandling {
 		switch(lesson) {
 		case "introL1":
 			completeNode = (Node) xPath.compile("/course/Introduction/introLesson1/Complete").evaluate(doc, XPathConstants.NODE);
-			
+			completeNode.setTextContent("Yes");
 			break;
+		case "introL2":
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "introL3":
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson3/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "introL4":
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson4/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "introL5":
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson5/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "introL6":
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson6/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "introL7":
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson7/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+			
+		case "beginnerL1":
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson1/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "beginnerL2":
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "beginnerL3":
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson3/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "beginnerL4":
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson4/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "beginnerL5":
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson5/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "beginnerL6":
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson6/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+			
+		case "intermediateL1":
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson1/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "intermediateL2":
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "intermediateL3":
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson3/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "intermediateL4":
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson4/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+			
+		case "advancedL1":
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson1/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "advancedL2":
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "advancedL3":
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson3/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "advancedL4":
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson4/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "advancedL5":
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson5/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "advancedL6":
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson6/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+			
+		case "expertL1":
+			completeNode = (Node) xPath.compile("/course/Expert/expertLesson1/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "expertL2":
+			completeNode = (Node) xPath.compile("/course/Expert/expertLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+		case "expertL3":
+			completeNode = (Node) xPath.compile("/course/Expert/expertLesson3/Complete").evaluate(doc, XPathConstants.NODE);
+			completeNode.setTextContent("Yes");
+			break;
+			
 			
 		default:
 			break;	
 		}
-		completeNode.setTextContent("Yes");
+		
 		
 	    Source xmlSource = new DOMSource(doc);
 		try {
