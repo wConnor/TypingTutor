@@ -21,6 +21,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
@@ -28,10 +29,16 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.w3c.dom.traversal.DocumentTraversal;
+import org.w3c.dom.traversal.NodeFilter;
+import org.w3c.dom.traversal.NodeIterator;
 import org.xml.sax.SAXException;
 
 public class FileHandling {
 
+	TypingTutorMenu mainMenu = new TypingTutorMenu();
+	
 	// methods that are used to check whether or not the courseProgress.xml
 	// file exists and, in the case that it doesn't, creates the file.
 	public void createXmlFile() {
@@ -312,11 +319,153 @@ public class FileHandling {
 	}
 	
 	public void checkXmlComplete() throws ParserConfigurationException, SAXException, IOException {
-		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-		Document doc = dBuilder.parse("data/courseProgress.xml");
+		DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
+		DocumentBuilder b = f.newDocumentBuilder();
+		Document doc = b.parse(new File("data/courseProgress.xml"));
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		Node completeNode = null;
+		try {
+			// intro
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson1/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("introL1");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("introL2");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson3/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("introL3");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson4/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("introL4");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson5/Complete").evaluate(doc, XPathConstants.NODE);
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("introL5");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson6/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("introL6");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Introduction/introLesson7/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("introL7");
+			}
+			
+			// beginner
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson1/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("beginnerL1");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("beginnerL2");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson3/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("beginnerL3");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson4/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("beginnerL4");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson5/Complete").evaluate(doc, XPathConstants.NODE);
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("beginnerL5");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson6/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("beginnerL6");
+			}
+			
+			// intermediate
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson1/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("intermL1");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("intermL2");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson3/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("intermL3");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson4/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("intermL4");
+			}
+			
+			// advanced
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson1/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("advancedL1");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("advancedL2");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson3/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("advancedL3");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson4/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("advancedL4");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson5/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("advancedL5");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson6/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("advancedL6");
+			}
+			
+			// expert
+			completeNode = (Node) xPath.compile("/course/Expert/expertLesson1/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("expertL1");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Expert/expertLesson2/Complete").evaluate(doc, XPathConstants.NODE);
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("expertL2");
+			}
+			
+			completeNode = (Node) xPath.compile("/course/Expert/expertLesson3/Complete").evaluate(doc, XPathConstants.NODE);	
+			if (completeNode.getTextContent().equals("Yes")) {
+				mainMenu.colourButton("expertL3");
+			}
+			
+		} catch (XPathExpressionException e) {
+			e.printStackTrace();
+		};
 		
 		doc.getDocumentElement().normalize();
+
 	}
 	
 	public Boolean xmlFileExists() {

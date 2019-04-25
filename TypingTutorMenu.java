@@ -1,5 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.xml.parsers.ParserConfigurationException;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -8,6 +9,7 @@ import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
+import org.xml.sax.SAXException;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -175,7 +177,13 @@ public class TypingTutorMenu extends JFrame {
 		File wpmFile = new File(wpmFilePath);
 
 		getUsername();
-
+		try {
+			fileHandling.checkXmlComplete();
+		} catch (ParserConfigurationException | SAXException | IOException e3) {
+			// TODO Auto-generated catch block
+			e3.printStackTrace();
+		}
+		
 		// Handles the files. If the contents of the data folder that are expected
 		// to be there aren't, then the program checks each of them and creates
 		// said file. Ensures consistency when dealing with files.
@@ -1301,20 +1309,90 @@ public class TypingTutorMenu extends JFrame {
 	// Changes the lesson button colour to green if completed
 	public void colourButton(String lesson) {
 		switch (lesson) {
-		case "introL1":
-			introLessonOne.setBackground(Color.GREEN);
-			break;
-		case "introL2":
-			introLessonTwo.setBackground(Color.GREEN);
-			break;
-		case "introL3":
-			introLessonThree.setBackground(Color.GREEN);
-			break;
-		case "introL4":
-			introLessonFour.setBackground(Color.GREEN);
-			break;
-	
-		default:
+			case "introL1":
+				introLessonOne.setBackground(Color.GREEN);
+				break;
+			case "introL2":
+				introLessonTwo.setBackground(Color.GREEN);
+				break;
+			case "introL3":
+				introLessonThree.setBackground(Color.GREEN);
+				break;
+			case "introL4":
+				introLessonFour.setBackground(Color.GREEN);
+				break;
+			case "introL5":
+				introLessonFive.setBackground(Color.GREEN);
+				break;
+			case "introL6":
+				introLessonSix.setBackground(Color.GREEN);
+				break;
+			case "introL7":
+				introLessonSeven.setBackground(Color.GREEN);
+				break;
+				
+			case "beginnerL1":
+				beginnerLessonOne.setBackground(Color.GREEN);
+				break;
+			case "beginnerL2":
+				beginnerLessonTwo.setBackground(Color.GREEN);
+				break;
+			case "beginnerL3":
+				beginnerLessonThree.setBackground(Color.GREEN);
+				break;
+			case "beginnerL4":
+				beginnerLessonFour.setBackground(Color.GREEN);
+				break;
+			case "beginnerL5":
+				beginnerLessonFive.setBackground(Color.GREEN);
+				break;
+			case "beginnerL6":
+				beginnerLessonSix.setBackground(Color.GREEN);
+				break;
+				
+			case "intermL1":
+				intermLessonOne.setBackground(Color.GREEN);
+				break;
+			case "intermL2":
+				intermLessonTwo.setBackground(Color.GREEN);
+				break;
+			case "intermL3":
+				intermLessonThree.setBackground(Color.GREEN);
+				break;
+			case "intermL4":
+				intermLessonFour.setBackground(Color.GREEN);
+				break;
+				
+			case "advancedL1":
+				advancedLessonOne.setBackground(Color.GREEN);
+				break;
+			case "advancedL2":
+				advancedLessonTwo.setBackground(Color.GREEN);
+				break;
+			case "advancedL3":
+				advancedLessonThree.setBackground(Color.GREEN);
+				break;
+			case "advancedL4":
+				advancedLessonFour.setBackground(Color.GREEN);
+				break;
+			case "advancedL5":
+				advancedLessonFive.setBackground(Color.GREEN);
+				break;
+			case "advancedL6":
+				advancedLessonSix.setBackground(Color.GREEN);
+				break;
+				
+			case "expertL1":
+				expertLessonOne.setBackground(Color.GREEN);
+				break;
+			case "expertL2":
+				expertLessonTwo.setBackground(Color.GREEN);
+				break;
+			case "expertL3":
+				expertLessonThree.setBackground(Color.GREEN);
+				break;
+				
+			default:
 				break;
 		}
 	}
