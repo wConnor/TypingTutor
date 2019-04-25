@@ -240,30 +240,32 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 			public void actionPerformed(ActionEvent e) {
 				endScene.setVisible(false);
 				
-				try {
-					fileHandling.editXmlFile(mainMenu.getLesson());
-				} catch (XPathExpressionException e1) {
-					e1.printStackTrace();
-				} catch (SAXException e1) {
-					e1.printStackTrace();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				} catch (ParserConfigurationException e1) {
-					e1.printStackTrace();
-				} catch (TransformerException e1) {
-					e1.printStackTrace();
-				}
-		
 				if (typingTest.getCompleteFlag() != true) {
 					typingTest.setCompleteFlag(true);
 					mainMenu.menu();
 					mainMenu.recommendDifficulty();
 				}
-					
+				
 				else {
 					mainMenu.menu();
 					mainMenu.colourButton(mainMenu.getLesson());
-				}	
+					try {
+						fileHandling.editXmlFile(mainMenu.getLesson());
+					} catch (XPathExpressionException e1) {
+						e1.printStackTrace();
+					} catch (SAXException e1) {
+						e1.printStackTrace();
+					} catch (IOException e1) {
+						e1.printStackTrace();
+					} catch (ParserConfigurationException e1) {
+						e1.printStackTrace();
+					} catch (TransformerException e1) {
+						e1.printStackTrace();
+					}
+				}
+
+					
+
 			}
 		});
 
