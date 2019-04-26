@@ -10,7 +10,7 @@ import java.io.PrintWriter;
 import javax.swing.*;
 import javax.swing.border.Border;
 
-public class TypingTest extends JFrame implements ActionListener {
+public class TypingTest extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -26,6 +26,7 @@ public class TypingTest extends JFrame implements ActionListener {
 	public void startGUI() {
 
 		TypingScreenGUI typingScreen = new TypingScreenGUI();
+		FileHandling fileHandling = new FileHandling();
 		assignedText = "A good thesis is a statement of roughly one to three sentences that says something intelligent about a literary work. It is not sufficient simply to identify a theme in your thesis.";
 		
 		initialStart = new JFrame();
@@ -58,7 +59,7 @@ public class TypingTest extends JFrame implements ActionListener {
 				username = nameInput.getText();
 
 				try {
-					createUserFile();
+					fileHandling.createUserFile();
 				} catch (IOException e1) {
 					e1.printStackTrace();
 				}
@@ -98,28 +99,8 @@ public class TypingTest extends JFrame implements ActionListener {
 
 	}
 
-	
-	public void createUserFile() throws IOException {
-		File userFile = new File("data/user.txt");
-		FileWriter userFileWriter = new FileWriter("data/user.txt", true);
-		BufferedWriter userFileBufferedWriter = new BufferedWriter(userFileWriter);
-		PrintWriter userFilePrintWriter = new PrintWriter(userFileBufferedWriter);
-		
-		try {
-			userFile.getParentFile().mkdirs();
-			try {
-				userFile.createNewFile();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-		catch(SecurityException se) {
-			
-		}
-	
-		userFilePrintWriter.print(username);
-		userFilePrintWriter.flush();
-		userFilePrintWriter.close();
+	public String getUsername() {
+		return username;
 	}
 	
 	public String getText() {
@@ -133,12 +114,4 @@ public class TypingTest extends JFrame implements ActionListener {
     public void setCompleteFlag(boolean x) {
         completeFlag = x;
     }
-
-	@Override
-	public void actionPerformed(ActionEvent arg0) {
-		
-		
-	}
-
-
 }

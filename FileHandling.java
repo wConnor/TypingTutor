@@ -1,4 +1,3 @@
-import java.awt.Color;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,14 +13,12 @@ import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Result;
 import javax.xml.transform.Source;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
-import javax.xml.xpath.XPathExpression;
 import javax.xml.xpath.XPathExpressionException;
 import javax.xml.xpath.XPathFactory;
 
@@ -29,16 +26,13 @@ import org.w3c.dom.Attr;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import org.w3c.dom.traversal.DocumentTraversal;
-import org.w3c.dom.traversal.NodeFilter;
-import org.w3c.dom.traversal.NodeIterator;
 import org.xml.sax.SAXException;
 
 public class FileHandling {
 
 	TypingTutorMenu mainMenu = new TypingTutorMenu();
-
+	TypingTest typingTest = new TypingTest();
+	
 	// methods that are used to check whether or not the courseProgress.xml
 	// file exists and, in the case that it doesn't, creates the file.
 	public void createXmlFile() {
@@ -470,10 +464,10 @@ public class FileHandling {
 	
 	public Boolean xmlFileExists() {
 		File xmlFile = new File("data/courseProgress.xml");
-		if (!xmlFile.exists()) {
-			return false;
-		} else {
+		if (xmlFile.exists()) {
 			return true;
+		} else {
+			return false;
 		}
 	}
 
@@ -611,6 +605,42 @@ public class FileHandling {
 			return false;
 		} else {
 			return true;
+		}
+	}
+	
+	// methods that are used to both determine the existence
+	// of wpm.txt and, in the case that it doesn't exist, create
+	// it. this is necessary for the program to know whether or not
+	// to start the typing test.
+	public void createUserFile() throws IOException {
+		File userFile = new File("data/user.txt");
+		FileWriter userFileWriter = new FileWriter("data/user.txt", true);
+		BufferedWriter userFileBufferedWriter = new BufferedWriter(userFileWriter);
+		PrintWriter userFilePrintWriter = new PrintWriter(userFileBufferedWriter);
+		
+		try {
+			userFile.getParentFile().mkdirs();
+			try {
+				userFile.createNewFile();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		catch(SecurityException se) {
+			
+		}
+	
+		userFilePrintWriter.print(typingTest.getUsername());
+		userFilePrintWriter.flush();
+		userFilePrintWriter.close();
+	}
+	
+	public Boolean userFileExists() {
+		File userFile = new File("data/user.txt");
+		if (userFile.exists() == true) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 }
