@@ -385,10 +385,10 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		
 		scene.add(tabButton);
 		scene.add(enterButton1);
-		
+
 		scene.add(capsButton);
 		scene.add(enterButton2);
-		
+
 		scene.add(shiftButton1);
 		scene.add(shiftButton2);
 	}
