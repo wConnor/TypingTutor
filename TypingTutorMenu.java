@@ -51,12 +51,11 @@ public class TypingTutorMenu extends JFrame {
 
 	public static JButton introLessonOne, introLessonTwo, introLessonThree, introLessonFour, introLessonFive, introLessonSix,
 			introLessonSeven;
-	private JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive,
-			beginnerLessonSix;
-	private JButton intermLessonOne, intermLessonTwo, intermLessonThree, intermLessonFour;
-	private JButton advancedLessonOne, advancedLessonTwo, advancedLessonThree, advancedLessonFour, advancedLessonFive,
+	private static JButton beginnerLessonOne, beginnerLessonTwo, beginnerLessonThree, beginnerLessonFour, beginnerLessonFive;
+	private static JButton intermLessonOne, intermLessonTwo, intermLessonThree, intermLessonFour;
+	private static JButton advancedLessonOne, advancedLessonTwo, advancedLessonThree, advancedLessonFour, advancedLessonFive,
 			advancedLessonSix;
-	private JButton expertLessonOne, expertLessonTwo, expertLessonThree;
+	private static JButton expertLessonOne, expertLessonTwo, expertLessonThree;
 
 	private static JLabel username;
 
@@ -123,8 +122,6 @@ public class TypingTutorMenu extends JFrame {
 		beginnerLessonThree = new JButton();
 		beginnerLessonFour = new JButton();
 		beginnerLessonFive = new JButton();
-		beginnerLessonSix = new JButton();
-
 		intermLessonOne = new JButton();
 		intermLessonTwo = new JButton();
 		intermLessonThree = new JButton();
@@ -253,9 +250,7 @@ public class TypingTutorMenu extends JFrame {
 		beginnerLessonFour.setVisible(false);
 		beginnerLessonFive.setBounds(175, 390, 175, 60);
 		beginnerLessonFive.setVisible(false);
-		beginnerLessonSix.setBounds(175, 450, 175, 60);
-		beginnerLessonSix.setVisible(false);
-
+		
 		intermLessonOne.setBounds(175, 150, 175, 60);
 		intermLessonOne.setVisible(false);
 		intermLessonTwo.setBounds(175, 210, 175, 60);
@@ -915,7 +910,6 @@ public class TypingTutorMenu extends JFrame {
 		menuFrame.add(beginnerLessonThree);
 		menuFrame.add(beginnerLessonFour);
 		menuFrame.add(beginnerLessonFive);
-		menuFrame.add(beginnerLessonSix);
 
 		menuFrame.add(intermLessonOne);
 		menuFrame.add(intermLessonTwo);
@@ -948,7 +942,6 @@ public class TypingTutorMenu extends JFrame {
 		menuFrame.setResizable(false);
 
 		menuFrame.setVisible(true);
-
 	}
 
 	public static void lessonSelected(String title, String description, String prompt, boolean wpmBool) {
@@ -1055,7 +1048,6 @@ public class TypingTutorMenu extends JFrame {
 			beginnerLessonThree.setVisible(false);
 			beginnerLessonFour.setVisible(false);
 			beginnerLessonFive.setVisible(false);
-			beginnerLessonSix.setVisible(false);
 
 			intermLessonOne.setVisible(false);
 			intermLessonTwo.setVisible(false);
@@ -1346,10 +1338,7 @@ public class TypingTutorMenu extends JFrame {
 			case "beginnerL5":
 				beginnerLessonFive.setBackground(Color.GREEN);
 				break;
-			case "beginnerL6":
-				beginnerLessonSix.setBackground(Color.GREEN);
-				break;
-				
+
 			case "intermL1":
 				intermLessonOne.setBackground(Color.GREEN);
 				break;
