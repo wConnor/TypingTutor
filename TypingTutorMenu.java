@@ -365,7 +365,7 @@ public class TypingTutorMenu extends JFrame {
 					}
 				});
 
-				introLessonSeven.setText("<html><center>Summary</center></html>");
+				introLessonSeven.setText("<html><center>Lesson 7 - Summary</center></html>");
 				introLessonSeven.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						lessonSelected("Summary of Introduction",
@@ -433,7 +433,7 @@ public class TypingTutorMenu extends JFrame {
 					public void actionPerformed(ActionEvent ev) {
 						lessonSelected("Basic Sentences",
 								"This lesson brings all that has been learnt to the next step - typing sentences. Real-world sentences have grammar and basic punctuation, such as the commas and such that were practiced in the previous lesson.\n\nBoth the basic words and basic punctuation are going to tested out. This lesson aims to help you improve on writing sentences with basic grammar included!",
-								"The quick brown fox jumps over the lazy dog and, swiftly, vanishes from the scene. The dog lifts itself from the ground, confused as to what has happened. A young boy comes along and asks himself, \"Where'd that quick brown fox go?",
+								"The quick brown fox jumps over the lazy dog and, swiftly, vanishes from the scene. The dog lifts itself from the ground, confused as to what has happened. A young boy comes along and asks himself, \"Where'd that quick brown fox go?\"",
 								false);
 						lessonChoice = "beginnerL4";
 					}
@@ -1047,7 +1047,8 @@ public class TypingTutorMenu extends JFrame {
 	public void difficultySelected() {
 		titleArea.setVisible(false);
 		descriptionArea.setVisible(false);
-
+		startButton.setVisible(false);
+		
 		if (introLessonOne.isVisible() == true || beginnerLessonOne.isVisible() == true
 				|| intermLessonOne.isVisible() == true || advancedLessonOne.isVisible() == true) {
 			introLessonOne.setVisible(false);
@@ -1145,30 +1146,20 @@ public class TypingTutorMenu extends JFrame {
 	public void settingsScreen() {
 		String[] sizes = { "Small", "Medium", "Large" };
 
-		JLabel muteSoundLabel = new JLabel("Mute Sound:");
-		JLabel volumeLabel = new JLabel("Volume:");
-		JLabel promptSizeLabel = new JLabel("Prompt Font Size:");
-		JLabel inputSizeLabel = new JLabel("Input Font Size:");
-		JLabel resetWPMLabel = new JLabel("Reset WPM Records?");
+		JLabel promptSizeLabel = new JLabel("Prompt Font:");
+		JLabel inputSizeLabel = new JLabel("Input Font:");
+		JLabel resetWPMLabel = new JLabel("Reset WPM?");
 		JLabel resetDataLabel = new JLabel("Reset All Data?");
 
-		JCheckBox muteSoundBox = new JCheckBox();
-		JSlider volumeSlider = new JSlider(JSlider.HORIZONTAL, 0, 100, 100);
 		JComboBox<String> promptSizeBox = new JComboBox<String>(sizes);
 		JComboBox<String> inputSizeBox = new JComboBox<String>(sizes);
 		JButton resetWPMButton = new JButton("<html><center>Reset</center></html>");
 		JButton resetDataButton = new JButton("<html><center>Reset</center></html>");
 		JButton aboutButton = new JButton("<html><center>About Typing Tutor</center></html>");
 		JButton backButton = new JButton("Back");
-
-		muteSoundLabel.setBounds(20, 10, 100, 30);
-		muteSoundBox.setBounds(170, 15, 20, 20);
-
-		volumeLabel.setBounds(20, 42, 100, 30);
-		volumeSlider.setBounds(120, 47, 120, 20);
-
-		promptSizeLabel.setBounds(20, 80, 120, 20);
-		promptSizeBox.setBounds(140, 80, 100, 20);
+		
+		promptSizeLabel.setBounds(20, 50, 120, 20);
+		promptSizeBox.setBounds(140, 50, 100, 20);
 		promptSizeBox.setSelectedIndex(1);
 		promptSizeBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1192,8 +1183,8 @@ public class TypingTutorMenu extends JFrame {
 			}
 		});
 		
-		inputSizeLabel.setBounds(20, 110, 120, 20);
-		inputSizeBox.setBounds(140, 110, 100, 20);
+		inputSizeLabel.setBounds(20, 80, 120, 20);
+		inputSizeBox.setBounds(140, 80, 100, 20);
 		inputSizeBox.setSelectedIndex(1);
 		inputSizeBox.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -1218,8 +1209,8 @@ public class TypingTutorMenu extends JFrame {
 			}
 		});
 		
-		resetWPMLabel.setBounds(15, 140, 140, 20);
-		resetWPMButton.setBounds(152, 140, 80, 20);
+		resetWPMLabel.setBounds(20, 110, 140, 20);
+		resetWPMButton.setBounds(152, 110, 80, 20);
 		resetWPMButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int reply = JOptionPane.showConfirmDialog(null,
@@ -1232,8 +1223,8 @@ public class TypingTutorMenu extends JFrame {
 			}
 		});
 
-		resetDataLabel.setBounds(20, 170, 140, 20);
-		resetDataButton.setBounds(152, 170, 80, 20);
+		resetDataLabel.setBounds(20, 140, 140, 20);
+		resetDataButton.setBounds(152, 140, 80, 20);
 		resetDataButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				int reply = JOptionPane.showConfirmDialog(null,
@@ -1294,12 +1285,8 @@ public class TypingTutorMenu extends JFrame {
 		settingsFrame.setLayout(null);
 		settingsFrame.setResizable(false);
 
-		settingsFrame.add(muteSoundLabel);
-		settingsFrame.add(volumeLabel);
 		settingsFrame.add(promptSizeLabel);
 		settingsFrame.add(inputSizeLabel);
-		settingsFrame.add(muteSoundBox);
-		settingsFrame.add(volumeSlider);
 		settingsFrame.add(promptSizeBox);
 		settingsFrame.add(inputSizeBox);
 		settingsFrame.add(resetWPMLabel);
