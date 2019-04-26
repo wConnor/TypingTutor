@@ -1,6 +1,7 @@
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.xpath.XPathExpressionException;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -70,7 +71,7 @@ public class TypingTutorMenu extends JFrame {
 	private static double averageWPM, totalWPM;
 	private Font typingTutorTitleFont, titleAreaFont, descriptionAreaFont, typingAreaFont, promptAreaFont;
 	private Border border;
-	private static String assignedText, lessonChoice;
+	private static String assignedText, lessonChoice, difficultyChoice;
 	private static File textNamesFile, textTextFile;
 	private static String textNamesFilePath, textTextFilePath, wpmFilePath;
 	private static int totalTrials, lines, typingAreaSize, promptAreaSize;
@@ -143,7 +144,10 @@ public class TypingTutorMenu extends JFrame {
 		username = new JLabel();
 		typingTutorTitle = new JLabel("<html>Typing <br> \u0000 \u0000 Tutor</html>");
 		averageWPMLabel = new JLabel("Average WPM: " + new DecimalFormat("#0").format(averageWPM));
-		starLabel = new JLabel("");
+		starLabel = new JLabel();
+		
+		starLabel.setFont(new Font("Sans Serif", Font.PLAIN, 34));
+		starLabel.setBounds(350,10,200,60);
 		
 		titleArea = new JTextArea();
 		descriptionArea = new JTextArea();
@@ -174,12 +178,6 @@ public class TypingTutorMenu extends JFrame {
 		File wpmFile = new File(wpmFilePath);
 
 		getUsername();
-		try {
-			fileHandling.checkXmlComplete();
-		} catch (ParserConfigurationException | SAXException | IOException e3) {
-			// TODO Auto-generated catch block
-			e3.printStackTrace();
-		}
 		
 		// Handles the files. If the contents of the data folder that are expected
 		// to be there aren't, then the program checks each of them and creates
@@ -201,6 +199,19 @@ public class TypingTutorMenu extends JFrame {
 
 		if (fileHandling.xmlFileExists() == false) {
 			fileHandling.createXmlFile();
+			starLabel.setText("✯: 0 / 75");
+		} else if (fileHandling.xmlFileExists() == true) {
+			try {
+				starLabel.setText("✯: " + fileHandling.countStars() + " / 75");
+			} catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e4) {
+				e4.printStackTrace();
+			}
+		}
+		
+		try {
+			fileHandling.checkXmlComplete();
+		} catch (ParserConfigurationException | SAXException | IOException e3) {
+			e3.printStackTrace();
 		}
 		
 		getAverageWPM();
@@ -211,7 +222,7 @@ public class TypingTutorMenu extends JFrame {
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
-
+		
 		JComboBox choicesList = new JComboBox(textNames.toArray());
 
 		// -- STAGES + LESSONS --
@@ -285,7 +296,8 @@ public class TypingTutorMenu extends JFrame {
 		introDifficulty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficultySelected();
-
+				difficultyChoice = "Introduction";
+				
 				introLessonOne.setText("<html><center>Lesson 1 - The F and J Keys</center></html>");
 				introLessonOne.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -381,7 +393,8 @@ public class TypingTutorMenu extends JFrame {
 		beginnerDifficulty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficultySelected();
-
+				difficultyChoice = "Beginner";
+				
 				beginnerLessonOne.setText("<html><center>Lesson 1 - Simple Words</center></html>");
 				beginnerLessonOne.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent ev) {
@@ -451,7 +464,8 @@ public class TypingTutorMenu extends JFrame {
 		intermediateDifficulty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficultySelected();
-
+				difficultyChoice = "Intermediate";
+				
 				intermLessonOne.setText("<html><center>Lesson 1 - Complex Sentences</center></html>");
 				intermLessonOne.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent ev) {
@@ -508,7 +522,8 @@ public class TypingTutorMenu extends JFrame {
 		advancedDifficulty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficultySelected();
-
+				difficultyChoice = "Advanced";
+				
 				advancedLessonOne.setText("<html><center>Lesson 1 - Introducing Difficult Sentences</html></center>");
 				advancedLessonOne.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent ev) {
@@ -590,7 +605,8 @@ public class TypingTutorMenu extends JFrame {
 		expertDifficulty.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				difficultySelected();
-
+				difficultyChoice = "Expert";
+				
 				expertLessonOne.setText("<html><center>Lesson 1 - Left Side</center></html>");
 				expertLessonOne.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -683,6 +699,7 @@ public class TypingTutorMenu extends JFrame {
 						wpmBoolean = true;
 						menuFrame.dispose();
 						soloPracticeFrame.setVisible(false);
+						lessonChoice = "practice";
 						typingScreen.beginCountdown();
 					}
 				});
@@ -882,8 +899,6 @@ public class TypingTutorMenu extends JFrame {
 
 		averageWPMLabel.setBounds(30, 100, 250, 20);
 
-		calculateStars();
-		
 		menuFrame.setLayout(null);
 
 		menuFrame.add(introDifficulty);
@@ -1447,7 +1462,6 @@ public class TypingTutorMenu extends JFrame {
 	}
 
 	public void getAverageWPM() {
-
 		double[] wpmList = wpmFilesToArray();
 		double sum = 0;
 
@@ -1524,21 +1538,23 @@ public class TypingTutorMenu extends JFrame {
 		settingsFrame.dispose();
 		aboutFrame.dispose();
 	}
-
-	// Calculates the stars earned by the user and also sets the 
-	// starLabel text accordingly
-	public void calculateStars() {
-		int currentStars = 0;
-		int maxStars = 75;
-		
-		starLabel.setFont(new Font("Sans Serif", Font.PLAIN, 34));
-		starLabel.setText("✯: " + currentStars + " / " + maxStars);
-		starLabel.setBounds(350,10,150,60);
-	}
 	
 	// Adds choice to choicesList
 	public static void addChoice(String text) {
 		choicesList.addItem(text);
+	}
+	
+	public void updateStars() {
+		FileHandling fileHandling = new FileHandling();
+		try {
+			starLabel.setText("✯: " + fileHandling.countStars() + " / 75");
+		} catch (XPathExpressionException | ParserConfigurationException | SAXException | IOException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public String getDifficulty() {
+		return difficultyChoice;
 	}
 	
 	public String getLesson() {

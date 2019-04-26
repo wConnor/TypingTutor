@@ -214,8 +214,9 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		double accuracy = ((double) correctCharacters / (double) totalCharactersInput) * 100;
 		JLabel summaryLabel = new JLabel(
 				"<html><b>Time Elapsed:</b> " + new DecimalFormat("#0.00").format(endTime) + " seconds <br/><b>Speed:</b> " + (int) wpm
-						+ "wpm<br/><b>Score:</b> " + new DecimalFormat("#0").format(score) + "<br/><b>Accuracy</b>: " + new DecimalFormat("#0.00").format(accuracy) + "%");
-		
+						+ "wpm<br/><b>Score:</b> " + new DecimalFormat("#0").format(score) + "<br/><b>Accuracy</b>: " + new DecimalFormat("#0.00").format(accuracy) + "%"
+						+ "<br/><b>Stars Earned</b>: " + calculateStarsEarned());
+
 		scene.dispose();
 
         // Checks to see whether or not the wpmBoolean flag is 
@@ -245,27 +246,20 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 					mainMenu.menu();
 					mainMenu.recommendDifficulty();
 				}
-				
 				else {
 					mainMenu.menu();
-					mainMenu.colourButton(mainMenu.getLesson());
-					try {
-						fileHandling.editXmlFile(mainMenu.getLesson());
-					} catch (XPathExpressionException e1) {
-						e1.printStackTrace();
-					} catch (SAXException e1) {
-						e1.printStackTrace();
-					} catch (IOException e1) {
-						e1.printStackTrace();
-					} catch (ParserConfigurationException e1) {
-						e1.printStackTrace();
-					} catch (TransformerException e1) {
-						e1.printStackTrace();
+					if (mainMenu.getLesson() != "practice") {
+						mainMenu.colourButton(mainMenu.getLesson());
+							try {
+								fileHandling.editXmlFile(mainMenu.getLesson());
+								fileHandling.writeXmlStars(calculateStarsEarned());
+							} catch (XPathExpressionException | ParserConfigurationException | SAXException
+									| IOException | TransformerException e1) {
+								e1.printStackTrace();
+							}
+						mainMenu.updateStars();
 					}
 				}
-
-					
-
 			}
 		});
 
@@ -385,7 +379,7 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		
 		scene.add(tabButton);
 		scene.add(enterButton1);
-
+		
 		scene.add(capsButton);
 		scene.add(enterButton2);
 
@@ -512,6 +506,21 @@ public class TypingScreenGUI extends JFrame implements KeyListener, ActionListen
 		completeLabel.setVisible(true);
 		endScreen();
     	}
+	}
+	
+	public String calculateStarsEarned() {
+		double oneStar = textToType.length() * 40 * 0.60;
+		double twoStars = textToType.length() * 60 * 0.80;
+		double threeStars = textToType.length() * 85 * 0.90;
+		if (score <= oneStar) {		// one star
+			return "0";
+		} else if (score > oneStar && score <= twoStars) {
+			return "1";
+		} else if (score > twoStars && score <= threeStars){
+			return "2";
+		} else {
+			return "3";
+		}
 	}
 	
 	public double getWPM() {

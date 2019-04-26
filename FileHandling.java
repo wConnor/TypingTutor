@@ -67,13 +67,13 @@ public class FileHandling {
 
 			// creates the introduction difficulty element and
 			// its individual lessons as children
-			Node introLesson1Node = createLessonNode("introLesson1", doc, "11");
-			Node introLesson2Node = createLessonNode("introLesson2", doc, "12");
-			Node introLesson3Node = createLessonNode("introLesson3", doc, "13");
-			Node introLesson4Node = createLessonNode("introLesson4", doc, "14");
-			Node introLesson5Node = createLessonNode("introLesson5", doc, "15");
-			Node introLesson6Node = createLessonNode("introLesson6", doc, "16");
-			Node introLesson7Node = createLessonNode("introLesson7", doc, "17");
+			Node introLesson1Node = createLessonNode("introL1", doc, "11");
+			Node introLesson2Node = createLessonNode("introL2", doc, "12");
+			Node introLesson3Node = createLessonNode("introL3", doc, "13");
+			Node introLesson4Node = createLessonNode("introL4", doc, "14");
+			Node introLesson5Node = createLessonNode("introL5", doc, "15");
+			Node introLesson6Node = createLessonNode("introL6", doc, "16");
+			Node introLesson7Node = createLessonNode("introL7", doc, "17");
 
 			introDifficulty.appendChild(introLesson1Node);
 			introDifficulty.appendChild(introLesson2Node);
@@ -85,11 +85,11 @@ public class FileHandling {
 
 			// creates the beginner difficulty element and
 			// its individual lessons as children
-			Node beginnerLesson1Node = createLessonNode("beginnerLesson1", doc, "21");
-			Node beginnerLesson2Node = createLessonNode("beginnerLesson2", doc, "22");
-			Node beginnerLesson3Node = createLessonNode("beginnerLesson3", doc, "23");
-			Node beginnerLesson4Node = createLessonNode("beginnerLesson4", doc, "24");
-			Node beginnerLesson5Node = createLessonNode("beginnerLesson5", doc, "25");
+			Node beginnerLesson1Node = createLessonNode("beginnerL1", doc, "21");
+			Node beginnerLesson2Node = createLessonNode("beginnerL2", doc, "22");
+			Node beginnerLesson3Node = createLessonNode("beginnerL3", doc, "23");
+			Node beginnerLesson4Node = createLessonNode("beginnerL4", doc, "24");
+			Node beginnerLesson5Node = createLessonNode("beginnerL5", doc, "25");
 
 			beginnerDifficulty.appendChild(beginnerLesson1Node);
 			beginnerDifficulty.appendChild(beginnerLesson2Node);
@@ -99,10 +99,10 @@ public class FileHandling {
 
 			// creates the intermediate difficulty element and
 			// its individual lessons as children
-			Node intermLesson1Node = createLessonNode("intermLesson1", doc, "31");
-			Node intermLesson2Node = createLessonNode("intermLesson2", doc, "32");
-			Node intermLesson3Node = createLessonNode("intermLesson3", doc, "33");
-			Node intermLesson4Node = createLessonNode("intermLesson4", doc, "34");
+			Node intermLesson1Node = createLessonNode("intermL1", doc, "31");
+			Node intermLesson2Node = createLessonNode("intermL2", doc, "32");
+			Node intermLesson3Node = createLessonNode("intermL3", doc, "33");
+			Node intermLesson4Node = createLessonNode("intermL4", doc, "34");
 
 			intermDifficulty.appendChild(intermLesson1Node);
 			intermDifficulty.appendChild(intermLesson2Node);
@@ -111,12 +111,12 @@ public class FileHandling {
 
 			// creates the advanced difficulty element and
 			// its individual lessons as children
-			Node advancedLesson1Node = createLessonNode("advancedLesson1", doc, "41");
-			Node advancedLesson2Node = createLessonNode("advancedLesson2", doc, "42");
-			Node advancedLesson3Node = createLessonNode("advancedLesson3", doc, "43");
-			Node advancedLesson4Node = createLessonNode("advancedLesson4", doc, "44");
-			Node advancedLesson5Node = createLessonNode("advancedLesson5", doc, "45");
-			Node advancedLesson6Node = createLessonNode("advancedLesson6", doc, "46");
+			Node advancedLesson1Node = createLessonNode("advancedL1", doc, "41");
+			Node advancedLesson2Node = createLessonNode("advancedL2", doc, "42");
+			Node advancedLesson3Node = createLessonNode("advancedL3", doc, "43");
+			Node advancedLesson4Node = createLessonNode("advancedL4", doc, "44");
+			Node advancedLesson5Node = createLessonNode("advancedL5", doc, "45");
+			Node advancedLesson6Node = createLessonNode("advancedL6", doc, "46");
 
 			advancedDifficulty.appendChild(advancedLesson1Node);
 			advancedDifficulty.appendChild(advancedLesson2Node);
@@ -127,9 +127,9 @@ public class FileHandling {
 
 			// creates the expert difficulty element and
 			// its individual lessons as children
-			Node expertLesson1Node = createLessonNode("expertLesson1", doc, "51");
-			Node expertLesson2Node = createLessonNode("expertLesson2", doc, "52");
-			Node expertLesson3Node = createLessonNode("expertLesson3", doc, "53");
+			Node expertLesson1Node = createLessonNode("expertL1", doc, "51");
+			Node expertLesson2Node = createLessonNode("expertL2", doc, "52");
+			Node expertLesson3Node = createLessonNode("expertL3", doc, "53");
 
 			expertDifficulty.appendChild(expertLesson1Node);
 			expertDifficulty.appendChild(expertLesson2Node);
@@ -189,131 +189,131 @@ public class FileHandling {
 
 		switch (lesson) {
 		case "introL1":
-			completeNode = (Node) xPath.compile("/course/Introduction/introLesson1/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Introduction/introL1/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "introL2":
-			completeNode = (Node) xPath.compile("/course/Introduction/introLesson2/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Introduction/introL2/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "introL3":
-			completeNode = (Node) xPath.compile("/course/Introduction/introLesson3/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Introduction/introL3/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "introL4":
-			completeNode = (Node) xPath.compile("/course/Introduction/introLesson4/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Introduction/introL4/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "introL5":
-			completeNode = (Node) xPath.compile("/course/Introduction/introLesson5/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Introduction/introL5/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "introL6":
-			completeNode = (Node) xPath.compile("/course/Introduction/introLesson6/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Introduction/introL6/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "introL7":
-			completeNode = (Node) xPath.compile("/course/Introduction/introLesson7/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Introduction/introL7/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 
 		case "beginnerL1":
-			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson1/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerL1/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "beginnerL2":
-			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson2/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerL2/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "beginnerL3":
-			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson3/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerL3/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "beginnerL4":
-			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson4/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerL4/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "beginnerL5":
-			completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson5/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Beginner/beginnerL5/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 
 		case "intermediateL1":
-			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson1/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermL1/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "intermediateL2":
-			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson2/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermL2/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "intermediateL3":
-			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson3/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermL3/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "intermediateL4":
-			completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson4/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Intermediate/intermL4/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 
 		case "advancedL1":
-			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson1/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedL1/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "advancedL2":
-			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson2/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedL2/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "advancedL3":
-			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson3/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedL3/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "advancedL4":
-			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson4/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedL4/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "advancedL5":
-			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson5/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedL5/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "advancedL6":
-			completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson6/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Advanced/advancedL6/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 
 		case "expertL1":
-			completeNode = (Node) xPath.compile("/course/Expert/expertLesson1/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Expert/expertL1/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "expertL2":
-			completeNode = (Node) xPath.compile("/course/Expert/expertLesson2/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Expert/expertL2/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
 		case "expertL3":
-			completeNode = (Node) xPath.compile("/course/Expert/expertLesson3/Complete").evaluate(doc,
+			completeNode = (Node) xPath.compile("/course/Expert/expertL3/Complete").evaluate(doc,
 					XPathConstants.NODE);
 			completeNode.setTextContent("Yes");
 			break;
@@ -336,6 +336,32 @@ public class FileHandling {
 		}
 	}
 
+	public void writeXmlStars(String stars) throws ParserConfigurationException, SAXException, IOException, XPathExpressionException, TransformerException {
+		DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
+		DocumentBuilder b = f.newDocumentBuilder();
+		Document doc = b.parse(new File("data/courseProgress.xml"));
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		Node starsNode = null;
+		
+		starsNode = (Node) xPath.compile("/course/" + mainMenu.getDifficulty() + "/" + mainMenu.getLesson() + "/Stars").evaluate(doc,
+				XPathConstants.NODE);
+
+		starsNode.setTextContent(stars);
+		
+		Source xmlSource = new DOMSource(doc);
+		try {
+			Result result = new StreamResult(new FileOutputStream("data/courseProgress.xml"));
+			TransformerFactory transformerFactory = TransformerFactory.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			transformer.setOutputProperty(OutputKeys.OMIT_XML_DECLARATION, "yes");
+			transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+			transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "4");
+			transformer.transform(xmlSource, result);
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public void checkXmlComplete() throws ParserConfigurationException, SAXException, IOException {
 		DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
 		DocumentBuilder b = f.newDocumentBuilder();
@@ -345,15 +371,16 @@ public class FileHandling {
 		try {
 			// intro
 			for (int i = 1; i != 7; ++i) {
-				completeNode = (Node) xPath.compile("/course/Introduction/introLesson" + i + "/Complete").evaluate(doc,
+				completeNode = (Node) xPath.compile("/course/Introduction/introL" + i + "/Complete").evaluate(doc,
 						XPathConstants.NODE);
 				if (completeNode.getTextContent().equals("Yes")) {
 					mainMenu.colourButton("introL" + i);
 				}
 			}
+			
 			// beginner
 			for (int i = 1; i != 5; ++i) {
-				completeNode = (Node) xPath.compile("/course/Beginner/beginnerLesson" + i + "/Complete").evaluate(doc,
+				completeNode = (Node) xPath.compile("/course/Beginner/beginnerL" + i + "/Complete").evaluate(doc,
 						XPathConstants.NODE);
 				if (completeNode.getTextContent().equals("Yes")) {
 					mainMenu.colourButton("beginnerL" + i);
@@ -362,7 +389,7 @@ public class FileHandling {
 
 			// intermediate
 			for (int i = 1; i != 4; ++i) {
-				completeNode = (Node) xPath.compile("/course/Intermediate/intermLesson" + i + "/Complete").evaluate(doc,
+				completeNode = (Node) xPath.compile("/course/Intermediate/intermL" + i + "/Complete").evaluate(doc,
 						XPathConstants.NODE);
 				if (completeNode.getTextContent().equals("Yes")) {
 					mainMenu.colourButton("intermL" + i);
@@ -370,8 +397,8 @@ public class FileHandling {
 			}
 
 			// advanced
-			for (int i = 1; i != 5; ++i) {
-				completeNode = (Node) xPath.compile("/course/Advanced/advancedLesson" + i + "/Complete").evaluate(doc,
+			for (int i = 1; i != 6; ++i) {
+				completeNode = (Node) xPath.compile("/course/Advanced/advancedL" + i + "/Complete").evaluate(doc,
 						XPathConstants.NODE);
 				if (completeNode.getTextContent().equals("Yes")) {
 					mainMenu.colourButton("advancedL" + i);
@@ -380,7 +407,7 @@ public class FileHandling {
 
 			// expert
 			for (int i = 1; i != 3; ++i) {
-				completeNode = (Node) xPath.compile("/course/Expert/expertLesson" + i + "/Complete").evaluate(doc,
+				completeNode = (Node) xPath.compile("/course/Expert/expertL" + i + "/Complete").evaluate(doc,
 						XPathConstants.NODE);
 				if (completeNode.getTextContent().equals("Yes")) {
 					mainMenu.colourButton("expertL" + i);
@@ -390,12 +417,57 @@ public class FileHandling {
 		} catch (XPathExpressionException e) {
 			e.printStackTrace();
 		}
-		;
 
 		doc.getDocumentElement().normalize();
 
 	}
 
+	public int countStars() throws ParserConfigurationException, SAXException, IOException, XPathExpressionException {
+		int totalStars = 0;
+		DocumentBuilderFactory f = DocumentBuilderFactory.newInstance();
+		DocumentBuilder b = f.newDocumentBuilder();
+		Document doc = b.parse(new File("data/courseProgress.xml"));
+		XPath xPath = XPathFactory.newInstance().newXPath();
+		Node starNode = null;
+
+		// intro
+		for (int i = 1; i != 7; ++i) {
+			starNode = (Node) xPath.compile("/course/Introduction/introL" + i + "/Stars").evaluate(doc,
+					XPathConstants.NODE);
+			totalStars += Integer.valueOf(starNode.getTextContent());
+		}
+		
+		// beginner
+		for (int i = 1; i != 5; ++i) {
+			starNode = (Node) xPath.compile("/course/Beginner/beginnerL" + i + "/Stars").evaluate(doc,
+					XPathConstants.NODE);
+			totalStars += Integer.valueOf(starNode.getTextContent());
+		}
+		
+		// intermediate
+		for (int i = 1; i != 4; ++i) {
+			starNode = (Node) xPath.compile("/course/Intermediate/intermL" + i + "/Stars").evaluate(doc,
+					XPathConstants.NODE);
+			totalStars += Integer.valueOf(starNode.getTextContent());
+		}
+		
+		// advanced
+		for (int i = 1; i != 6; ++i) {
+			starNode = (Node) xPath.compile("/course/Advanced/advancedL" + i + "/Stars").evaluate(doc,
+					XPathConstants.NODE);
+			totalStars += Integer.valueOf(starNode.getTextContent());
+		}
+
+		// expert
+		for (int i = 1; i != 3; ++i) {
+			starNode = (Node) xPath.compile("/course/Expert/expertL" + i + "/Stars").evaluate(doc,
+					XPathConstants.NODE);
+			totalStars += Integer.valueOf(starNode.getTextContent());
+		}
+		
+		return totalStars;
+	}
+	
 	public Boolean xmlFileExists() {
 		File xmlFile = new File("data/courseProgress.xml");
 		if (!xmlFile.exists()) {
