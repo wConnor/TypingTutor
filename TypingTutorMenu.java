@@ -1242,7 +1242,7 @@ public class TypingTutorMenu extends JFrame {
 				JLabel titleLabel = new JLabel("<html>Typing Tutor</html>");
 				JLabel descriptionLabel = new JLabel(
 						"<html><center>Typing Tutor has been developed as a part of the OCR A Level Computer Science programming project. The problem found has been that students in the current year have rather low typing speeds, and this program intends to assist them in speeding up their WPM.</center></html>");
-				JLabel yearLabel = new JLabel("<html><center>2018</center></html>");
+				JLabel yearLabel = new JLabel("<html><center>2018 - 2019</center></html>");
 				JButton backButton = new JButton("Back");
 
 				titleLabel.setBounds(90, 10, 250, 100);
@@ -1250,7 +1250,7 @@ public class TypingTutorMenu extends JFrame {
 
 				descriptionLabel.setBounds(50, 100, 300, 150);
 
-				yearLabel.setBounds(185, 85, 50, 30);
+				yearLabel.setBounds(165, 85, 100, 30);
 
 				backButton.setBounds(10, 238, 70, 30);
 				backButton.addActionListener(new ActionListener() {
@@ -1501,9 +1501,16 @@ public class TypingTutorMenu extends JFrame {
 	public void resetData() {
 		resetWPM();
 		File dataFile = new File("data/user.txt");
-
+		File courseProgressFile = new File("data/courseProgress.xml");
+		
 		if (dataFile.delete()) {
 			System.out.println("data/user.txt deleted successfully.");
+		} else {
+			System.out.println("Failed to delete data/user.txt.");
+		}
+		
+		if (courseProgressFile.delete()) {
+			System.out.println("data/courseProgress.xml deleted successfully.");
 		} else {
 			System.out.println("Failed to delete data/user.txt.");
 		}
@@ -1512,7 +1519,7 @@ public class TypingTutorMenu extends JFrame {
 
 		JOptionPane.showMessageDialog(null, "All data has been reset.");
 
-		typingTutorInit.init();
+		TypingTutor.init();
 	}
 
 	public void disposeAll() {
