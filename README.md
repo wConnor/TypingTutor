@@ -27,10 +27,13 @@ $ java TypingTutor
 
 ## Screenshots
 ![Introduction Screen](/images/typingtutor-start.png)
+
 Introduction screen that the user is prompted with upon first launch of the program.
 
 ![Main Menu](/images/typingtutor-menu.png)
+
 Main menu of the program where the user is able to select which lesson they would like to do.
 
 ![Typing Session Screen](/images/typingtutor-session.png)
+
 Typing session screen where the user is to copy what is shown on the screen. An on-screen keyboard is also present to dissuade the user from looking at their own.
